@@ -1,34 +1,34 @@
 \section{Capa de aplicación}
 
 
-La definición de requerimientos de datos involucra en particular a una área de
+La definición de requerimientos de datos involucra en particular a un área de
 arquitectura de software recomendada por IVOA. Esta capa es la de
 estándares y protocolos de acceso a los datos (Data Access Protocol Standards).
 
 Los datos y metadatos astronómicos están siendo distribuidos mediante distintos
 mecanismos que le permitan a la comunidad astronómica y científica acceder a
-ellos de forma fácil y estandarizada. Por lo general estos accesos son mediante
+ellos de forma fácil y estandarizada. Por lo general, estos accesos son mediante
 páginas web, aplicaciones de escritorio, servicios File Transfer Protocol
 (FTP), etc. La colaboración de distintos observatorios virtuales ha permitido
-crear protocolos estandarizados para consultar y acceder datos y metadatos de
+crear protocolos estandarizados para consultar y acceder a datos y metadatos de
 distintas fuentes de información. Estos protocolos fueron creados para permitir
 que la implementación fuese más fácil.
 
 Durante la ejecución del proyecto se han estudiado estos protocolos, enmarcado
-en la idea de observatorio virtual, y la arquitectura que se debe respetar.
+en la idea de VO, y la arquitectura que se debe respetar.
 
 \textbf{Estándares y Protocolos de acceso de datos} \begin{enumerate} \item
 \textbf{Buscar por coordenadas o región del cielo}: las búsquedas por
 coordenadas en el espacio, involucra la definición de una coordenada RA/DEC, y
 además de un radio angular. Este tipo de consultas están consideradas dentro de
 un protocolo de acceso de datos definido por IVOA, el cual se llama Simple Cone
-Search.  Otra búsqueda puede ser por región del cielo definiendo una región
+Search. Otra búsqueda puede ser por región del cielo definiendo una región
 rectangular, el protocolo relacionado es Simple Image Access Protocol.
 
 	\item \textbf{Buscar por metadatos espaciales}: las búsquedas
 espaciales requieren definir parámetros de rangos de resolución angular y
 campos de visión en base a coordenadas. El protocolo de acceso con el cual se
-deberá implementar este requerimiento es mediante Table Access Protocol,
+deberá implementar este requerimiento es mediante Table Access Protocol (TAP),
 basándose en Astronomical Data Query Language.
 
 	\item \textbf{Buscar por nombre o tipo de objeto}: este requerimiento
@@ -43,7 +43,7 @@ provee IVOA en su grupo de Semánticas.
 metadatos espectrales se basará en búsqueda por banda o rango de frecuencia,
 líneas espectrales, búsquedas por resolución espectral y redshift. Este tipo de
 búsqueda se realizará mediante el uso de los protocolos Table Access Protocol y
-Simple Spectra Acess Protocol.
+Simple Spectra Access Protocol.
 
 	\item \textbf{Buscar por metadatos temporales}: la búsqueda por
 metadatos temporales se enfocará a fechas de cuando se hizo cierta observación,
@@ -67,7 +67,7 @@ proyecto, y después cuando ChiVO esté en funcionamiento, existirán fuentes de
 documentación científica, ya sean reportes técnicos o papers. Se implementará
 un buscador que a partir de información como: rango de año, autor, fuente en
 estudio, se le entregue al usuario una lista de artículos que hayan calzado con
-la búsqueda.  Algo similar a como funciona SIMBAD.
+la búsqueda. Algo similar a como funciona SIMBAD.
 
 	\item \textbf{Herramientas de análisis}: durante la ejecución del
 proyecto se implementarán herramientas de análisis de datos de gran escala, las
