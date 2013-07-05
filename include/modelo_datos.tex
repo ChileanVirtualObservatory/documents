@@ -4,14 +4,14 @@ Breve descripción de los protocolos y estándares a considerar. Es recomendado
 el estudio de éstos en el siguiente orden:
 
 \begin{enumerate}
-	\item[a.] \textbf{Observation Core Data Model}: Define los componentes
+	\item[a.] \textbf{Observation Core Data Model} (ObsCore): Define los componentes
 principales de todos los metadatos accesibles que tienen un rol en el
-descubrimiento de las observaciones.  Requerimientos: Todos, debido a que es el
+descubrimiento de las observaciones. Requerimientos: Todos, debido a que es el
 Modelo de Datos base. \url{http://www.ivoa.net/documents/ObsCore/index.html} 
 
 	\item[b.] \textbf{Units}: Define las prácticas comunes en la
 manipulación de unidades en los metadatos astronómicos y define una
-representación consistente en los servicios dentro de un Observatorio Virtual.
+representación consistente en los servicios dentro de un VO.
 Necesario para: Observation Core Data Model, Simple Spectral Line Data Model,
 Characterisation Data Model, Simulations Data Model.
 \url{http://www.ivoa.net/documents/VOUnits/index.html}
@@ -24,11 +24,11 @@ Data Model, Simulations Data Model.
 
 	\item[d.] \textbf{Simple Spectral Line Data Model}: Describe las
 transiciones de líneas espectrales. Podría ser necesario, de otra manera, la
-información puede estar contenida en el Observation Core Data Model.
+información que puede estar contenida en el Observation Core Data Model.
 Requerimientos: (3) Buscar por metadatos espectrales (frecuencia y resolución).
 \url{http://www.ivoa.net/documents/SSLDM/}
 
-	\item[e.] Characterisation Data Model: Define y organiza todos los
+	\item[e.] \textbf{Characterisation Data Model}: Define y organiza todos los
 metadatos necesarios para describir cómo un conjunto de datos ocupa un espacio
 físico multidimensional, cuantitativamente y, cuando es relevante,
 cualitativamente. Requerimientos: (3) Buscar por metadatos espectrales
@@ -36,14 +36,14 @@ cualitativamente. Requerimientos: (3) Buscar por metadatos espectrales
 angular y campos de visión).
 \url{http://www.ivoa.net/Documents/latest/ImplementationCharacterisation.html}
 
-	\item Space Time Coordinate metadata: Describe metadatos espaciales y
+	\item[f.] \textbf{Space Time Coordinate Metadata}: Describe metadatos espaciales y
 temporales. Podría ser necesario para usos específicos de tiempo-espacio.
 Requerimientos: (1) Buscar por coordenadas o región del cielo, (2) Buscar por
 nombre o  tipo de objeto, (4) Buscar por metadatos espaciales (resolución
 angular y campos de visión), (5) Buscar por metadatos temporales.
 \url{http://www.ivoa.net/Documents/latest/STC-Model.html}
 
-	\item Simulations Data Model: Define y organiza todos los metadatos
+	\item[g.] \textbf{Simulations Data Model}: Define y organiza todos los metadatos
 necesarios para describir conjuntos de datos de simulaciones. Requerimientos:
 (7) Simulaciones. \url{http://www.ivoa.net/documents/SimDM/index.html}
 \end{enumerate}
@@ -51,10 +51,11 @@ necesarios para describir conjuntos de datos de simulaciones. Requerimientos:
 \subsection{Modelo de datos}
 
 Se especificará una tabla con los atributos y la descripción de cada uno, en
-concordancia a los recomendado con IVOA.
+concordancia a los recomendados por IVOA.
 
 \begin{table}[h!t]
 	\centering
+	\caption{Integrantes de IVOA}
 	\begin{tabular}{|l|l|l|} 
 		\hline
 		Nombre de la columna & Unidad & Descripción \\
@@ -69,7 +70,7 @@ concordancia a los recomendado con IVOA.
 		access\_estsize & kbyte & Tamaño estimado en KB \\
 		target\_name & sin unidad & Objeto astronómico observado \\
 		s\_ra & grados & RA central \\
-		s\_dec & grados & Dec central \\
+		s\_dec & grados & DEC central \\
 		s\_fov & grados & Diámetros de la región cubierta \\
 		s\_region & sin unidad & Región cubierta en ADQL \\
 		s\_resolution & arco segundos & Resolución espacial \\
@@ -86,7 +87,6 @@ concordancia a los recomendado con IVOA.
 		instrument\_name & sin unidad & Nombre del instrumento usado para la observación \\
 		\hline
 	\end{tabular}
-	\caption{Integrantes de IVOA}
 	\label{table:tap_column_name}
 \end{table}
 
