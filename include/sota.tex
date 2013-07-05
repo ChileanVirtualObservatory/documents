@@ -1,56 +1,103 @@
-\section{Introducción}
+\section{Introduction}
 
-En la actualidad se está implementando el primer observatorio astronómico virtual chileno
-para los datos del observatorio Atacama Large Millimeter/submillimeter Array (ALMA), que
-busca entregar los datos científicos a la comunidad astronómica chilena y
-del mundo. Este proyecto se realiza en colaboración con cinco universidades
-chilenas: Universidad Técnica Federico Santa María, Universidad de Chile,
-Pontificia Universidad Católica, Universidad de Concepción y la Universidad de
-Santiago de Chile. También participa la Red Universitaria Nacional (REUNA) y el
-Centro de Modelamiento Matemático (CMM).
+%En la actualidad se está implementando el primer observatorio astronómico
+%virtual chileno para los datos del observatorio Atacama Large
+%Millimeter/submillimeter Array (ALMA), que busca entregar los datos científicos
+%a la comunidad astronómica chilena y del mundo. Este proyecto se realiza en
+%colaboración con cinco universidades chilenas: Universidad Técnica Federico
+%Santa María, Universidad de Chile, Pontificia Universidad Católica, Universidad
+%de Concepción y la Universidad de Santiago de Chile. También participa la Red
+%Universitaria Nacional (REUNA) y el Centro de Modelamiento Matemático (CMM).
 
-\subsection{Datos Astronómicos}
-Los telescopios e instrumentos astronómicos están afectos a los avances
-tecnológicos, lo cual a nivel de información es una ventaja, dado que
-se logra captar datos que antes no existían. Sin embargo, computacionalmente, la
-preocupación está centrada en el vertiginoso crecimiento de los volúmenes de datos
-generados, que ya pasó de los gigabytes (GB) a los terabytes (TB) en la década pasada, y
-que pasará de los TB a los petabytes (PB) en la actual década. Por ejemplo:
+%Inglés
+Currently its being developing the first Chilean Virtual Observatory for the
+Atacama Large Millimeter/submillimeter Array (ALMA) data, that it looks to
+provide the scientific data to the chilean and world community. This project
+its being developed in collaboration between five universities: Universidad
+Técnica Federico Santa María, Universidad de Chile, Pontificia Universidad
+Católica, Universidad de Concepción y la Universidad de Santiago de Chile.
+Also participates the Red Universitaria Nacional (REUNA) and the Centro de
+Modelamiento Matemático (CMM).
+
+\subsection{Astronomical Data}
+%Los telescopios e instrumentos astronómicos están afectos a los avances
+%tecnológicos, lo cual a nivel de información es una ventaja, dado que se logra
+%captar datos que antes no existían. Sin embargo, computacionalmente, la
+%preocupación está centrada en el vertiginoso crecimiento de los volúmenes de
+%datos generados, que ya pasó de los gigabytes (GB) a los terabytes (TB) en la
+%década pasada, y que pasará de los TB a los petabytes (PB) en la actual
+%década. Por ejemplo: \begin{itemize}
+%	\item Galaxy Evolution Explorer (GALEX) \cite{galex}: primer telescopio
+%orbitante en el espacio que observa galaxias en luz ultravioleta. En los
+%primeros 3 años generó 30 TB de datos.
+%	\item Sloan Digital Sky Survey (SDSS) \cite{sloan}: es un proyecto de
+%inspección de imágenes en el espectro visible y de corrimiento al rojo, que en
+%su séptima versión publicó más de 60 TB de datos: 15.7 TB en imágenes, 18 TB en
+%catálogos, y 26.8 TB en otros productos.
+%	\item Atacama Large Millimeter/submillimeter Array (ALMA) \cite{alma}: es un
+%interferómetro que trabaja con 66 radio telescopios de platos de distintos
+%tamaños, obteniendo datos de radio, polarización, etc. Se espera que genere 1
+%TeraBytes de datos por día de observación.
+%	\item Panoramic Survey Telescope \& Rapid Response System (Pan-STARRS) \cite{pan}:
+%es un sistema de 4 telescopios (PS4) que permitirá obtener imágenes a gran campo de manera continua.
+%Su objetivo es caracterizar objetos que se aproximan a la tierra, como
+%asteroides, cometas, etc. Se espera que genere 10 TB de datos por noche de observación.
+%\end{itemize}
+
+%Inglés
+Telescopes and astronomical instrument are affected by te tecnological
+advances, which at information level its a adventage, because is achieved to
+capture inexistent data. However, computationally, the concern has focused on
+the rapid growth of the generated data volumes, that has passed of gigabyte
+(GB) to the terabytes (TB) in the past decade, and will pass of TB to the
+petabytes (PB) in the actual decade. For example:
 \begin{itemize}
-	\item Galaxy Evolution Explorer (GALEX) \cite{galex}: primer telescopio
-orbitante en el espacio que observa galaxias en luz ultravioleta. En los primeros 3 años 
-generó 30 TB de datos.
-	\item Sloan Digital Sky Survey (SDSS) \cite{sloan}: es un proyecto de inspección de
-imágenes en el espectro visible y de corrimiento al rojo, que en su séptima versión publicó más de 60 TB de datos:
-15.7 TB en imágenes, 18 TB en catálogos, y 26.8 TB en otros productos.
-	\item Atacama Large Millimeter/submillimeter Array (ALMA) \cite{alma}: es un
-interferómetro que trabaja con 66 radio telescopios de platos de distintos
-tamaños, obteniendo datos de radio, polarización, etc. Se espera que genere 1
-TeraBytes de datos por día de observación.
-	\item Panoramic Survey Telescope \& Rapid Response System (Pan-STARRS) \cite{pan}:
-es un sistema de 4 telescopios (PS4) que permitirá obtener imágenes a gran campo de manera continua.
-Su objetivo es caracterizar objetos que se aproximan a la tierra, como
-asteroides, cometas, etc. Se espera que genere 10 TB de datos por noche de observación.
+	\item Galaxy Evolution Explorer (GALEX) \cite{galex}: is the first
+orbitant telescope in the space which observe galaxies in UV light. In the
+first 3 years was created 30 TB of data.
+	\item Sloan Digital Sky Survey (SDSS) \cite{sloan}: is a project of
+image inspection in the visible specter and redshift, which in it 7th version
+60 TB of data was published: 15.7 TB of image, 18 TB of catalogue, and 26.8 TB
+in other products.
+	\item Atacama Large Millimeter/submillimeter Array (ALMA) \cite{alma}:
+its a interferometer which use 66 radio telescopes with dishes of different
+size, obtaining radio data, polarization, etc. 1 TB of data its expected per
+day of observatrion.
+	\item Panoramic Survey Telescope \& Rapid Response System (Pan-STARRS)
+\cite{pan}: its a system with 4 telescopes (PS4) which enable to obtain images
+on a large field in continuous manner. Its goal is characterize objects that
+will come closer to the earth, as asteroids, comets, etc. 10 TB of data its
+expected per night of observation.
 \end{itemize}
 
-Se podrían seguir listando observatorios, pero en resumen, existe una
-avalancha creciente de datos astronómicos \cite{kborne}, los cuales están cambiando la forma
-en que se hace astronomía. Desde el punto de vista computacional, es necesario
-implementar servicios estándares que permitan acceder, procesar, y modelar los
-datos producidos en cada observatorio (que generan datos públicos) de forma
-estándar, naciendo así la idea de Observatorio Virtual. Los estándares y
-protocolos de cómo operar están a cargo de la International Virtual Observatory
-Alliance (IVOA). 
+%Se podrían seguir listando observatorios, pero en resumen, existe una
+%avalancha creciente de datos astronómicos \cite{kborne}, los cuales están cambiando la forma
+%en que se hace astronomía. Desde el punto de vista computacional, es necesario
+%implementar servicios estándares que permitan acceder, procesar, y modelar los
+%datos producidos en cada observatorio (que generan datos públicos) de forma
+%estándar, naciendo así la idea de Observatorio Virtual. Los estándares y
+%protocolos de cómo operar están a cargo de la International Virtual Observatory
+%Alliance (IVOA). 
 
-\subsection{Observatorio Virtual}
-El observatorio virtual (VO, por sus siglas en inglés) no es un paquete de software (escritorio o web) que
-permite a los usuarios acceder a los datos como si fuese un repositorio, que es
-lo que generalmente se esperaría al escuchar la palabra. Técnicamente, un VO
-puede ser descrito como una arquitectura integral, que formaliza en cada
-nivel de la aplicación los estándares y protocolos necesarios, de tal manera
-que los VO del mundo sean interoperables entre si. Por lo tanto, cuando un
-observatorio tiene datos para publicar no será necesario inventar una nueva
-arquitectura, sino que se puede aprovechar la ya existente.
+%Inglés
+Observatories could continue to be listing, but in summary, there is a growing
+avalanche of astronomical data \cite{kborne}, which are changing the way that
+astronomy is done. With respect to the computational issues, its necessary to
+implement standard services which allow to access, process, and modeling the
+data produced by each observatory (which generates public data). Thus was born
+the idiea of Virtual Observatory (VO). The standards and protocols of how to
+operate are in charf of International Virtual Observatory Alliance (IVOA). 
+
+\subsection{Virtual Observatory}
+El observatorio virtual (VO, por sus siglas en inglés) no es un paquete de
+software (escritorio o web) que permite a los usuarios acceder a los datos como
+si fuese un repositorio, que es lo que generalmente se esperaría al escuchar la
+palabra. Técnicamente, un VO puede ser descrito como una arquitectura integral,
+que formaliza en cada nivel de la aplicación los estándares y protocolos
+necesarios, de tal manera que los VO del mundo sean interoperables entre si.
+Por lo tanto, cuando un observatorio tiene datos para publicar no será
+necesario inventar una nueva arquitectura, sino que se puede aprovechar la ya
+existente.
 
 Así nace el año 2002 IVOA \cite{ivoa}, cuya misión es facilitar
 la coordinación y colaboración necesaria para permitir el acceso global e
@@ -58,6 +105,10 @@ integrado a los datos recogidos por los observatorios astronómicos
 internacionales. En esta organización están comprometidos actualmente 19 VO,
 los cuales trabajan mediante working groups en la creación y versionamiento de
 estándares y protocolos que comprende su arquitectura.
+
+%Inglés
+
+
 
 \subsection{Arquitectura IVOA}
 
