@@ -10,9 +10,9 @@
 %Universitaria Nacional (REUNA) y el Centro de Modelamiento Matemático (CMM).
 
 %Inglés
-Currently its being developing the first Chilean Virtual Observatory for the
-Atacama Large Millimeter/submillimeter Array (ALMA) data, that it looks to
-provide the scientific data to the chilean and world community. This project
+Nowadays, the first Chilean Virtual Observatory its being developing for the
+Atacama Large Millimeter/submillimeter Array (ALMA) data, which looks to
+provide the scientific data to the Chilean and world community. This project
 its being developed in collaboration between five universities: Universidad
 Técnica Federico Santa María, Universidad de Chile, Pontificia Universidad
 Católica, Universidad de Concepción y la Universidad de Santiago de Chile.
@@ -45,29 +45,30 @@ Modelamiento Matemático (CMM).
 %\end{itemize}
 
 %Inglés
-Telescopes and astronomical instrument are affected by te tecnological
-advances, which at information level its a adventage, because is achieved to
-capture inexistent data. However, computationally, the concern has focused on
+Telescopes and astronomical instruments are affected by the technological
+advances, which at information level its an advantage, because it is possible to
+achieved the capture of nonexistent data.
+However, computationally speaking, the concern is focused on
 the rapid growth of the generated data volumes, that has passed of gigabyte
-(GB) to the terabytes (TB) in the past decade, and will pass of TB to the
+(GB) to the terabytes (TB) level in the past decade, and will pass of TB to the
 petabytes (PB) in the actual decade. For example:
 \begin{itemize}
 	\item Galaxy Evolution Explorer (GALEX) \cite{galex}: is the first
-orbitant telescope in the space which observe galaxies in UV light. In the
-first 3 years was created 30 TB of data.
+orbiting telescope in the space which observe galaxies in UV light. In the
+first 3 years, 30 TB of data was generated.
 	\item Sloan Digital Sky Survey (SDSS) \cite{sloan}: is a project of
 image inspection in the visible specter and redshift, which in it 7th version
-60 TB of data was published: 15.7 TB of image, 18 TB of catalogue, and 26.8 TB
+60 TB of data was published: 15.7 TB of image, 18 TB of catalog, and 26.8 TB
 in other products.
 	\item Atacama Large Millimeter/submillimeter Array (ALMA) \cite{alma}:
 its a interferometer which use 66 radio telescopes with dishes of different
-size, obtaining radio data, polarization, etc. 1 TB of data its expected per
-day of observatrion.
+size, obtaining radio data, polarization, etc. 1 TB of data is expected per
+day of observation.
 	\item Panoramic Survey Telescope \& Rapid Response System (Pan-STARRS)
 \cite{pan}: its a system with 4 telescopes (PS4) which enable to obtain images
 on a large field in continuous manner. Its goal is characterize objects that
-will come closer to the earth, as asteroids, comets, etc. 10 TB of data its
-expected per night of observation.
+will come closer to the earth, as asteroids, comets, etc. 10 TB of data is
+expected, per night of observation.
 \end{itemize}
 
 %Se podrían seguir listando observatorios, pero en resumen, existe una
@@ -77,16 +78,16 @@ expected per night of observation.
 %datos producidos en cada observatorio (que generan datos públicos) de forma
 %estándar, naciendo así la idea de Observatorio Virtual. Los estándares y
 %protocolos de cómo operar están a cargo de la International Virtual Observatory
-%Alliance (IVOA). 
+%Alliance (IVOA).
 
 %Inglés
 Observatories could continue to be listing, but in summary, there is a growing
 avalanche of astronomical data \cite{kborne}, which are changing the way that
-astronomy is done. With respect to the computational issues, its necessary to
+astronomy is done. From the computational point of view, it is necessary to
 implement standard services which allow to access, process, and modeling the
-data produced by each observatory (which generates public data). Thus was born
-the idiea of Virtual Observatory (VO). The standards and protocols of how to
-operate are in charf of International Virtual Observatory Alliance (IVOA). 
+data produced by each observatory (which generates public data). Thus, the idea
+of a Virtual Observatory (VO) was born. The standards and protocols of how to
+operate are in charge of International Virtual Observatory Alliance (IVOA).
 
 \subsection{Virtual Observatory}
 %El observatorio virtual (VO, por sus siglas en inglés) no es un paquete de
@@ -113,12 +114,12 @@ expected from that word. Technically, a VO can be described as an integral
 architecture, which formalizes in each application level protocols and
 standards necessary, such a way that the world VO will be interoperable with
 each other.  Therefore, when an observatory want to publish data will not be
-necessary to invent a new architecture, they can use the existing one.
+necessary to invent a new architecture, they can use an existing one.
 
-Thus in the 2002 IVOA was born \cite{ivoa}, whose basic mission is focussed on
+Thus, in the 2002 IVOA was born \cite{ivoa}, whose basic mission is focused on
 facilitate coordination and collaboration necessary to enable global and
 integrated access to data collected by the international astronomical
-observatories. In this organization are currently engaged 19 VO, which work by
+observatories. In this organization, 10 VO are currently engaged, which work by
 working groups in the creation and versioning of standards and protocols which
 includes its architecture.
 
@@ -139,7 +140,7 @@ includes its architecture.
 
 %Inglés
 IVOA proposes three levels architecture, which can be described within the
-level 2, because the level of detail is increasing \ cite {arch}.
+level 2, because the level of detail is increasing \cite{arch}.
 
 In this definition, are identified primarily 3 layers:
 \begin{itemize}
@@ -185,7 +186,7 @@ available through VO. The Data Access group, describes how the data providers
 will share the information to users, and how users retrieve information. There
 are several standards involved in this section, some of these are:
 \begin{itemize}
-	\item Simple Image Acess \cite{sia}: A query defining a rectangular
+	\item Simple Image Access \cite{sia}: A query defining a rectangular
 region on the sky is used to query for candidate images. The service returns a
 list of candidate images formatted as VOTable \cite{votable}.
 	\item Simple Cone Search \cite{scs}: The query describes sky position
