@@ -124,18 +124,18 @@ includes its architecture.
 
 \subsection{IVOA Architecture}
 
-IVOA propone tres niveles de arquitectura, los cuales se pueden describir
-dentro del Nivel 2, ya que el grado de especificación va aumentando \cite{arch}.
+%IVOA propone tres niveles de arquitectura, los cuales se pueden describir
+%dentro del Nivel 2, ya que el grado de especificación va aumentando \cite{arch}.
 
-En esta definición, se identifican principalmente 3 capas:
-\begin{itemize}
-	\item Resource Layer: compuesto por colección de datos y metadatos.
-	\item User Layer: consumidores de datos a través de navegador,
-aplicación de escritorio, etc.
-	\item Middle Layer: esta capa es necesaria para conectar las dos
-anteriores en forma transparente tanto para los usuarios como para los
-publishers. Para este trabajo el foco será la sección de \emph{Data Access Protocol}.
-\end{itemize}
+%En esta definición, se identifican principalmente 3 capas:
+%\begin{itemize}
+%	\item Resource Layer: compuesto por colección de datos y metadatos.
+%	\item User Layer: consumidores de datos a través de navegador,
+%aplicación de escritorio, etc.
+%	\item Middle Layer: esta capa es necesaria para conectar las dos
+%anteriores en forma transparente tanto para los usuarios como para los
+%publishers. Para este trabajo el foco será la sección de \emph{Data Access Protocol}.
+%\end{itemize}
 
 %Inglés
 IVOA proposes three levels architecture, which can be described within the
@@ -152,29 +152,51 @@ section of \emph{Data Access Protocols}.
 
 \subsection{Data Access Protocol}
 
-Definen una familia de interfaces de servicios de acceso a todos los datos
-astronómicos disponibles vía VO.  El grupo de Data Access, describe cómo los
-proveedores de datos harán disponible la información a los usuarios, y cómo los
-usuarios recuperarán la información. Existen varios estándares involucrados
-en esta sección, algunos de ellos son:
+%Definen una familia de interfaces de servicios de acceso a todos los datos
+%astronómicos disponibles vía VO.  El grupo de Data Access, describe cómo los
+%proveedores de datos harán disponible la información a los usuarios, y cómo los
+%usuarios recuperarán la información. Existen varios estándares involucrados
+%en esta sección, algunos de ellos son:
+%
+%\begin{itemize}
+%	\item Simple Image Access \cite{sia}: una consulta que define una región
+%rectangular en el cielo para obtener imágenes candidatas. El servicio devuelve
+%una lista de imágenes candidatas presentada en formato VOTable (Referencia).
+%	\item Simple Cone Search \cite{scs}: define una interfaz sencilla donde los
+%usuarios pueden recuperar información tabular alrededor de una posición dada en
+%el cielo. Por ejemplo, los usuarios pueden encontrar todos los objetos cercanos
+%a un punto determinado de un catálogo de imágenes. La respuesta devuelve una
+%lista de fuentes en formato VOTable.
+%	\item Simple Spectral Access \cite{ssa}: define una interfaz uniforme para
+%descubrir y acceder remotamente espectros de una dimensión. Se basa en un
+%modelo de datos más general, capaz de describir los datos espectrofotométricos,
+%incluyendo series de tiempo y las distribuciones espectrales de energía, así
+%como 1-D de espectros. Los conjuntos de datos de candidatos disponibles se
+%describen de manera uniforme en un documento de formato de VOTable que se
+%devuelve en la respuesta a la consulta.
+%	\item Table Access Protocol \cite{tap}: define un protocolo de servicio de acceso
+%a datos de la tabla general. El acceso se proporciona tanto para base de datos
+%y metadatos de la tabla, así como para los datos reales de la tabla.
+%\end{itemize}
 
+%Inglés
+Define a family of access services interfaces to the astronomical data
+available through VO. The Data Access group, describes how the data providers
+will share the information to users, and how users retrieve information. There
+are several standards involved in this section, some of these are:
 \begin{itemize}
-	\item Simple Image Access \cite{sia}: una consulta que define una región
-rectangular en el cielo para obtener imágenes candidatas. El servicio devuelve
-una lista de imágenes candidatas presentada en formato VOTable (Referencia).
-	\item Simple Cone Search \cite{scs}: define una interfaz sencilla donde los
-usuarios pueden recuperar información tabular alrededor de una posición dada en
-el cielo. Por ejemplo, los usuarios pueden encontrar todos los objetos cercanos
-a un punto determinado de un catálogo de imágenes. La respuesta devuelve una
-lista de fuentes en formato VOTable.
-	\item Simple Spectral Access \cite{ssa}: define una interfaz uniforme para
-descubrir y acceder remotamente espectros de una dimensión. Se basa en un
-modelo de datos más general, capaz de describir los datos espectrofotométricos,
-incluyendo series de tiempo y las distribuciones espectrales de energía, así
-como 1-D de espectros. Los conjuntos de datos de candidatos disponibles se
-describen de manera uniforme en un documento de formato de VOTable que se
-devuelve en la respuesta a la consulta.
-	\item Table Access Protocol \cite{tap}: define un protocolo de servicio de acceso
-a datos de la tabla general. El acceso se proporciona tanto para base de datos
-y metadatos de la tabla, así como para los datos reales de la tabla.
+	\item Simple Image Acess \cite{sia}: A query defining a rectangular
+region on the sky is used to query for candidate images. The service returns a
+list of candidate images formatted as VOTable \cite{votable}.
+	\item Simple Cone Search \cite{scs}: The query describes sky position
+and an angular distance, defining a cone on the sky. The response returns a
+list of astronomical sources formatted as VOTable.
+	\item Simple Spectral Access \cite{ssa}: defines an interface to
+remotely discover and access one-dimensional spectra. It is based on a more
+general data model, able to describe the spectrophotometric data, including
+time series and spectral energy distributions as well as 1-D spectra. The
+response returns a list of astronomical sources formatted as VOTable.
+	\item Table Access Protocol \cite{tap}: defines a service protocol for
+accessing general table data. The access is provided for both database and
+table metadata as well as for actual table data.
 \end{itemize}
