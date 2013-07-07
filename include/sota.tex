@@ -52,7 +52,7 @@ However, computationally speaking, the concern is focused on
 the rapid growth of the generated data volumes, that has passed of gigabyte
 (GB) to the terabytes (TB) level in the past decade, and will pass of TB to the
 petabytes (PB) in the actual decade. For example:
-\begin{itemize}
+\begin{itemize} \itemsep 0.5pt
 	\item Galaxy Evolution Explorer (GALEX) \cite{galex}: is the first
 orbiting telescope in the space which observe galaxies in UV light. In the
 first 3 years, 30 TB of data was generated.
@@ -143,7 +143,7 @@ IVOA proposes three levels architecture, which can be described within the
 level 2, because the level of detail is increasing \cite{arch}.
 
 In this definition, are identified primarily 3 layers:
-\begin{itemize}
+\begin{itemize} \itemsep 0.5pt
 	\item Resource layer: composed by collection of data and metadata.
 	\item User Layer: data consumers through web browser, desktop application, script based, etc.
 	\item Middle Layer: This layer is required to connect the two previous
@@ -185,19 +185,25 @@ Define a family of access services interfaces to the astronomical data
 available through VO. The Data Access group, describes how the data providers
 will share the information to users, and how users retrieve information. There
 are several standards involved in this section, some of these are:
-\begin{itemize}
+\begin{itemize} \itemsep 0.5pt
 	\item Simple Image Access \cite{sia}: A query defining a rectangular
-region on the sky is used to query for candidate images. The service returns a
-list of candidate images formatted as VOTable \cite{votable}.
+region on the sky is used to query for candidate images. 
+%The service returns a
+%list of candidate images formatted as VOTable \cite{votable}.
 	\item Simple Cone Search \cite{scs}: The query describes sky position
-and an angular distance, defining a cone on the sky. The response returns a
-list of astronomical sources formatted as VOTable.
+and an angular distance, defining a cone on the sky. 
+%The response returns a
+%list of astronomical sources formatted as VOTable.
 	\item Simple Spectral Access \cite{ssa}: defines an interface to
-remotely discover and access one-dimensional spectra. It is based on a more
-general data model, able to describe the spectrophotometric data, including
-time series and spectral energy distributions as well as 1-D spectra. The
-response returns a list of astronomical sources formatted as VOTable.
+remotely discover and access one-dimensional spectra. 
+%It is based on a more
+%general data model, able to describe the spectrophotometric data, including
+%time series and spectral energy distributions as well as 1-D spectra. The
+%The response returns a list of astronomical sources formatted as VOTable.
 	\item Table Access Protocol \cite{tap}: defines a service protocol for
 accessing general table data. The access is provided for both database and
 table metadata as well as for actual table data.
 \end{itemize}
+
+Each service returns a list of candidate images, astronomical sources, data or
+metadata formatted as VOTable \cite{votable}.
