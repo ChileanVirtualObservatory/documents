@@ -1,4 +1,0 @@
-formato
-=======
-
-Formato de entregable
