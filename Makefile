@@ -2,7 +2,7 @@
 TEXFILES = $(wildcard *.tex)
 PDFFILES = $(TEXFILES:.tex=.pdf)
 
-all: pdf clean
+all: pdflatex clean
 
 pdf: $(PDFFILES)
 
