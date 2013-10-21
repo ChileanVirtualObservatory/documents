@@ -20,8 +20,8 @@ ObsCore \cite{obscore}.
 
 IVOA recomienda usar el modelo de datos ObsCore como base para su
 interoperabilidad, definiendo columnas y tipos de datos conocidos de tal manera
-que sea sencillo acceder y descrubrir información dentro de la base de datos. Y
-por otro lado todos los toolkits estudiados que soportan los Data Access Layer
+que sea sencillo acceder y descrubrir información dentro de la base de datos.
+Por otro lado todos los toolkits estudiados que soportan los Data Access Layer
 en IVOA usan una función de postgresql llamada pgSphere \cite{pgsphere}. Estas
 fueron las consideraciones para elegir dichas tecnologías.
 
@@ -69,7 +69,7 @@ Existe cierta secuencialidad en la interacción de un usuario con el sistema la 
 \begin{enumerate}
 	\item El usuario entra al sitio web e ingresa una consulta para obtener ciertos datos.
 	\item El portal web hace hace una consulta al endpoint y queda esperando la respuesta.
-	\item El endpoint recibe esta consulta, la valida, y la manda hacia DaCHS.
+	\item El endpoint recibe esta consulta, la valida, y la envía a DaCHS.
 	\item Dachs ejecuta la consulta y recibe los datos los cuales deben llegar al usuario.
 \end{enumerate}
 
