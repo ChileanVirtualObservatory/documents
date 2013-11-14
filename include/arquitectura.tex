@@ -90,13 +90,9 @@ eficiencia, pero además se genera mayor necesidad de recursos computacionales.
 	\item El punto anterior expone una necesidad opcional de tener una cola
 opcional de tareas que sea manejado por algún servidor de mensajería (MQ
 Server).
-	\item Eficiencia de descarga: Si el endpoint ejecuta la consulta que recibe
-del portal web (HTTP) hacia el servidor DaCHS, entonces deberá descargar el
-stream de datos que entrega este servidor (VOTable), y cuando quiera enviarlo
-al usuario mediante el portal web, deberá realizarse otra descarga nuevamente,
-por lo que el proceso no es eficiente. Para solucionar este aspecto, en el
-prototipo se implementó un canal de comunicación entre en servidor DaCHS y el
-portal web mediante un WebSocket creado por el endpoint. 
+	\item Como el endpoint recibirá consultas para buscar datos y además
+recibirá peticiones de descarga, se propone implementar un caché para alivianar
+la carga de DaCHS y así aumentar la eficiencia del sistema.
 \end{itemize}
 
 \vspace{1.0cm}
@@ -106,7 +102,3 @@ portal web mediante un WebSocket creado por el endpoint.
         \caption{Arquitectura ChiVO - Interacción del servicio.}
     \end{center}
 \end{figure}
-
-Estos aspectos fueron considerados e implementados en el prototipo funcional,
-el cual sirvió para validar las tecnologías y patrones con el cual se
-desarrolló.

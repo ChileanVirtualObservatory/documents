@@ -1,4 +1,32 @@
 \section{Casos de Uso ChiVO}
+\noindent En la captura de requerimientos y casos de uso participaron los siguientes
+astrónomos:
+\begin{itemize}
+	\item Diego Mardones, Universidad de Chile.
+	\item Lars Nyman, Atacama Large Milimiter/submilimiter Array.
+	\item Neil Nagar, Universidad de Concepción.
+	\item Nelson Padilla, Pontificie Universidad Católica. 
+	\item Juan de Santander, Universidad de Granda, España.
+	\item Amelia Bayo, European Souther Observatory.
+\end{itemize}
+
+\noindent El informe de requerimientos (Hito Anterior) se puede encontrar en
+\cite{hrequerimientos}.
+
+\noindent Para abordar de mejor forma los casos de uso, se mencionarán algunos
+conceptos relevantes:
+\begin{itemize}
+	\item Los datos astronómicos en sus diferentes formatos se dividen en:
+Metadata y Binarios. La metadata son datos que describen los datos de la
+observación, y los binarios son los datos obtenidos de la observación.
+	\item En la primera etapa el proyecto trabajará con archivos FITS.
+	\item Las búsquedas en el sistema se realizan sobre la metadata. El
+resultado de una búsqueda es un set de datos candidatos que coinciden con los
+parámetros fijados en la búsqueda.
+	\item La interacción final con el sistema es cuando el usuario decide qué
+datos necesita, los selecciona y los descarga de forma local.
+\end{itemize}
+
 \subsection{Casos de Uso Generales}
 Los siguientes casos de usos involucran de manera general a varios
 requerimientos, por lo que se presentan en una categoría especial. 
