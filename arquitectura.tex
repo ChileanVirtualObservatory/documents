@@ -19,6 +19,7 @@
 \usepackage{fancyhdr}
 \usepackage{moreverb}
 \usepackage{hyperref}
+\usepackage{acronym}
 
 \geometry{tmargin=3.0cm, lmargin=3.0cm, rmargin=2.5cm, bmargin=3.0cm}
 
@@ -37,51 +38,29 @@
 \begin{document}
 \maketitle
 
-\vspace{0.5cm}
-
-\begin{center}
-	\begin{abstract}
-	El presente documento describe la arquitectura de software del Chilean
-Virtual Observatory, la cual está orientada a servicios de adquisición de datos
-astronómicos del Atacama Large Milimiter/submilimiter Array.  Esta arquitectura
-está basada en los requerimientos y casos de usos de la comunidad astronómica
-Chilena.
-
-Entre las
-características que posee este software y que son relevantes de mencionar 
-son la 
-	\end{abstract}
-\end{center}
-
-\vspace{0.4cm}
-
-\begin{center}
-\begin{keywords}
-	ChiVO, IVOA, Casos de uso, Arquitectura.
-\end{keywords}
-\end{center}
-
-\vspace{1cm}
-
 \thispagestyle{empty}
 
 \newpage
 \tableofcontents
-\newpage
 
+\newpage
+\input{include/acronimos}
+
+\newpage
 \input{include/resumen}
+
 \newpage
 \input{include/casos_de_uso}
+
 \newpage
 \input{include/arquitectura}
-\newpage
 
 \newpage
 \thispagestyle{empty}
 \addcontentsline{toc}{section}{Bibliografía}
 
 \nocite{*}
-\bibliographystyle{alpha}
+\bibliographystyle{plain}
 \bibliography{report}
 
 \end{document}
