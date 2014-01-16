@@ -14,7 +14,7 @@ tres capas, la cual se expone en el siguiente diagrama:
 
 \subsection{Capa de Datos}
 En esa capa residen los datos y es la encargada de organizar estos en una
-estructura apropiada. Se implementará una base de datos relacional usando el
+estructura apropiada. Se implementó una base de datos relacional usando el
 motor de base de datos postgresql \cite{psql} y el modelo de datos a usar es
 ObsCore \cite{obscore}.
 
@@ -24,6 +24,11 @@ que sea sencillo acceder y descrubrir información dentro de la base de datos.
 Por otro lado todos los toolkits estudiados que soportan los Data Access Layer
 en IVOA usan una función de postgresql llamada pgSphere \cite{pgsphere}. Estas
 fueron las consideraciones para elegir dichas tecnologías.
+
+Como los datos públicos del ciclo 0 de ALMA estarán todos disponibles en Abril
+del 2014, en este prototipo se probó la interacción entre la capa de datos con
+aplicación con datos de prueba. Una vez que todos estos datos estén disponibles
+se poblará con datos reales la base de datos.
 
 \subsection{Capa de Aplicación}
 En la capa de aplicación están los programas que procesan las consultas de
@@ -45,7 +50,7 @@ datos. Este endpoint además crea un marco para poder extender nuevas
 funcionalidades para el sitio web, como por ejemplo, usuarios, seguridad,
 caché, etc.
 
-Para este prototipo se usará para configurar el ALMA Resources la herramienta
+Para este prototipo se utilizó para configurar el ALMA Resources la herramienta
 DaCHS \cite{dachs} desarrollada por el observatorio virtual Alemán, y para el
 endpoint se usará la biblioteca de python/Flask \cite{flask}.
 
@@ -56,13 +61,14 @@ el usuario rellena información respecto a la consulta que quiere realizar,
 usando 5 formularios posibles: 1 por cada protocolo de acceso, y un formulario
 avanzado. Una vez que el usuario define su consulta el sistema le arroja los
 objetos u observaciones candidatos de tal manera que pueda elegir cuales
-descargar y usar de forma local.
+descargar y usar de forma local. Para este entregable por ser prototipo se
+implementaron los 4 forumarios para cada protocolo.
 
 Esta capa se comunica directamente con el endpoint de datos mediante consultas
-HTTP GET y POST, a lo que el endpoint le retorna una tabla resultante de la
-consulta en formato VOTable \cite{votable}. Este archivo mediante la
-herramienta VOview \cite{voview} se muestra al usuario como tabla de datos.
-Para este prototipo se desarrolló un sitio web usando Ruby on Rails \cite{ror}.
+HTTP GET y POST, y el endpoint le retorna una tabla resultante de la consulta
+en formato VOTable \cite{votable}. Este archivo mediante la herramienta VOview
+\cite{voview} se muestra al usuario como tabla de datos.  Para este prototipo
+se desarrolló un sitio web usando Ruby on Rails \cite{ror}.
 
 \subsection{Descripción web service e integración}
 Existe cierta secuencialidad en la interacción de un usuario con el sistema la que a grandes rasgos es:
@@ -78,8 +84,8 @@ escalabilidad (no implementados en el prototipo):
 \begin{itemize}
 	\item DaCHS y base de datos: estos componentes son relativamente
 independiente, es decir, la aplicación DaCHS puede estar funcionando en
-servidores distintos a la base de datos que se configuró (se configura un
-cluster de psql).
+servidores distintos a la base de datos que se configuró (se puede configurar
+un cluster de psql).
 	\item Asincrono: cuando N usuarios ejecuten consultas de datos al mismo
 tiempo, el endpoint recibirá también N consultas (N instancias) y lo mismo para
 DaCHS, por lo que puede existir problema de eficiencia en este punto. Para
