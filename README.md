@@ -1,7 +1,7 @@
 ChiVO Prototype: Software Architecture
 ===============
 
-Table of contents:
+**Table of contents:**
 - Acronyms
 - Resume
 - Use cases
