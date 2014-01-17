@@ -6,3 +6,7 @@ ChiVO Prototype: Software Architecture
 - Resume
 - Use cases
 - Software Architecture
+
+**Authors:**
+- Jonathan Antognini
+- Mauricio Solar
