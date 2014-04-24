@@ -46,7 +46,7 @@ IVOA, actuales que se están usando son (Además se pueden ver en la figura \ref
         formato XML VOTable.
 \end{description}
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.45\textwidth]{images/arquitectura_2.png}
     \caption{Arquitectura de IVOA con los Protocolos y Estandares usados}
@@ -59,7 +59,7 @@ Según las necesidades de lo radioastrónomos chilenos, los requerimientos, caso
 uso  y los modelos de datos (compatibles con los estándares de IVOA),
 conllevan a la creación de la siguiente arquitectura y modelo de desarrollo:
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.45\textwidth]{images/chivo_capas.png}
     \caption{Arquitectura de ChiVO}
@@ -114,7 +114,6 @@ En esta capa también está en desarrollo un sistema capaz de resolver nombres
 \textbf{Capa de abstracción: Datos}
 
 En esta capa se encuentran los recursos que tienen los datos y metadatos.
-<<<<<<< HEAD
 El trabajo está asociado a una base de datos relacional para almacenar los
 metadatos asociados al modelo de datos recomendado por \emph{IVOA Observation Core
 Data Model}, usando un framework desarrollado por el VO Alemán.
@@ -128,14 +127,13 @@ Debido a esta limitación se propone
 el esquema de funcionamiento de la figura \ref{fig:dachs}, en donde pueden haber N
 servidores con DaCHS configurado apunando a M base de datos distribuidas o recplicadas.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.45\textwidth]{images/interaccion.png}
     \caption{Configuración de distintas máquinas con base de datos replicadas o distribuidas}
     \label{fig:dachs}
 \end{figure}
 
-<<<<<<< HEAD
 \textbf{Arquitectura IVOA}
 
 La arquitectura de software, está basada en el uso de protocolos y estándares de
@@ -164,21 +162,19 @@ IVOA, actuales que se están usando son:
         formato \emph{XML VOTable}.
 \end{description}
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.45\textwidth]{images/arquitectura_2.png}
     \caption{Arquitectura de IVOA con los Protocolos y Estandares usados}
     \label{fig:ivoarch}
 \end{figure}
 
-=======
->>>>>>> 92548bf77845f366cbbdc7dc83d67fb8d5abe484
 \subsection{Metadatos de los datos de ALMA}
 
 Para poder construir la base de datos relacional con el modelo de datos ObsCore fue
 necesario mapear campos desde el ALMA Science Data Model (ASDM) \cite{viallefond2009sdm}.
 
-\begin{table}[h!t]
+\begin{table}[ht]
     \centering
     \caption{Campos del ObsCore y origen desde ASDM}
     \begin{tabular}{lr}
@@ -287,7 +283,7 @@ se probaron y verificaron los siguientes:
 \end{description}
 
 %\vspace{0.5cm}
-\begin{table*}[h!t]
+\begin{table*}[ht]
 \centering
 \caption{Resumen de los toolkits en tabla comparativa}
 \begin{tabular}{lrrrrr}
