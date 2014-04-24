@@ -34,7 +34,7 @@ El Endpoint está a cargo de generar una interacción transparente entre los cli
 
 \textbf{Backend}
 
-Actualmente ALMA le facilita a ChiVO datos públicos, los cuales incluyen ASDM \textbf{TODO: ref}, Measurement \textbf{TODO: ref}, FITS \textbf{TODO: ref}, de los cuales es necesario extraer los metadatos del ObsCoreDM para ser ingresados a la base de datos \textbf{TODO: ref figura}.
+Actualmente ALMA le facilita a ChiVO datos públicos, los cuales incluyen ASDM, Measurement \cite{petry2012analysing}, FITS \cite{wells1981fits}, de los cuales es necesario extraer los metadatos del ObsCoreDM para ser ingresados a la base de datos.
 
 \begin{figure}[h]
     \centering
@@ -43,7 +43,7 @@ Actualmente ALMA le facilita a ChiVO datos públicos, los cuales incluyen ASDM \
     \label{fig:metadata}
 \end{figure}
 
-El procedimiento se hace a través de un script, el cual usando el framework de backend DaCHS \textbf{TODO: ref}, permite configurar recursos y servicios mediante archivos de configuración Resource Descriptor \textbf{TODO: ref}. Una vez creadas las entradas en la base de datos y configurados los servicios SCS, SSAP, SIAP, TAP se pueden acceder mediante las consultas definidas en cada protocolo.
+El procedimiento se hace a través de un script, el cual usando el framework de backend DaCHS \cite{dachs}, permite configurar recursos y servicios mediante archivos de configuración Resource Descriptor \cite{dachsorguide}. Una vez creadas las entradas en la base de datos y configurados los servicios SCS, SSAP, SIAP, TAP se pueden acceder mediante las consultas definidas en cada protocolo.
 
 
 
