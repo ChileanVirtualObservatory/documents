@@ -19,9 +19,41 @@ astronómica:
         información.
 \end{description}
 
-\textbf{TODO: poner los req?}
+%\textbf{TODO: poner los req?}
 
-\subsection{Arquitectura}
+\textbf{Arquitectura IVOA}
+
+La arquitectura de software, está basada en el uso de protocolos y estándares de
+IVOA, actuales que se están usando son (Además se pueden ver en la figura \ref{fig:ivoarch}):
+
+\begin{description}
+    \item[Capa Aplicación:] \hfill \\
+        Un Servicio Web compatible con VO necesita al menos un Table Access Protocol
+        \cite{dowler2010table} para acceder al modelo de datos de ChiVO usando Astronomical
+        Data Query Language \cite{yasuda2004astronomical}. Además para cumplir los requerimientos del
+        sistema se implementaron: el protocolo para realizar búsquedas cónicas
+        Simple Cone Search \cite{williams2008simple}, el protocolo para realizar acceder a datos
+        espectrales Simple Spectral Access \cite{tody2008simple} y el protocolo de acceso a
+        imágenes Simple Image Access \cite{tody2004simple}.
+
+    \item[Capa de datos:] \hfill \\
+        En esta capa exige configurar la base de datos relacional con un modelo de
+        datos recomendado por IVOA llamado Observation Core Data Model \cite{louys2011ivoa}
+        que permite que los VO sean interoperables, ya que definen una cantidad
+        mínima de atributos en las tablas con cierto nombre y tipo de dato, de forma
+        que acceder a diferentes servicios mediante TAP + Obscore es estándar.
+        Además el formato de transferencia de información (metadata) es con el
+        formato XML VOTable.
+\end{description}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/arquitectura_2.png}
+    \caption{Arquitectura de IVOA con los Protocolos y Estandares usados}
+    \label{fig:ivoarch}
+\end{figure}
+
+\subsection{Arquitectura ChiVO}
 
 Según las necesidades de lo radioastrónomos chilenos, los requerimientos y casos de
 uso obtenidos a partir de ello y los modelos de datos compatibles con los estándares
@@ -89,45 +121,14 @@ Esta es la parte que mas consume recursos, tanto en tiempo de computación (resu
 las consultas hechas a las base de datos) y además almacena físicamente los datos.
 Por efectos de prueba se está trabajando con un set de datos de 1TB, los cuales son
 los archivos más reducidos del ciclo 0 de ALMA. Debido a esta limitancia se propone
-el esquema de funcionamiento de la figura \textbf{X}
+el esquema de funcionamiento de la figura \ref{fig:dachs}, en donde pueden haber N 
+servidores con DaCHS configurado apunando a M base de datos distribuidas o recplicadas.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.45\textwidth]{images/interaccion.png}
     \caption{Configuración de distintas máquinas con base de datos replicadas o distribuidas}
     \label{fig:dachs}
-\end{figure}
-
-\textbf{Arquitectura IVOA}
-
-La arquitectura de software, está basada en el uso de protocolos y estándares de
-IVOA, actuales que se están usando son:
-
-\begin{description}
-    \item[Capa Aplicación:] \hfill \\
-        Un Servicio Web compatible con VO necesita al menos un Table Access Protocol
-        \textbf{ref} para acceder al modelo de datos de ChiVO usando Astronomical
-        Data Query Language \textbf{ref}. Además para cumplir los requerimientos del
-        sistema se implementaron: el protocolo para realizar búsquedas cónicas
-        Simple Cone Search \textbf{ref}, el protocolo para realizar acceder a datos
-        espectrales Simple Spectral Access \textbf{ref} y el protocolo de acceso a
-        imágenes Simple Image Access \textbf{ref}.
-
-    \item[Capa de datos:] \hfill \\
-        En esta capa exige configurar la base de datos relacional con un modelo de
-        datos recomendado por IVOA llamado Observation Core Data Model \textbf{ref}
-        que permite que los VO sean interoperables, ya que definen una cantidad
-        mínima de atributos en las tablas con cierto nombre y tipo de dato, de forma
-        que acceder a diferentes servicios mediante TAP + Obscore es estándar.
-        Además el formato de transferencia de información (metadata) es con el
-        formato XML VOTable.
-\end{description}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.45\textwidth]{images/arquitectura_2.png}
-    \caption{Arquitectura de IVOA con los Protocolos y Estandares usados}
-    \label{fig:ivoarch}
 \end{figure}
 
 \subsection{Metadatos de los datos de ALMA}
@@ -137,6 +138,7 @@ necesario mapear campos desde el ASDM.
 
 \begin{table}[h!t]
     \centering
+    \caption{Campos del ObsCore y origen desde ASDM}
     \begin{tabular}{lr}
         \textbf{Campo ObsCore} & \textbf{ASDM} \\
         dataproduct\_type      & visibility \\
@@ -164,12 +166,11 @@ necesario mapear campos desde el ASDM.
         pol\_states            & [Source.stokesParameter[numStokes]] \\
         facility\_name         & ALMA \\
         instrument\_name       & ALMA \\
-    \end{tabular}
-    \caption{Campos del ObsCore y origen desde ASDM}
+    \end{tabular}    
     \label{table:obsasdm}
 \end{table}
 
-En la Tabla \textbf{ref} se muestra el resultado de la investigación, la primera
+En la Tabla \ref{table:obsasdm} se muestra el resultado de la investigación, la primera
 columna corresponde a las columnas de la clase Observation, la segunda columna
 indica de donde se obtienen los datos para llenar la los campos de la primera
 columna para el caso de los ASDM.
@@ -177,7 +178,7 @@ columna para el caso de los ASDM.
 Para poder llenar los campos de la clase Observation es necesario escribir una
 rutina capaz de operar sobre las tablas del ASDM (XML).
 Actualmente existen múltiples herramientas en el Paquete de Aplicaciones de Software
-Comunes de Astronomía (CASA, debido a sus siglas en inglés) \textbf{ref}.
+Comunes de Astronomía (CASA, debido a sus siglas en inglés) \cite{petry2012analysing}.
 
 \subsection{Tecnologías usadas}
 
@@ -246,6 +247,7 @@ Dentro de los toolkits de DAL recomendados por IVOA, se testearon los siguientes
 %\vspace{0.5cm}
 \begin{table*}[h!t]
 \centering
+\caption{Resumen de los toolkits en tabla comparativa}
 \begin{tabular}{lrrrrr}
     {\bf Toolkits} & {\bf Lenguaje} & {\bf OpenSource} & {\bf Documentación} & {\bf Servicios} & {\bf Último update}  \\
     SAADA          & Java           & No               & Si                  & SCS/SIA/SSA/TAP & Mayo 2012     \\
@@ -253,7 +255,6 @@ Dentro de los toolkits de DAL recomendados por IVOA, se testearon los siguientes
     openCADC       & Java           & Si               & No                  & TAP             & ---           \\
     DaCHS          & Python         & Si               & Si                  & SCS/SIA/SSA/TAP & Junio 2013    \\
 \end{tabular}
-\caption{Resumen de los toolkits en tabla comparativa}
 \label{table:toolkits}
 \end{table*}
 
