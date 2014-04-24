@@ -1,5 +1,128 @@
 \section{Arquitectura de ChiVO}
 \subsection{Requerimientos}
-\subsection{Arquitectura de IVOA}
-\subsection{Metadatos de ALMA data}
+Para la creación del ChiVO se identificaron las necesidades actuales de la comunidad astronómica:
+\begin{itemize} 
+ \item Descubrir: Encontrar datos astronómicos de un objeto y/o instrumento sobre una región específica del espacio de alta dimensión, en base a parámetros de los ejes espaciales, temporales, espectrales, corrimiento al rojo, polarización, etc. Ya sea por búsqueda o por exploración.
+ \item Obtener: Enlace a descarga de los datos requeridos en distintos formatos. Ya sea en ChiVO o en un servicio externo.
+ \item Comparar: Cruzamiento de información de datos obtenidos entre distintas fuentes de información.
+\end{itemize}
+
+\textbf{TODO: poner los req?}
+
+\subsection{Arquitectura}
+Según las necesidades de lo radioastrónomos chilenos, los requerimientos y casos de uso obtenidos a partir de ello y los modelos de datos compatibles con los estándares de IVOA se ha creado una arquitectura y modelo de desarrolo.
+
+%TODO: Insertar dibujo
+
+\textbf{Capa de clientes}
+Esta capa representa al usuario final y cómo facilita la comunicación entre el usuario y los datos. En esta capa el usuario realiza consultas a través de los protocolos de acceso ofrecidos por ChiVO o a través de un formulario avanzado, utilizando aplicaciones compatibles con VO y el portal web, respectivamente. Una vez realizada la consulta, el sistema le retornará al usuario una lista que describe objetos u observaciones encontrados (metadatos) y podrá acceder a ellos a través de un enlace de descarga asociado a cada resultado.
+Cabe destacar que gracias a la separación por capas, se logra flexibilidad y escalabilidad en el sistema, para que independiente de una capa y otra, puedan interactuar nuevas aplicaciones y portales con ChiVO, así como la adición de nuevas fuentes de información a parte de ALMA.
+
+Las consultas son recibidas por ChiVO a través de su endpoint de datos que recibe consultas en HTTP, GET o POST, ante lo cual el endpoint retorna la lista de resultados en una tabla en el formato XML (VOTable). Para el caso del portal web, el VOTable es desplegado mostrado al usuario a través de una herramienta web que permite la manipulación simple y eficiente de VOTables llamada VOView.
+
+\textbf{Capa de Aplicaciones}
+En esta capa se encuentran los programas que procesan las consultas entre los usuarios y los datos. 
+Cada estándar de IVOA requiere un mínimo de su propia implementación para ser compatible con el VO, en el caso de estos protocolos de acceso sólo es necesaria la recepción de consultas HTTP básicas junto a los parámetros de búsqueda requeridos.
+
+La caja que representa a las herramientas de análisis es fundamental en la eficiencia de ChiVO, esto es debido a que los datos a analizar por los astrónomos suelen tener un gran tamañoo y es costosa su transferencia, este problema se resuelve acercando las herramientas de análisis y procesamiento al lugar donde están almacenados los datos a procesar. 
+
+Dado que más adelante será necesario ofrecer búsquedas por otros datos que no sólo provengan de ALMA, es necesaria cierta abstracción al momento de implementar esta capa, ya que debe permitir a futuro interactuar con nuevos recursos pero siempre manteniendo la compatibilidad de IVOA para que sea utilizable por aplicaciones compatibles con el ecosistema de IVOA.
+
+En esta capa también está en desarrollo un resolvedor de nombres (tipo sesame pero para datos de ALMA) y el registro de ChiVO.
+
+\textbf{Capa de Datos}
+En esta capa se encentran los recursos que tienen los datos y metadatos. En esta parte se trabaja con una base de datos relacional para almacenar los metadatos asociados al modelo de datos recomendado por IVOA Observation Core Data Model, usando un framework desarrollado por el VO Alemán. Esta es la parte que mas consume recursos, tanto en tiempo de computación (resuelve las consultas hechas a las base de datos) y además almacena físicamente los datos. Por efectos de prueba se está trabajando con un set de datos de 1TB, los cuales son los archivos más reducidos del ciclo 0 de ALMA. Debido a esta limitancia se propone el esquema de funcionamiento de la figura \textbf{X}
+
+\textbf{TODO: agregar figura dachs}
+
+\textbf{Arquitectura IVOA}
+
+La arquitectura de software, está basada en el uso de protocolos y estándares de IVOA, actuales que se están usando son:
+\begin{itemize}
+ \item \textbf{Capa Aplicación}: un Servicio Web compatible con VO necesita al menos un Table Access Protocol \textbf{ref} para acceder al modelo de datos de ChiVO usando Astronomical Data Query Language \textbf{ref}. Además para cumplir los requerimientos del sistema se implementaron: el protocolo para realizar búsquedas cónicas Simple Cone Search \textbf{ref}, el protocolo para realizar acceder a datos espectrales Simple Spectral Access \textbf{ref} y el protocolo de acceso a imágenes Simple Image Access \textbf{ref}.
+  \item \textbf{Capa de datos}: En esta capa exige configurar la base de datos relacional con un modelo de datos recomendado por IVOA llamado Observation Core Data Model \textbf{ref} que permite que los VO sean interoperables, ya que definen una cantidad mínima de atributos en las tablas con cierto nombre y tipo de dato, de forma que acceder a diferentes servicios mediante TAP + Obscore es estándar. Además el formato de transferencia de información (metadata) es con el formato XML VOTable.
+\end{itemize}
+
+\textbf{TODO: agregar arquitectura IVOA con cuadros pintados}
+
+\subsection{Metadatos de los datos de ALMA}
+Para poder construir la base de datos relacional con el modelo de datos ObsCore fue necesario mapear campos desde el ASDM.
+\begin{table}[h!t]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Campo ObsCore} & ASDM \\
+        \hline
+        dataproduct\_type	& visibility \\
+        calib\_level		& 1 \\
+        obs\_collection		& ALMA \\
+        obs\_id				& [ExecBlock.execBlockUID] \\
+        obs\_publisher\_did	& [Cycle ID] \\
+        access\_url			& [URL de ChiVO] \\
+        access\_format		& application/x-asdm \\
+        access\_estsize		& [main.dataSize] \\
+        target\_name		& [Source.sourceName] \\
+        s\_ra				& [Source.direction] \\
+        s\_dec				& [Source.direction] \\
+        s\_fov				& [1.2 * lambda / Diametro antena] \\
+        s\_region			& circle \\
+        s\_resolution		& [1.2*lambda/(ExecBlock.baseRangeMax)] \\
+		t\_min				& [ExecBlock.startTime] \\
+		t\_max				& [ExecBlock.endTime] \\
+		t\_exptime			& [main.interval] \\
+		t\_resolution		& [mainTable.interval] \\
+		em\_min				& [ExecBlock.baseRangeMin] \\
+		em\_max				& [ExecBlock.baseRangeMax] \\
+		em\_res\_power		& [spectralWindow.resolution] \\
+		o\_ucd				& em.mm \\
+		pol\_states			& [Source.stokesParameter[numStokes]] \\
+		facility\_name		& ALMA \\
+		instrument\_name	& ALMA \\
+		\hline
+    \end{tabular}
+    \caption{Campos del ObsCore y origen desde ASDM}
+    \label{table:obsasdm}
+\end{table}
+
+En la Tabla \textbf{ref} se muestra el resultado de la investigación, la primera columna corresponde a las columnas de la clase Observation, la segunda columna indica de donde se obtienen los datos para llenar la los campos de la primera columna para el caso de los ASDM.
+
+Para poder llenar los campos de la clase Observation es necesario escribir un script que busque sobre las tablas del ASDM (XML). Actualmente existen múltiples herramientas en el Paquete de Aplicaciones de Software Comunes de Astronomía (CASA, debido a sus siglas en inglés) \textbf{ref}.
+
 \subsection{Tecnologías usadas}
+Para el desarrollo de ChiVO se evaluaron distintas herramientas posibles de las cuales se concluyó en cada capa:
+
+\textbf{Endpoint}
+Los framework que se evaluaron para la implementación del endpoint fueron:
+\begin{itemize}
+    \item Ruby on Rails: RoR es uno de los framework de desarrollo web más usados actualmente, su uso es mediante el concepto Modelo-Vista-Controlador. La razón por la cual no se eligió esta herramienta es porque era más grande de lo que se necesitaba.
+    \item Python/Flask: Flask es un microframework diseñado especialmente para hacer webservices y herramientas web pequeñas. Lo que provee esta biblioteca es un marco de trabajo para la creación de aplicaciones web que puedan ser accedidas mediante distintos métodos HTTP. Existe mucha documentación y comunidad activa que permite implementar y solucionar problemas de forma rápida.
+\end{itemize}
+
+\textbf{ALMA Resource}
+Dentro de los toolkits de DAL recomendados por IVOA, se testearon los siguientes:
+\begin{itemize}
+    \item SAADA: Desarrollado por el VO Frances, es una herramienta bastante útil del punto de vista usuario, posee excelente documentación y manual de instalación, incluso la instalación se mediante GUI. Está desarrllado en Java y su correspondiente deployment se hace usando Tomcat. Por lo que se pudo apreciar desde la página web no es OpenSource. Es posible configurar servicios SCS/SIA/SSA/TAP.
+    \item VO-Dance: Desarrollado por el VO Italiano, es una herramienta en Java en su Backend, y Python en su Frontend (Framework Django). Lo destacable de esta herramienta es que trabaja usando MySQL como motor de base de datos principal, y según lo conversado con los desarrolladores están probando PostgreSQL actualmente. La herramienta no es OpenSource y la documentación de instalación y configuración es básica, ya que aún continúa en desarrollo. SCS/SIA/SSA/TAP.
+    \item openCADC: Desarrollado por el VO Canadiense, es una herramienta OpenSource escrita en Java, utilizada actualmente en el ALMA Science Archive. Este toolkit es uno de los más robustos, contiene distintos paquetes con servicios a ser utilizados en el webservice, sin embargo no existe documentación de instalación y configuración, y para poder probarlo fue necesario contactar directamente al desarrollador principal. Es posible configurar servicios TAP.
+    \item DaCHS: Desarrollado por el VO Alemán, es una herramienta OpenSource escrita en Python. Es uno de los toolkits DAL más usados por los VO, ya que posee una amplia documentación de instalación y configuración. Es posible configurar servicios SCS/SIA/SSA/TAP.
+\end{itemize}
+
+%\vspace{0.5cm}
+\begin{table}[h!t]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+    \hline
+    Toolkits    & Lenguaje      & OpenSource    & Documentación & Servicios         & Útimo update  \\
+    \hline
+    SAADA       & Java          & No            & Si            & SCS/SIA/SSA/TAP   & Mayo 2012     \\
+    VO-Dance    & Java/Python   & No            & No            & SCS/SIA/SSA/TAP   & Dicimbre 2012 \\
+    openCADC    & Java          & Si            & No            & TAP               & ---           \\
+    DaCHS       & Python        & Si            & Si            & SCS/SIA/SSA/TAP   & Junio 2013    \\
+    \hline
+\end{tabular}
+\caption{Resumen de los toolkits en tabla comparativa}
+\label{table:toolkits}
+\end{table}
+
+\textbf{Interfaz Usuario}
+Inicialmente la interfaz usuario o frontend iba a contener solo vistas, por lo que el desarrollo podía ser en practicamente cualquier lenguaje o framework, como por ejemplo HTML, PHP, Django o RoR. Sin embargo con los requerimientos de la plataforma, especialmente el de capa de usuarios, se decidió inclinarse por un framework MVC que fuese lo suficientemente ágil y compatible con el resto de servicios, por lo que se eligió RoR. En la cual se usa principalmente HTML y Javascript.
