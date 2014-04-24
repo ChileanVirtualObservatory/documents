@@ -2,7 +2,7 @@
 TEXFILES = $(wildcard *.tex)
 PDFFILES = $(TEXFILES:.tex=.pdf)
 
-all: pdflatex 
+all: pdflatex
 
 pdf: $(PDFFILES)
 
@@ -27,3 +27,6 @@ distclean: clean
 
 x:
 	@open publish/$(PDFFILES) &> /dev/null &
+
+o:
+	@okular publish/$(PDFFILES) &> /dev/null &
