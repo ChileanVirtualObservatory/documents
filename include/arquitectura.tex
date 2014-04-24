@@ -122,10 +122,8 @@ necesario mapear campos desde el ASDM.
 
 \begin{table}[h!t]
     \centering
-    \begin{tabular}{|c|c|}
-        \hline
-        \textbf{Campo ObsCore} & ASDM \\
-        \hline
+    \begin{tabular}{lr}
+        \textbf{Campo ObsCore} & \textbf{ASDM} \\
         dataproduct\_type      & visibility \\
         calib\_level           & 1 \\
         obs\_collection        & ALMA \\
@@ -151,7 +149,6 @@ necesario mapear campos desde el ASDM.
         pol\_states            & [Source.stokesParameter[numStokes]] \\
         facility\_name         & ALMA \\
         instrument\_name       & ALMA \\
-        \hline
     \end{tabular}
     \caption{Campos del ObsCore y origen desde ASDM}
     \label{table:obsasdm}
@@ -223,29 +220,27 @@ Dentro de los toolkits de DAL recomendados por IVOA, se testearon los siguientes
         necesario contactar directamente al desarrollador principal.
         Es posible configurar servicios TAP.
 
-    \item[DaCHS:] Desarrollado por el VO Alemán, es una herramienta OpenSource
-        escrita en Python.
+    \item[DaCHS:] \hfill \\
+        Desarrollado por el VO Alemán, es una herramienta OpenSource escrita en
+        Python.
         Es uno de los toolkits DAL más usados por los VO, ya que posee una amplia
         documentación de instalación y configuración.
         Es posible configurar servicios SCS/SIA/SSA/TAP.
 \end{description}
 
 %\vspace{0.5cm}
-\begin{table}[h!t]
+\begin{table*}[h!t]
 \centering
-\begin{tabular}{|l|c|c|c|c|c|}
-    \hline
-    Toolkits & Lenguaje    & OpenSource & Documentación & Servicios       & Último update  \\
-    \hline
-    SAADA    & Java        & No         & Si            & SCS/SIA/SSA/TAP & Mayo 2012     \\
-    VO-Dance & Java/Python & No         & No            & SCS/SIA/SSA/TAP & Dicimbre 2012 \\
-    openCADC & Java        & Si         & No            & TAP             & ---           \\
-    DaCHS    & Python      & Si         & Si            & SCS/SIA/SSA/TAP & Junio 2013    \\
-    \hline
+\begin{tabular}{lrrrrr}
+    {\bf Toolkits} & {\bf Lenguaje} & {\bf OpenSource} & {\bf Documentación} & {\bf Servicios} & {\bf Último update}  \\
+    SAADA          & Java           & No               & Si                  & SCS/SIA/SSA/TAP & Mayo 2012     \\
+    VO-Dance       & Java/Python    & No               & No                  & SCS/SIA/SSA/TAP & Dicimbre 2012 \\
+    openCADC       & Java           & Si               & No                  & TAP             & ---           \\
+    DaCHS          & Python         & Si               & Si                  & SCS/SIA/SSA/TAP & Junio 2013    \\
 \end{tabular}
 \caption{Resumen de los toolkits en tabla comparativa}
 \label{table:toolkits}
-\end{table}
+\end{table*}
 
 \textbf{Interfaz Usuario}
 
