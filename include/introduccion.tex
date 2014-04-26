@@ -78,3 +78,22 @@ Resumen de lo importante del paper.
 
 
 \subsection{ALMA + Cubos + Formatos propios}
+
+ALMA Consiste en recolectar una señal proveniente del cielo usando dos o más antenas y combinarlas para analizar la señal y así obtener información de la fuente de la emisión (ya sea una estrella, planeta, o galaxia), para ello usa 66 atenas ubicadas en Chajnantor a más de 5 mil metros de altura. Al combinar ondas de radio capturadas por dos o más antenas, es posible obtener datos de alta precisión y actualmente estas ondas de radio van entre frecuencias de 84 GHz y 950 GHz (ALMA Band 3 - ALMA Band 10). 
+
+Del punto de vista de producción de datos, este proceso genera cubos en tres dimensiones dadas por: 2 ejes de posición y un eje de frecuencia \ref{fig:cube}. La particularidad de estos cubos de datos es su tamaño dada por la alta precisión del observatorio, por lo que son datos de gran esacala (orden de GB y TB).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/cube.png}
+    \caption{Estructura de cubos de datos de ALMA \cite{dent20132}}
+    \label{fig:cube}
+\end{figure}
+
+En cuanto a formatos de datos en astronomía, todos se rigen por una estructura similar compuesta por metadatos (información que describe los datos) mas datos binarios. ALMA posee dos modelos de datos especiales:
+\begin{description}
+    \item[ALMA Science Data Model:] \hfill \\
+    	Formato en XML diseñado para guardar los metadatos obtenidos del proceso de observación y generar un link hace los datos binarios.
+    \item[Measurement Set:] \hfill \\
+    	Formato basado en tablas binarias (1 principal y varias secundarias), el que también guarda metadata y datos binarios. Este formato se usa para reducir en Common Astronomy Software Applications (CASA), software creado por ALMA.
+\end{description}
