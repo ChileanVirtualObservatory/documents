@@ -1,13 +1,32 @@
-\subsection{Conclusión y Trabajo Futuro}
-%Se cumplen requerimientos.
+\section{Conclusión y Trabajo Futuro}
+%Problema Resuelto
+A pesar de la cantidad de datos que generan los observatorios en Chile, no
+existía un VO hace un año atrás, y en particular ALMA hasta el momento tampoco
+posee servicios compatibles con VO. La implementación de ChiVO generó una serie
+de complicaciones, partiendo con entender las necesidades de los astrónomos y
+cómo estas se traducen a sistemas de datos y servicios usando las normativas
+internacionales de IVOA. 
+
+ %Resultados
 El enfoque de desarrollo actual está orientado a prototipos incrementales, de
 tal forma que se van generando entregables frecuentemente a los usuarios del
 sistema (Astrónomos) los cuales se ven satisfechos por los avances realizados,
 sin embargo, siempre quedan cosas por implementar o aparecen nuevas ideas.
+Hasta el momento se capturaron los requerimientos de los astrónomos y se
+estudiaron los protocolos y estándares para abordar estos, creando así, los
+servicios de acceso a datos (SCS, SIA, SSA, TAP) los que acceden a una base de
+datos queusa  un modelo de datos relacional (ObsCore), sujetos a la
+arquitectura propia de ChiVO la cual permite que los servicios sean
+interoperables.
 
 %Cosas por implementar.
 Hasta el momento el prototipo va en su primera entrega y a mediados del 2014
-tendrá su segunda iteración, la cual contará con: los datos públicos del ciclo
-0. Esto permitirá que más usuarios se familiaricen con el sistema por lo que se
-podrá testear en terreno las funcionalidades y limitaciones actuales de las
-implementaciones.
+tendrá su segunda iteración, la cual contará con los datos públicos del ciclo 0
+de ALMA. Esto permitirá que más usuarios se familiaricen con el sistema por lo
+que se podrá testear en terreno las funcionalidades y limitaciones actuales de
+las implementaciones. Para las siguientes versiones se tiene pensado
+implementar otros protocolos de la arquitectura de IVOA, como la sección de
+Registros y estándares de acceso a recursos, como VOSpace
+\cite{graham2007vospace}. En cuanto a modelos y acceso de datos
+multidimensionales como los cubos de ALMA, será necesario trabajar en la
+creación o adaptación de estándares de IVOA. 
