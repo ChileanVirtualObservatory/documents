@@ -2,9 +2,25 @@
 
 ChiVO es un observatorio virtual en construcción, el cual alojará datos de los
 observatorios localizados en Chile, ciñéndose a los estándares de
-interoperabilidad de la comunidad internacional de observatorios virtuales,
+interoperabilidad de la alianza internacional de observatorios virtuales (IVOA),
 y utilizando tecnologías de última generación. Esta sección, detalla el
 proceso de diseño realizado para esta iniciativa.
+
+%Que es IVOA?
+La misión de IVOA es facilitar la coordinación y colaboración necesaria para facilitar el acceso global e integrado a los datos recogidos por los observatorios astronómicos internacionales. Esta organización fue formada en Junio del 2002 y tiene actualmente 21 miembros activos. Su método de trabajo es en base a Working Groups, los cuales están a cargo de estabelcer protocolos y estándares que describen la arquitectura general de un VO \ref{fig:ivoavacio}. A grandes rasgos, la arquitectura posee tres capas:
+\begin{itemize}
+    \item Usuarios: astrónomos y científicos en general interesados por los datos publicados por los observatorios.
+    \item Recursos: observatorios y centros que producen datos astronómicos (reales o simulados).
+    \item Capa intermedia: esta capa define lo que es un observatorio virtual, es decir, de qué manera se comunican los usuarios y recursos usando protocolos y estándares para buscar y acceder datos.
+\end{itemize}
+
+%Arquitectura de IVOA Vacía
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/ivoavacio.png}
+    \caption{Arquitectura IVOA}
+    \label{fig:ivoavacio}
+\end{figure}
 
 \subsection{Requerimientos}
 
@@ -29,7 +45,6 @@ astronómica nacional, las cuales podemos resumir en,
 %[MA] NO!
 \textbf{Arquitectura IVOA}
 
-%[MA] QUe es IVOA?
 
 \begin{figure}[ht]
     \centering
