@@ -1,9 +1,15 @@
 \section{Arquitectura de ChiVO}
 
+ChiVO es un observatorio virtual en construcción, el cual alojará datos de los
+observatorios localizados en Chile, ciñéndose a los estándares de
+interoperabilidad de la comunidad internacional de observatorios virtuales,
+y utilizando tecnologías de última generación. Esta sección, detalla el
+proceso de diseño realizado para esta iniciativa.
+
 \subsection{Requerimientos}
 
 Para la creación del ChiVO se identificaron las necesidades actuales de la comunidad
-astronómica:
+astronómica nacional, las cuales podemos resumir en,
 
 \begin{description}
     \item[Descubrir:] \hfill \\
@@ -20,34 +26,10 @@ astronómica:
 \end{description}
 
 %\textbf{TODO: poner los req?}
-
+%[MA] NO!
 \textbf{Arquitectura IVOA}
 
-La arquitectura de software, está basada en el uso de protocolos y estándares de
-IVOA, actuales que se están usando son (Además se pueden ver en la figura \ref{fig:ivoarch}):
-
-\begin{description}
-    \item[Capa Aplicación:] \hfill \\
-        Un Servicio Web compatible con VO necesita al menos un \emph{Table Access
-        Protocol} \cite{dowler2010table} para acceder al modelo de datos de ChiVO usando el
-        \emph{Astronomical Data Query Language} \cite{yasuda2004astronomical}.
-        Además para el cumplimiento de los requerimientos del sistema,
-        actualmente se ha implementado:
-        el protocolo para realizar búsquedas cónicas \emph{Simple Cone Search}
-        \cite{williams2008simple}, el protocolo para realizar acceder a datos
-        espectrales \emph{Simple Spectral Access} \cite{tody2008simple} y el protocolo de
-        acceso a imágenes \emph{Simple Image Access} \cite{tody2004simple}.
-
-    \item[Capa de datos:] \hfill \\
-        En esta capa se requiere la configuración de la base de datos relacional con
-        un modelo de datos recomendado por IVOA llamado \emph{Observation Core Data
-        Model} \cite{louys2011ivoa} que permite que los VO sean interoperables,
-        ya que definen una cantidad mínima de atributos en las tablas con cierto
-        nombre y tipo de dato, de forma que acceder a diferentes servicios mediante
-        \emph{TAP + Obscore} es estándar.
-        Además el formato de transferencia de información (metadata) es con el
-        formato \emph{XML VOTable}.
-\end{description}
+%[MA] QUe es IVOA?
 
 \begin{figure}[ht]
     \centering
@@ -56,11 +38,43 @@ IVOA, actuales que se están usando son (Además se pueden ver en la figura \ref
     \label{fig:ivoarch}
 \end{figure}
 
-\subsection{Arquitectura ChiVO}
 
-Según las necesidades de lo radioastrónomos chilenos, los requerimientos, casos de
-uso  y los modelos de datos (compatibles con los estándares de IVOA),
-conllevan a la creación de la siguiente arquitectura y modelo de desarrollo:
+La arquitectura de software de ChiVO está basada en el uso de protocolos y estándares de
+IVOA. Estos protocolos y estándares están agrupados en capas, de las cuales
+destacamos la capa de aplicación y la de datos (ver Figura~\ref{fig:ivoarch}),
+ya que sus estándares básicos definen la operación mínima que un VO debe
+realizar. A continuación, detallamos los elementos que ChiVO ha implementado
+en estas capas.
+
+\begin{description}
+    \item[Capa Aplicación:] \hfill \\
+        Un Servicio Web compatible con VO necesita al menos un \emph{Table Access
+        Protocol} \cite{dowler2010table} para acceder al modelo de datos de ChiVO usando el
+        \emph{Astronomical Data Query Language} \cite{yasuda2004astronomical}.
+        Además, para el cumplimiento de los requerimientos del sistema,
+        actualmente se ha implementado
+        el protocolo para realizar búsquedas cónicas \emph{Simple Cone Search}
+        \cite{williams2008simple}, el protocolo para realizar acceder a datos
+        espectrales \emph{Simple Spectral Access} \cite{tody2008simple} y el protocolo de
+        acceso a imágenes \emph{Simple Image Access} \cite{tody2004simple}.
+
+    \item[Capa de datos:] \hfill \\
+        En esta capa se requiere la configuración de la base de datos relacional con
+        un modelo de datos recomendado por IVOA llamado \emph{Observation Core Data
+        Model} \cite{louys2011ivoa}. Este modelo de datos permite que los VO sean interoperables,
+        ya que definen una cantidad mínima de atributos en las tablas con cierto
+        nombre y tipo de dato, de forma que acceder a diferentes servicios mediante
+        \emph{TAP + Obscore} es estándar.
+        Además el formato de transferencia de información (metadata) es con el
+        formato estándar \emph{XML VOTable}.
+\end{description}
+
+\subsection{Arquitectura de ChiVO}
+
+Según las necesidades de lo radioastrónomos Chilenos, los requerimientos, casos de
+uso y los modelos de datos (compatibles con los estándares de IVOA),
+conllevan a la creación de la siguiente arquitectura y modelo de desarrollo (ver
+Figura~\ref{fig:chivoarch}).
 
 \begin{figure}[ht]
     \centering
@@ -75,7 +89,7 @@ Esta capa representa al usuario final y cómo se facilita la comunicación entre
 usuario y los datos.
 En esta capa el usuario realiza consultas a través de los protocolos de acceso
 ofrecidos por ChiVO o a través de un formulario avanzado, utilizando aplicaciones
-compatibles con VO y el portal web.
+compatibles con VO y su portal web.
 Una vez realizada la consulta, el sistema le retornará al usuario una lista que
 describe objetos u observaciones encontrados (metadatos) y podrá acceder a ellos a
 través de un enlace de descarga asociado a cada resultado.
@@ -84,7 +98,7 @@ flexibilidad y escalabilidad en el sistema, para que independientemente de la ca
 nuevas aplicaciones puedan interactuar con ChiVO, así como la adición de nuevas
 fuentes de información a parte de ALMA.
 
-Las consultas son recibidas por ChiVO a través de su \emph{endpoint} de datos que
+Las consultas son recibidas por ChiVO a través de su \emph{endpoint} de datos, que
 recibe consultas en \texttt{HTTP}, \texttt{GET} o \texttt{POST}, ante lo cual el
 endpoint retorna la lista de resultados en una tabla en el formato XML (VOTable).
 Para el caso del portal web, el VOTable es desplegado mostrado al usuario a través
