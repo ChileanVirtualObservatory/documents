@@ -43,46 +43,7 @@ astronómica nacional, las cuales podemos resumir en,
 
 %\textbf{TODO: poner los req?}
 %[MA] NO!
-\textbf{Arquitectura IVOA}
-
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.45\textwidth]{images/arquitectura_2.png}
-    \caption{Arquitectura de IVOA con los Protocolos y Estandares usados}
-    \label{fig:ivoarch}
-\end{figure}
-
-
-La arquitectura de software de ChiVO está basada en el uso de protocolos y estándares de
-IVOA. Estos protocolos y estándares están agrupados en capas, de las cuales
-destacamos la capa de aplicación y la de datos (ver Figura~\ref{fig:ivoarch}),
-ya que sus estándares básicos definen la operación mínima que un VO debe
-realizar. A continuación, detallamos los elementos que ChiVO ha implementado
-en estas capas.
-
-\begin{description}
-    \item[Capa Aplicación:] \hfill \\
-        Un Servicio Web compatible con VO necesita al menos un \emph{Table Access
-        Protocol} \cite{dowler2010table} para acceder al modelo de datos de ChiVO usando el
-        \emph{Astronomical Data Query Language} \cite{yasuda2004astronomical}.
-        Además, para el cumplimiento de los requerimientos del sistema,
-        actualmente se ha implementado
-        el protocolo para realizar búsquedas cónicas \emph{Simple Cone Search}
-        \cite{williams2008simple}, el protocolo para realizar acceder a datos
-        espectrales \emph{Simple Spectral Access} \cite{tody2008simple} y el protocolo de
-        acceso a imágenes \emph{Simple Image Access} \cite{tody2004simple}.
-
-    \item[Capa de datos:] \hfill \\
-        En esta capa se requiere la configuración de la base de datos relacional con
-        un modelo de datos recomendado por IVOA llamado \emph{Observation Core Data
-        Model} \cite{louys2011ivoa}. Este modelo de datos permite que los VO sean interoperables,
-        ya que definen una cantidad mínima de atributos en las tablas con cierto
-        nombre y tipo de dato, de forma que acceder a diferentes servicios mediante
-        \emph{TAP + Obscore} es estándar.
-        Además el formato de transferencia de información (metadata) es con el
-        formato estándar \emph{XML VOTable}.
-\end{description}
+%\textbf{Arquitectura IVOA}
 
 \subsection{Arquitectura de ChiVO}
 
@@ -115,7 +76,8 @@ fuentes de información a parte de ALMA.
 
 Las consultas son recibidas por ChiVO a través de su \emph{endpoint} de datos, que
 recibe consultas en \texttt{HTTP}, \texttt{GET} o \texttt{POST}, ante lo cual el
-endpoint retorna la lista de resultados en una tabla en el formato XML (VOTable).
+endpoint retorna la lista de resultados en una tabla en el formato XML VOTable 
+\cite{ochsenbein2011ivoa}.
 Para el caso del portal web, el VOTable es desplegado mostrado al usuario a través
 de una herramienta web que permite la manipulación simple y eficiente de VOTables
 llamada VOView.
@@ -141,14 +103,14 @@ nuevas fuentes de información, siempre y cuando se mantenga la compatibilidad
 de IVOA.
 
 En esta capa también está en desarrollo un sistema capaz de resolver nombres
-(tipo Sesame pero para datos de ALMA) y el registro de ChiVO.
+(tipo Sesame \cite{sesame} pero para datos de ALMA) y el registro de ChiVO.
 
 \textbf{Capa de abstracción: Datos}
 
 En esta capa se encuentran los recursos que tienen los datos y metadatos.
 El trabajo está asociado a una base de datos relacional para almacenar los
 metadatos asociados al modelo de datos recomendado por \emph{IVOA Observation Core
-Data Model}, usando un framework desarrollado por el VO Alemán.
+Data Model} \cite{louys2011ivoa}, usando un framework desarrollado por el VO Alemán.
 Con respecto a rendimiento, nos encontramos en la sección que consume más
 recursos, tanto en tiempo de computación (resuelve las consultas hechas a las base
 de datos) y además el almacenamiento físico de los datos.
@@ -220,7 +182,7 @@ Comunes de Astronomía (CASA, debido a sus siglas en inglés) \cite{petry2012ana
 Para el desarrollo de ChiVO se evaluaron distintas herramientas posibles de las
 cuales se concluyó en cada capa:
 
-\textbf{Endpoint}
+\textbf{Capa de abstración: Aplicación}
 
 Los framework que se evaluaron para la implementación del endpoint fueron:
 
@@ -239,10 +201,9 @@ Los framework que se evaluaron para la implementación del endpoint fueron:
         solucionar problemas de forma rápida.
 \end{description}
 
-\textbf{ALMA Resource}
+\textbf{Capa de abstración: Datos}
 
-Dentro de los \emph{toolkits} de DAL recomendados por IVOA,
-se probaron y verificaron los siguientes:
+Dentro de los \emph{toolkits} de Data Access Layer recomendados por IVOA para el acceso a datos mediante protocolos: Simple Cone Search (SCS) \cite{williams2008simple}; Simple Image Access (SIA) \cite{tody2004simple}; Simple Spectral Access (SSA) \cite{tody2008simple}; y Table Access Protocol (TAP) \cite{dowler2010table} mediante Astronomical Data Query Language (ADQL) \cite{yasuda2004astronomical} y Universarl Worker Service \cite{rixon2008universal}, se probaron y verificaron los siguientes:
 
 \begin{description}
     \item[SAADA:] \hfill \\
@@ -293,7 +254,7 @@ se probaron y verificaron los siguientes:
 \label{table:toolkits}
 \end{table*}
 
-\textbf{Interfaz Usuario}
+\textbf{Capa de abstración: Clientes}
 
 Inicialmente la interfaz usuario o frontend poseería solo vistas, por lo que
 el desarrollo podía ser en prácticamente cualquier lenguaje o framework, como por
