@@ -2,34 +2,23 @@
 
 \subsection{Big Data en Astronomía}
 
-En los últimos años, los ámbitos empresarial, científicos y de administración
-han estado haciendo frente a la avalancha de datos proveniente de distintas
-fuentes asociadas a cada investigación, concepto que se ha definido como
+En los últimos años, el problema de la avalancha de datos se ha manifestado
+tanto en la ciencia como en los ámbitos empresariales, haciendo cada
+día más relevante el apropiado manejo y gestión de lo que se ha denominado 
 \emph{Big Data}.
-Por su simple denominación, se entiende que trata de la manipulación de grandes
-volúmenes de información, los cuales no son sencillos de procesar con las herramientas
-y procedimientos tradicionales.
-Con la idea de procesamiento de información a gran escala,
-la evolución de los métodos y recursos habitualmente utilizados
-ha sido la responsable de ser capaces de manipular grandes volúmenes de datos,
-los cuales pueden llegar a ser del orden de TeraBytes a ZetaBytes.
+Este concepto engloba a la investigación en el manejo grandes volúmenes de información, los cuales no son sencillos de procesar con las herramientas
+y procedimientos tradicionales. Cuando el volumen de datos llega a ordenes
+de TeraBytes a ZetaBytes, los algoritmos y procedimientos deben adaptarse
+para ser usados en las nuevas plataformas de computación de alto desempeño, 
+con herramientas Cloud, de forma distribuida y on-line.
+%Con la idea de procesamiento de información a gran escala,
+%la evolución de los métodos y recursos habitualmente utilizados
+%ha sido la responsable de ser capaces de manipular grandes volúmenes de datos,
+%los cuales pueden llegar a ser del orden de TeraBytes a ZetaBytes.
 Adicionalmente, no sólo estamos tratando con grandes volúmenes de datos
-de manera estacionaria, si no que la frecuencia con la cual éstos son generados,
+de manera estacionaria, sino que la frecuencia con la cual éstos son generados,
 crea nuevos componentes críticos para las el desarrollo de soluciones,
-como lo son el almacenamiento, variabilidad de formato, y tiempo de respuesta.
-Es en el área de la astronomía, donde podemos ver el concepto de \emph{Big Data}
-en una situación real, en las cuales las instalaciones de última generación
-recientes, como el Atacama Large Millimeter/submillimeter (ALMA),
-y las que están en construcción, como el Large Synoptic Survey Telescope (LSST) y el
-Square Kilometer Array (SKA)
-producen y producirán datos de gran escala, proyectándose que para el año 2020
-serán más de 60 PetaBytes de información accesible para la comunidad astronómica.
-
-Considerando todos los aspectos técnicos y tecnológicos de la manipulación
-de grandes volúmenes de datos en los ejemplos anteriormente señalados, requieren
-el desarrollo de sistemas específicos para cada uno de ellos,
-los cuales consideran aspectos de captura, almacenamiento, distribución, gestión
-y análisis de la información.
+como lo son el almacenamiento, variabilidad de formato y tiempo de respuesta.
 
 \emph{Big Data} no es una tecnología en sí misma, sino más bien un planteamiento de
 trabajo para la obtención de valor y beneficios de los grandes volúmenes de
@@ -42,13 +31,27 @@ datos que se están generando hoy en día. Se deben contemplar aspectos como:
     \item Cómo comunicar para facilitar la toma de decisión y posteriores análisis.
 \end{itemize}
 
+
+Uno de los dominios donde el problema del \emph{Big Data} está llegando
+a su punto crítico, es la astronomía. Las instalaciones de última generación 
+en operaciones, como el Atacama Large Millimeter/submillimeter (ALMA),
+y las que están en construcción, como el Large Synoptic Survey Telescope (LSST) y el Square Kilometer Array (SKA)
+producen y producirán datos en gran escala, proyectándose que para el año 2020
+serán más de 60 PetaBytes de información accesible para la comunidad astronómica.
+
+%Considerando los aspectos técnicos y tecnológicos de la manipulación
+%de grandes volúmenes de datos en los ejemplos anteriormente señalados, requieren
+%el desarrollo de sistemas específicos para cada uno de ellos,
+%los cuales consideran aspectos de captura, almacenamiento, distribución, gestión
+%y análisis de la información.
+
+
 \subsection{Observatorios en Chile}
 
 Las privilegiadas condiciones atmosféricas hacen de Chile uno de los lugares
 más propicios para la realización de investigaciones científicas en astronomía.
-
 Existen más de una docena de instalaciones astronómicas de gran envergadura a
-lo largo de nuestro territorio nacional {\bf ref observatorios chile}, como por
+lo largo de Chile {\bf ref observatorios chile}, como por
 ejemplo, el anteriormente nombrado ``Atacama Large Milimeter/submilimeter
 Array'' (ALMA), el ``Very Large Telescope'' (VLT), y en los próximos años el
 ``European Extremely Large Telescope'' (E-ELT), con el cual se estima que el
@@ -84,7 +87,7 @@ GHz y 950 GHz (ALMA Band 3 - ALMA Band 10).
 Del punto de vista de producción de datos, este proceso genera cubos en tres
 dimensiones dadas por: 2 ejes de posición y un eje de frecuencia
 \ref{fig:cube}. La particularidad de estos cubos de datos es su tamaño dada por
-la alta precisión del observatorio, por lo que son datos de gran esacala (orden
+la alta precisión del observatorio, por lo que son datos de gran escala (orden
 de GB y TB).
 
 \begin{figure}[ht]
@@ -113,7 +116,7 @@ binarios. ALMA posee dos modelos de datos especiales:
 Chile siendo uno de los países con más actividad astronómica no poseía hasta
 hace 1 año un VO. Y por el momento ALMA tampoco tiene posee servicios
 compatibles con los protocolos y estándares de VO, por lo que es un desafío
-plantear necesiades y requerimientos de este tipo de sistema.
+plantear necesidades y requerimientos de este tipo de sistema.
 
 %Resumen de lo importante del paper.
 Este paper tiene como objetivo introducir al lector la arquitectura general de
