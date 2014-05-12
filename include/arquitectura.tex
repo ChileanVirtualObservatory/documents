@@ -7,11 +7,21 @@ y utilizando tecnologías de última generación. Esta sección, detalla el
 proceso de diseño realizado para esta iniciativa.
 
 %Que es IVOA?
-La misión de IVOA es facilitar la coordinación y colaboración necesaria para facilitar el acceso global e integrado a los datos recogidos por los observatorios astronómicos internacionales. Esta organización fue formada en Junio del 2002 y tiene actualmente 21 miembros activos. Su método de trabajo es en base a Working Groups, los cuales están a cargo de estabelcer protocolos y estándares que describen la arquitectura general de un VO \ref{fig:ivoavacio}. A grandes rasgos, la arquitectura posee tres capas:
+La misión de IVOA es facilitar la coordinación y colaboración necesaria para
+facilitar el acceso global e integrado a los datos recogidos por los
+observatorios astronómicos internacionales. Esta organización fue formada en
+Junio del 2002 y tiene actualmente 21 miembros activos. Su método de trabajo es
+en base a Working Groups, los cuales están a cargo de estabelcer protocolos y
+estándares que describen la arquitectura general de un VO \ref{fig:ivoavacio}.
+A grandes rasgos, la arquitectura posee tres capas:
 \begin{itemize}
-    \item Usuarios: astrónomos y científicos en general interesados por los datos publicados por los observatorios.
-    \item Recursos: observatorios y centros que producen datos astronómicos (reales o simulados).
-    \item Capa intermedia: esta capa define lo que es un observatorio virtual, es decir, de qué manera se comunican los usuarios y recursos usando protocolos y estándares para buscar y acceder datos.
+    \item Usuarios: astrónomos y científicos en general interesados por los
+    datos publicados por los observatorios.
+    \item Recursos: observatorios y centros que producen datos astronómicos
+    (reales o simulados).
+    \item Capa intermedia: esta capa define lo que es un observatorio virtual,
+    es decir, de qué manera se comunican los usuarios y recursos usando
+    protocolos y estándares para buscar y acceder datos.
 \end{itemize}
 
 %Arquitectura de IVOA Vacía
@@ -24,8 +34,8 @@ La misión de IVOA es facilitar la coordinación y colaboración necesaria para 
 
 \subsection{Requerimientos}
 
-Para la creación del ChiVO se identificaron las necesidades actuales de la comunidad
-astronómica nacional, las cuales podemos resumir en,
+Para la creación del ChiVO se identificaron las necesidades actuales de la
+comunidad astronómica nacional, las cuales podemos resumir en,
 
 \begin{description}
     \item[Descubrir:] \hfill \\
@@ -41,7 +51,11 @@ astronómica nacional, las cuales podemos resumir en,
         información.
 \end{description}
 
-En este proceso participó un equipo multidisciplinario (astrónomos, ingenieros, científicos, expertos en datos de ALMA, etc) y duró aproximadamente 4 meses, entre que la comunidad astronómica definía bien sus requerimientos y casos de uso, y entre que el equipo informático contrastaba estos con las normativas internacionales.
+En este proceso participó un equipo multidisciplinario (astrónomos, ingenieros,
+científicos, expertos en datos de ALMA, etc) y duró aproximadamente 4 meses,
+entre que la comunidad astronómica definía bien sus requerimientos y casos de
+uso, y entre que el equipo informático contrastaba estos con las normativas
+internacionales.
 
 %\textbf{TODO: poner los req?}
 %[MA] NO!
@@ -49,10 +63,10 @@ En este proceso participó un equipo multidisciplinario (astrónomos, ingenieros
 
 \subsection{Arquitectura de ChiVO}
 
-Según las necesidades de lo radioastrónomos Chilenos, los requerimientos, casos de
-uso y los modelos de datos (compatibles con los estándares de IVOA),
-conllevan a la creación de la siguiente arquitectura y modelo de desarrollo (ver
-Figura~\ref{fig:chivoarch}).
+Según las necesidades de los radioastrónomos Chilenos, los requerimientos,
+casos de uso y los modelos de datos (compatibles con los estándares de IVOA),
+conllevan a la creación de la siguiente arquitectura y modelo de desarrollo
+(ver Figura~\ref{fig:chivoarch}).
 
 \begin{figure}[ht]
     \centering
@@ -64,17 +78,16 @@ Figura~\ref{fig:chivoarch}).
 \textbf{Capa de abstración: Clientes}
 
 Esta capa representa al usuario final y cómo se facilita la comunicación entre el
-usuario y los datos.
-En esta capa el usuario realiza consultas a través de los protocolos de acceso
-ofrecidos por ChiVO o a través de un formulario avanzado, utilizando aplicaciones
-compatibles con VO y su portal web.
-Una vez realizada la consulta, el sistema le retornará al usuario una lista que
-describe objetos u observaciones encontrados (metadatos) y podrá acceder a ellos a
-través de un enlace de descarga asociado a cada resultado.
-Cabe destacar que gracias a la separación por capas de abstracción se logra la
-flexibilidad y escalabilidad en el sistema, para que independientemente de la capa,
-nuevas aplicaciones puedan interactuar con ChiVO, así como la adición de nuevas
-fuentes de información a parte de ALMA.
+usuario y los datos.  En esta capa el usuario realiza consultas a través de los
+protocolos de acceso ofrecidos por ChiVO o a través de un formulario avanzado,
+utilizando aplicaciones compatibles con VO y su portal web.  Una vez realizada
+la consulta, el sistema le retornará al usuario una lista que describe objetos
+u observaciones encontrados (metadatos) y podrá acceder a ellos a través de un
+enlace de descarga asociado a cada resultado.  Cabe destacar que gracias a la
+separación por capas de abstracción se logra la flexibilidad y escalabilidad en
+el sistema, para que independientemente de la capa, nuevas aplicaciones puedan
+interactuar con ChiVO, así como la adición de nuevas fuentes de información a
+parte de ALMA.
 
 Las consultas son recibidas por ChiVO a través de su \emph{endpoint} de datos, que
 recibe consultas en \texttt{HTTP}, \texttt{GET} o \texttt{POST}, ante lo cual el
@@ -109,19 +122,18 @@ En esta capa también está en desarrollo un sistema capaz de resolver nombres
 
 \textbf{Capa de abstracción: Datos}
 
-En esta capa se encuentran los recursos que tienen los datos y metadatos.
-El trabajo está asociado a una base de datos relacional para almacenar los
-metadatos asociados al modelo de datos recomendado por \emph{IVOA Observation Core
-Data Model} \cite{louys2011ivoa}, usando un framework desarrollado por el VO Alemán.
-Con respecto a rendimiento, nos encontramos en la sección que consume más
-recursos, tanto en tiempo de computación (resuelve las consultas hechas a las base
-de datos) y además el almacenamiento físico de los datos.
-A modo de verificación momentánea,
-la actual implementación trabaja con un conjunto de datos, con un tamaño
-de 1 TeraByte, los que provienen de la reducción del ciclo 0 de ALMA.
-Debido a esta limitación se propone
-el esquema de funcionamiento de la figura \ref{fig:dachs}, en donde pueden haber N
-servidores con DaCHS configurado apuntando a M base de datos distribuidas o replicadas.
+En esta capa se encuentran los recursos que tienen los datos y metadatos.  El
+trabajo está asociado a una base de datos relacional para almacenar los
+metadatos asociados al modelo de datos recomendado por \emph{IVOA Observation
+Core Data Model} \cite{louys2011ivoa}, usando un framework desarrollado por el
+VO Alemán DaCHS \cite{dachs}.  Con respecto a rendimiento, nos encontramos en
+la sección que consume más recursos, tanto en tiempo de computación (resuelve
+las consultas hechas a las base de datos) y además el almacenamiento físico de
+los datos.  A modo de verificación momentánea, la actual implementación trabaja
+con un conjunto de datos, con un tamaño de 1 TeraByte, los que provienen de la
+reducción del ciclo 0 de ALMA.  Debido a esta limitación se propone el esquema
+de funcionamiento de la figura \ref{fig:dachs}, en donde pueden haber N
+servidores con DaCHS apuntando a M base de datos distribuidas o replicadas.
 
 \begin{figure}[ht]
     \centering
@@ -132,8 +144,11 @@ servidores con DaCHS configurado apuntando a M base de datos distribuidas o repl
 
 \subsection{Metadatos de los datos de ALMA}
 
-Para poder construir la base de datos relacional con el modelo de datos ObsCore fue
-necesario mapear campos desde el ALMA Science Data Model (ASDM) \cite{viallefond2009sdm}.
+Para poder construir la base de datos relacional con el modelo de datos ObsCore
+fue necesario mapear campos desde el ALMA Science Data Model (ASDM)
+\cite{viallefond2009sdm}.  Un ASDM contiene una serie de tablas (XML) con la
+metadata de la observación, y en este caso se usaron: \emph{main},
+\emph{Source}, \emph{ExecBlock}, \emph{spectralWindow}.
 
 \begin{table}[ht]
     \centering
@@ -193,19 +208,25 @@ Los framework que se evaluaron para la implementación del endpoint fueron:
         Framework de desarrollo web ampliamente utilizado el día de hoy,
         se basa en el concepto Modelo-Vista-Controlador (MVC).
         Sin embargo, ésta herramienta no será utilizada debido
-        a que muchas funcionalidades no son necesarias para el presente proyecto.
+        a que muchas funcionalidades no son necesarias para el presente prototipo.
     \item[Python/Flask:] \hfill \\
         Flask es un microframework diseñado especialmente para servicios y
         herramientas web pequeñas.
         La presente solución provee un marco de trabajo para la creación de
-        aplicaciones web que puedan ser accedidas mediante distintos métodos HTTP.
-        Existe mucha documentación y comunidad activa que permite implementar y
-        solucionar problemas de forma rápida.
+        aplicaciones web que puedan ser accedidas mediante distintos métodos
+        HTTP.  Existe mucha documentación y comunidad activa que permite
+        implementar y solucionar problemas de forma rápida.
 \end{description}
 
 \textbf{Capa de abstración: Datos}
 
-Dentro de los \emph{toolkits} de Data Access Layer recomendados por IVOA para el acceso a datos mediante protocolos: Simple Cone Search (SCS) \cite{williams2008simple}; Simple Image Access (SIA) \cite{tody2004simple}; Simple Spectral Access (SSA) \cite{tody2008simple}; y Table Access Protocol (TAP) \cite{dowler2010table} mediante Astronomical Data Query Language (ADQL) \cite{yasuda2004astronomical} y Universarl Worker Service \cite{rixon2008universal}, se probaron y verificaron los siguientes:
+Dentro de los \emph{toolkits} de Data Access Layer recomendados por IVOA para
+el acceso a datos mediante protocolos: Simple Cone Search (SCS)
+\cite{williams2008simple}; Simple Image Access (SIA) \cite{tody2004simple};
+Simple Spectral Access (SSA) \cite{tody2008simple}; y Table Access Protocol
+(TAP) \cite{dowler2010table} a través de Astronomical Data Query Language (ADQL)
+\cite{yasuda2004astronomical} y Universarl Worker Service
+\cite{rixon2008universal}, se probaron y verificaron los siguientes:
 
 \begin{description}
     \item[SAADA:] \hfill \\
@@ -232,7 +253,7 @@ Dentro de los \emph{toolkits} de Data Access Layer recomendados por IVOA para el
         Este toolkit es uno de los más robustos, contiene distintos paquetes con
         servicios a ser utilizados en el webservice, sin embargo posee una
         documentación precaria, lo que es compensado por abierta comunidad de
-        desarrollo. Es posible configurar servicios TAP.
+        desarrollo. Es posible configurar servicios TAP, UWS.
 
     \item[DaCHS:] \hfill \\
         Desarrollado por el VO Alemán, es una herramienta OpenSource escrita en
