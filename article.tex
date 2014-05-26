@@ -42,7 +42,7 @@ prototype was designed and implemented for the ALMA large scale of data.
 \label{sec:bdastronomy}
 In recent years, the flood of data problem is visible in both, science and
 business environments, becoming more relevant the proper use and management of
-what has been called Big Data. This concept encompasses the management research
+what has been called \emph{Big Data}. This concept encompasses the management research
 of large amounts of information, and these are not easy to process with the
 traditional tools and procedures.  When the data volume reaches TeraBytes to
 ZetaBytas ranges, algorithms and procedures should be adapted for its use in
@@ -75,16 +75,16 @@ astronomical community.
 The privileged atmospheric conditions make Chile one of the most favorable
 places to the astronomical scientific research.  There are more than a dozen
 wide sweeping astronomical facilities throughout Chile \cite{roadmap}; for example, the
-already mentioned "Atacama Large Millimeter/submillimeter Array" (ALMA), the
-"Very Large Telescope" (VLT), and in the coming years, the "European Extremely
-Large Telescope" (E-ELT).  With this last telescope, the expectation is that
+already mentioned ``Atacama Large Millimeter/submillimeter Array'' (ALMA), the
+``Very Large Telescope'' (VLT), and in the coming years, the ``European Extremely
+Large Telescope'' (E-ELT).  With this last telescope, the expectation is that
 Chile will have the 60\% of the global astronomical observational power.
 
-One of the conditions established as country is that 10\% of the viewing time
+One of the conditions established as country is that $10\%$ of the viewing time
 should belong to the Chilean astronomical community; thus, it is justified the
 need to develop here an astronomic-informatics platform, for an intelligent
 management, and analysis.  The need of a system with these characteristics is
-not something new:  since 2,002 it has been raised the need to create a Virtual
+not something new: since $2002$ it has been raised the need to create a Virtual
 Observatory (VO), at a national level, as a solution to public access, and
 advanced manipulation of the large-scale astronomic data.
 
@@ -92,19 +92,19 @@ The VO paradigm is an international initiative that enables the astronomical
 data access, under the responsibility of specialized centres for its storage
 and processing, at which both astronomers and regular people may accede.  With
 the standardization of methods and information is possible to study the
-astronomic records without requesting new observations, reducing the physical
+astronomic registries without requesting new observations, reducing the physical
 requirements of instruments and locations, and minimizing data duplication.
 
 \subsection{ALMA data cubes}
 \label{sec:almadatacubes}
 
 ALMA is a radio astronomic interferometric observatory, which in simple words
-corresponds to the observations of millimeter and submillimeter signs, using
-two or more radio antennas.  When combining these signs to analyze them, it is
+corresponds to the observations of millimeter and submillimeter signals, using
+two or more radio antennas.  When combining these signals to analyze them, it is
 possible to obtain detailed information of the source of emission (be it
 galactic or extra-galactic) with unprecedented resolutions.  In its maximum
 operation, it will be possible to combine 66 antennas located in Chajnantor,
-Chile, up to 5,000 meters height, which can operate in a wide range of
+Chile, up to $5000$ meters height, which can operate in a wide range of
 frequencies, from 84 GHz to 950 GHz (ALMA Band 3 - ALMA Band 10).
 
 From the standpoint of data production, this process generates three-dimmension
@@ -135,7 +135,7 @@ ALMA has two special data models:
         Binary table-based format (the main one and several secondary tables),
         which also saves metadata and binary data. This format will conduct
         reduction and processing in the Common Astronomy Software Applications
-        (CASA), software created by NRAO  for this purpose.
+        (CASA), software created by NRAO\footnote{\url{http://casa.nrao.edu/}} for this purpose.
 \end{description}
 
 \subsection{Chilean Virtual Observatory}
@@ -148,7 +148,7 @@ is a challenge to pose the needs and requirements of this type of system.
 Though the international community has been working and refining virtual
 observatories and their standards, every new telescope and instrument imposes
 new challenges and opportunities of development.  This is the ALMA data case,
-which introduces the Big Data problem as a current problem.  This means to
+which introduces the \emph{Big Data} problem as a current problem.  This means to
 equip the virtual observatory that is hosting its data, with last generation
 technology and frontier research in its tools.
 
@@ -159,7 +159,7 @@ Furthermore, it will present its status and how were the restrictions and
 intricacies of the ALMA data addressed.
 
 \section{CHIVO ARCHITECTURE} 
-The ChiVO is a virtual observatory under construction that will host the data of the observatories located in Chile, adhered to the interoperability standards of the international virtual observatories alliance (IVOA), and using last generation technologies. 
+The ChiVO is a virtual observatory under construction that will host the data of the observatories located in Chile, adhered to the interoperability standards of the International Virtual Observatories Alliance (IVOA), and using last generation technologies. 
 
 This section describes the process of design conducted for this initiative.
 The IVOA mission is to simplify the necessary coordination and collaboration to enable global and integrated access to the data collected by the international astronomical observatories. This organization was created in June 2002, and at the present has twenty-one active members.  Its working method is based on Working Groups, in charge of establishing protocols and standards that describe the general architecture of a VO \ref{fig:ivoavacio}.  Broadly, the architecture has three layers:
@@ -210,22 +210,22 @@ Depending on the needs of the Chilean radio astronomers, the requirements, use c
 \end{figure}
 
 \textbf{Abstraction layers:  Clients}
-This layer represents the final user, and how communication between the user and data can be simplified.  In this layer the user conducts consultations through the access protocols offered by the ChiVO, or through an advanced form, using compatible applications with VO and its web portal.  Once the consultation is performed, the system shall return to the user a list describing the objects or observations found (metadata), and will be able to accessing them through a downloading link associated to each result.  It is relevant to say that the separation by layers of abstraction is achieved through flexibility and scalability in the system; thus, despite the layer, new applications may interact with the ChiVO, as well as the addition of new information sources, aside from ALMA.
+This layer represents the final user, and how communication between the user and data can be simplified.  In this layer the user conducts consultations through the access protocols offered by the ChiVO, or through an advanced form, using compatible applications with VO and its web portal.  Once the consultation is performed, the system shall return to the user a list describing the objects or observations found (metadata), and will be able to accessing them through a downloading link associated to each result.  It is relevant to say that the separation by layers of abstraction is achieved through flexibility and scalability in the system; thus, despite the layer, new applications may interact with ChiVO, as well as the addition of new information sources, aside from ALMA.
 
-Consultations are received by the ChiVO through its data endpoint, which receives inquiries in HTTP, GET, or POST; the endpoint will return the list of results in a XML VOTable \cite{ochsenbein2011ivoa} format table.  In the portal web case, VOTable is displayed and shown to the user through a web tool that enables a simple and efficient handling of VOTables, called VOView.
+Consultations are received by the ChiVO through its data \emph{endpoint}, which receives requests in \texttt{HTTP}, \texttt{GET}, or \texttt{POST}; the endpoint will return the list of results in a XML VOTable format table \cite{ochsenbein2011ivoa}.  In the portal web case, VOTable is displayed and shown to the user through a web tool that enables a simple and efficient handling of VOTables, called VOView.
 
 \textbf{Abstraction Layer:  Applications}
-In this layer, we find the programs that process the inquiries between users and data.  Each IVOA standard requires a minimum of its own implementation to be compatible with VO.  In access protocols, it is only necessary the reception of basic HTTP consultations, with the search parameters required.
+In this layer, we find the programs that process the inquiries between users and data.  Each IVOA standard requires a minimum of its own implementation to be compatible with VO.  In access protocols, it is only necessary the reception of basic HTTP requests, with the search parameters required.
 
 The key element of the analysis tools is essential for the ChiVO efficiency.  This, because the data that will be analyzed by astronomers are usually large, and its transfer is expensive.  This problem can be solved bringing the analysis and processing tools closer to the place where the data to be processed is stored.
 
 Whereas in future it will be necessary to offer searches based on other data, not only originating from ALMA, some abstraction is necessary when implementing this layer.  This, because it should enable the interaction of new information sources, as long as compatibility of IVOA is sustained.
 
-In this layer is also in the proces of development a system able to resolve names (Sesame \footnote{\url{http://cds.u-strasbg.fr/cgi-bin/Sesame}} type, but for ALMA data), and the ChiVO record.
+In this layer is also in the proces of development a system able to resolve names (Sesame \footnote{\url{http://cds.u-strasbg.fr/cgi-bin/Sesame}} type, but for ALMA data), and the ChiVO registry.
 
 
 \textbf{Abstraction Layer: Data}
-In this layer are the resources that the data and metadata have.  The work is associated with a relational database to store metadata linked to the data model recommended by IVOA Observation Core Data Model \cite{louys2011ivoa}, using a framework developed by the German VO DaCHS \footnote{\url{http://vo.ari.uni-heidelberg.de/soft/}}.  Concerning the performance, we are in the section that consumes more resources in both, computational time (resolves the database enquiries), and physical data storage.  
+In this layer are the resources that the data and metadata have.  The work is associated with a relational database to store metadata linked to the data model recommended by \emph{IVOA Observation Core Data Model} \cite{louys2011ivoa}, using a framework developed by the German VO DaCHS \footnote{\url{http://vo.ari.uni-heidelberg.de/soft/}}.  Concerning the performance, we are in the section that consumes more resources in both, computational time (resolves the database enquiries), and physical data storage.  
 
 As momentary verification, the current implementation works with a set of data, with 1 TeraByte capacity, which comes from the reduction of the cycle 0 of ALMA.  Because of this limitation, the operation scheme of figure \ref{fig:dachs} is the alternative proposed, where there might be N servers with DaCHS pointing to an M data base distributed or replicated.
 
@@ -294,17 +294,17 @@ The frameworks evaluated to implement the endpoint were:
 \end{description}
 
 \textbf{Abstraction Layer: Data}
-Some of the toolkits of Data Access Layer recommended by IVOA to accessing data through protocols are:  Simple Cone Search (SCS) \cite{williams2008simple}; Simple Image Access (SIA) \cite{tody2004simple}; Simple Spectral Access (SSA) \cite{tody2008simple}; and Table Access Protocol (TAP) \cite{dowler2010table} through the Astronomical Data Query Language (ADQL) \cite{yasuda2004astronomical}, and Universal Worker Service \cite{rixon2008universal}, the following was tested and validated:
+Some of the \emph{toolkits} of Data Access Layer recommended by IVOA to accessing data through protocols are:  Simple Cone Search (SCS) \cite{williams2008simple}; Simple Image Access (SIA) \cite{tody2004simple}; Simple Spectral Access (SSA) \cite{tody2008simple}; and Table Access Protocol (TAP) \cite{dowler2010table} through the Astronomical Data Query Language (ADQL) \cite{yasuda2004astronomical}, and Universal Worker Service \cite{rixon2008universal}, the following was tested and validated:
 
 \begin{description}
     \item[SAADA:] \hfill \\
         Developed by the French VO, this is a most useful tool from the viewpoint of the system user.  It has excellent documentation and a convenient installation process. It is developed in Java, and its deployment is conducted through Tomcat.  It is possible to configure SCS/SIA/SSA/TAP services, and is not an OpenSource project.
     \item[VO-Dance:] \hfill \\
-        Developed  by the Italian VO, this is a tool in Java in its Backend, and Phyton in its Frontend (Framework Django).  What is remarkable of this tool is that it works using MySQL as a core data base engine; according to the latest news related to its development, it might exist eventually, a support for PostgreeSQL.  This is not an OpenSource tool, and its documentation is uncertain, since it is still in development.  Is compatible with SCS/SIA/SSA/TAP services.
+        Developed by the Italian VO, this is a tool in Java in its Backend, and Phyton in its Frontend (Framework Django). What is remarkable of this tool is that it works using MySQL as a core data base engine; according to the latest news related to its development, it might exist eventually, a support for PostgresSQL.  This is not an OpenSource tool, and its documentation is uncertain, since it is still in development.  Is compatible with SCS/SIA/SSA/TAP services.
     \item[openCADC:] \hfill \\
-        Developed by the Canadian VO, this is an Open Source tool written in Java, currently used in the ALMS Science Archive.  This toolkit is one of the most robust, and has different packages with services for its use in the webservice; however, it has a poor documentation, which is compensated with an open community of development.  It is possible to configure TAP, UWS services.
+        Developed by the Canadian VO, this is an Open Source tool written in Java, currently used in the ALMA Science Archive.  This toolkit is one of the most robust, and has different packages with services for its use in the webservice; however, it has a poor documentation, which is compensated with an open community of development.  It is possible to configure TAP, UWS services.
     \item[DaCHS:] \hfill \\
-        Developed by the German VO, this is an OpenSource tool written in Phyton.  It is one of the DAL toolkits most used by VO, since it has an extensive installation and configuration documentation. It is possible to configure SCS(SIA/SSA/TAP services.
+        Developed by the German VO, this is an OpenSource tool written in Python.  It is one of the DAL toolkits most used by VO, since it has an extensive installation and configuration documentation. It is possible to configure SCS/SIA/SSA/TAP services.
 \end{description}
 
 \begin{table}[h]
@@ -347,14 +347,14 @@ The ChiVO software architecture is based on the use of the IVO protocols and sta
    \end{tabular}
    \end{center}
    \caption[example]
-   { \label{fig:ivoarch} IVOA architecture with Protocols and Standards used}
+   {\label{fig:ivoarch} IVOA architecture with Protocols and Standards used}
 \end{figure}
 
 \begin{description}
     \item[Application Layer:] \hfill \\
-        A Web Service compatible with the VO needs at least a Table Access Protocol to accessing ChiVO data model, using the Astronomical Data Query Language.  Furthermore, to achieve compliance with the system requirements, the protocol currently implemented for conical searches is Simple Cone Search; the access protocol to spectral data is Simple Spectral Access, and the images access protocol is Simple Image Access. 
+        A Web Service compatible with the VO needs at least a \emph{Table Access Protocol} to accessing ChiVO data model, using the \emph{Astronomical Data Query Language}.  Furthermore, to achieve compliance with the system requirements, the protocol currently implemented for conical searches is \emph{Simple Cone Search}; the access protocol to spectral data is \emph{Simple Spectral Access}, and the images access protocol is \emph{Simple Image Access}. 
     \item[Data Layer:] \hfill \\
-        This layer requires the configuration of the relational database with a data model recommended by IVOA, called Observation Core Data Model.  This data model enables the VO interoperability, since it defines a minimum amount of attributes in the tables, with a specific name and type of data; thus, is possible the access to the various standardized services through a TAP + Obscore.  In addition, the information transfer format (metadata) is with the standard XML VOTable format.
+        This layer requires the configuration of the relational database with a data model recommended by IVOA, called \emph{Observation Core Data Model}.  This data model enables the VO interoperability, since it defines a minimum amount of attributes in the tables, with a specific name and type of data; thus, is possible the access to the various standardized services through a \emph{TAP + Obscore}.  In addition, the information transfer format (metadata) is with the standard \emph{XML VOTable format}.
 \end{description}
 
 \subsection{Abstraction Layer:  Clients}
@@ -384,20 +384,19 @@ The procedure is carried out through a program, and using the DaCHS backend fram
    \end{tabular}
    \end{center}
    \caption[example]
-   { \label{fig:metadata} Transformation process from the ALMA Frontend to the ChiVO database}
+   {\label{fig:metadata} Transformation process from the ALMA Frontend to the ChiVO database}
 \end{figure}
 
 \section{CONCLUSION AND FUTURE WORK}
-Despite the amount of data generated by observatories in Chile, there was no VO a year ago, and particularly, ALMA does not have services compatible with VO. The implementation of the ChiVO caused a series of complications that arise from the understanding of the needs of the astronomers, and how these are translated to data systems and services, using IVOA international regulations.
+Despite the amount of data generated by observatories in Chile, there was no VO a year ago, and particularly, ALMA at the moment does not have services compatible with VO. The implementation of the ChiVO caused a series of complications that arise from the understanding of the needs of the astronomers, and how these are translated to data systems and services, using IVOA international regulations.
 
-The approach of the current development is focused on incremental prototypes, thus generating frequent deliverables to the system users (Astronomers) who are pleased by the progress made. However, there are always things to implement, or new ideas coming up. So far it has been possible to capture the astronomers' requirements, and to address the study of the protocols and standards, thus creating the data access services (SCS, SIA, SSA, TAP); these have access to the data base that use a relational data model (ObsCore), subjected to their own ChiVO architecture, which enables the interoperability of the services.
+The approach of the current development is focused on incremental prototypes, thus generating frequent deliverables to the system users (Astronomers) who are pleased by the progress made. However, there are always things to implement, or new ideas coming up. So far it has been possible to capture the astronomers requirements, and to address the study of the protocols and standards, thus creating the data access services (SCS, SIA, SSA, TAP); these have access to the data base that use a relational data model (ObsCore), subjected to their own ChiVO architecture, which enables the interoperability of the services.
 
 Currently, the prototype is in its first delivery, and by mid-2014 it will be launched its second iteration, which will include the public data of the cycle 0 of ALMA. Hence, more users will be familiarized with the system, having the chance to test in situ the current functionalities and limitations of the implementations.  For the following versions it is considered the implementation of other IVOA architecture protocols, as the section of Registry and standards of access to resources, as VOSPace \cite{graham2007vospace}.  Regarding the models and multidimensional data, as the ALMA cubes, it will be necessary to work in the creation or adaptation of the IVOA standards.
 
-
 \acknowledgments     %>>>> equivalent to \section*{ACKNOWLEDGMENTS}       
 This work is partially financed by the FONDEF D11I1060 project.
-
+\newpage
 \bibliography{report}   %>>>> bibliography data in report.bib
 \bibliographystyle{spiebib}   %>>>> makes bibtex use spiebib.bst
 
