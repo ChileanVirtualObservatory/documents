@@ -162,7 +162,7 @@ intricacies of the ALMA data addressed.
 The ChiVO is a virtual observatory under construction that will host the data of the observatories located in Chile, adhered to the interoperability standards of the International Virtual Observatories Alliance (IVOA), and using last generation technologies. 
 
 This section describes the process of design conducted for this initiative.
-The IVOA mission is to simplify the necessary coordination and collaboration to enable global and integrated access to the data collected by the international astronomical observatories. This organization was created in June 2002, and at the present has twenty-one active members.  Its working method is based on Working Groups, in charge of establishing protocols and standards that describe the general architecture of a VO \ref{fig:ivoavacio}.  Broadly, the architecture has three layers:
+The IVOA mission is to simplify the necessary coordination and collaboration to enable global and integrated access to the data collected by the international astronomical observatories. This organization was created in June 2002, and at the present has twenty-one active members.  Its working method is based on Working Groups, in charge of establishing protocols and standards that describe the general architecture of a VO (See Figure~\ref{fig:ivoavacio}).  Broadly, the architecture has three layers:
 \begin{itemize}
     \item Users:  astronomers and scientists in general, interested in 
         the data published by the observatories.
@@ -180,7 +180,7 @@ The IVOA mission is to simplify the necessary coordination and collaboration to 
    \end{tabular}
    \end{center}
    \caption[example]
-   { \label{fig:ivoavacio} IVOA Architecture}
+   {\label{fig:ivoavacio} IVOA Architecture}
 \end{figure}
 
 \subsection{Requirements}
@@ -227,7 +227,7 @@ In this layer is also in the proces of development a system able to resolve name
 \textbf{Abstraction Layer: Data}
 In this layer are the resources that the data and metadata have.  The work is associated with a relational database to store metadata linked to the data model recommended by \emph{IVOA Observation Core Data Model} \cite{louys2011ivoa}, using a framework developed by the German VO DaCHS \footnote{\url{http://vo.ari.uni-heidelberg.de/soft/}}.  Concerning the performance, we are in the section that consumes more resources in both, computational time (resolves the database enquiries), and physical data storage.  
 
-As momentary verification, the current implementation works with a set of data, with 1 TeraByte capacity, which comes from the reduction of the cycle 0 of ALMA.  Because of this limitation, the operation scheme of figure \ref{fig:dachs} is the alternative proposed, where there might be N servers with DaCHS pointing to an M data base distributed or replicated.
+As momentary verification, the current implementation works with a set of data, with 1 TeraByte capacity, which comes from the reduction of the cycle 0 of ALMA.  Because of this limitation, the operation scheme of figure~\ref{fig:dachs} is the alternative proposed, where there might be N servers with DaCHS pointing to an M data base distributed or replicated.
 
 \begin{figure}
    \begin{center}
@@ -277,7 +277,7 @@ Building the relational data base with the ObsCore data model required field map
 \end{center}
 \end{table}
 
-Table \ref{table:obsasdm} shows the result of the investigation; to the left are displayed the columns of the Observation class; the second column indicates where are the data taken from to assign the fields of the first column for the ASDM case.
+Table~\ref{tab:obsasdm} shows the result of the investigation; to the left are displayed the columns of the Observation class; the second column indicates where are the data taken from to assign the fields of the first column for the ASDM case.
 
 Filling the fields of the Observation class requires to write a routine able to operate on the ASDM (XML) tables. Currently, there are multiple tools in the Common Applications Software Package of Astronomy (CASA) \cite{petry2012analysing}.
 
@@ -313,10 +313,10 @@ Some of the \emph{toolkits} of Data Access Layer recommended by IVOA to accessin
 \begin{center}       
 \begin{tabular}{lrrrrr}
     {\bf Toolkits} & {\bf Language} & {\bf OpenSource} & {\bf Documentation} & {\bf Services} & {\bf Latest update}  \\
-    SAADA          & Java           & No               & Si                  & SCS/SIA/SSA/TAP & Mayo 2012     \\
-    VO-Dance       & Java/Python    & No               & No                  & SCS/SIA/SSA/TAP & Dicimbre 2012 \\
-    openCADC       & Java           & Si               & No                  & TAP             & ---           \\
-    DaCHS          & Python         & Si               & Si                  & SCS/SIA/SSA/TAP & Junio 2013    \\
+    SAADA          & Java           & No               & Yes                  & SCS/SIA/SSA/TAP & May 2012     \\
+    VO-Dance       & Java/Python    & No               & No                  & SCS/SIA/SSA/TAP & December 2012 \\
+    openCADC       & Java           & Yes               & No                  & TAP             & ---           \\
+    DaCHS          & Python         & Yes               & Yes                  & SCS/SIA/SSA/TAP & June 2013    \\
 \end{tabular}
 \end{center}
 \end{table}
@@ -326,7 +326,7 @@ Initially, the user interface or frontend should have only views, therefore, its
 
 
 \section{PROGRESS STATUS}
-It was necessary to identify not only the requirements and use cases, but the interactions that users will have with the system, to begin the ChiVO development.  We can observe the interaction diagram sequence between the user and the ChiVO in figure \ref{fig:secuencia}.  According to this diagram, the requirements and technologies used will be specified in the progress status for each abstraction layer.
+It was necessary to identify not only the requirements and use cases, but the interactions that users will have with the system, to begin the ChiVO development.  We can observe the interaction diagram sequence between the user and the ChiVO in figure~\ref{fig:secuencia}.  According to this diagram, the requirements and technologies used will be specified in the progress status for each abstraction layer.
 
 \begin{figure}
    \begin{center}
@@ -338,7 +338,7 @@ It was necessary to identify not only the requirements and use cases, but the in
    { \label{fig:secuencia} Sequence diagram between User and ChiVO}
 \end{figure}
 
-The ChiVO software architecture is based on the use of the IVO protocols and standards.  These protocols and standards are grouped in layers, with emphasis on the application and data layers (see figure \ref{fig:ivoarch}); this, because their basic standards define the minimum operation that a VO should conduct.  Following is a detail of the elements that ChiVO has implemented in these layers.
+The ChiVO software architecture is based on the use of the IVO protocols and standards.  These protocols and standards are grouped in layers, with emphasis on the application and data layers (See Figure~\ref{fig:ivoarch}); this, because their basic standards define the minimum operation that a VO should conduct.  Following is a detail of the elements that ChiVO has implemented in these layers.
 
 \begin{figure}
    \begin{center}
@@ -373,7 +373,7 @@ At the present, the frontend generated in ROR enables the interaction with:
 The Endpoint is responsible for the generation of a transparent interaction between the VO clients, and the possible resources that might be configured.  Here, the Endpoint generates an interface for services configured by the Backend, and for those available, through the VO-Paris record.  VO-Paris has a Web API in REST to consult for resources, returning a JSON file with outcomes.
 
 \subsection{Abstraction Layer:  Data}
-Currently, ALMA furnishes to the ChiVO public data, which include ASDM, Measurement \cite{petry2012analysing}, FITS \cite{wells1981fits}, however, it is necessary to draw out the ObsCoreDM metadata to make possible their entry to the data base \ref{fig:metadata}.
+Currently, ALMA furnishes to the ChiVO public data, which include ASDM, Measurement \cite{petry2012analysing}, FITS \cite{wells1981fits}, however, it is necessary to draw out the ObsCoreDM metadata to make possible their entry to the data base (See Figure~\ref{fig:metadata}).
 
 The procedure is carried out through a program, and using the DaCHS backend framework, which enables the configuration of resources and services through Resource Descriptor  configuration files.  Once created the entries in the data base, and configured the SCS, SSAP, SIAP, TAP services, it can be accessed through queries defined in each protocol.
 
