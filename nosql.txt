@@ -25,3 +25,6 @@ la implementación de una Web API REST que satisfaga las necesidades de ChiVO:
 un name resolver para los datos de ALMA estilo SESAME. Para ello se creará un
 escenario de prueba configurando una base de datos NoSQL con datos de distintas
 fuentes y se probará la factibilidad de crear un servicio Simple Cone Search. 
+
+
+
