@@ -1,0 +1,12 @@
+ALMA - Formato de datos
+
+IVOA Observation Data Model Core Components and its Implementation in the Table
+Access Protocol
+
+ALMA - ObsTAP
+
+Mapping
+-> ASDM y FITS (buscar relación)
+-> Llevarlo a obscore
+
+
