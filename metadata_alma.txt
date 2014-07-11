@@ -1,9 +1,49 @@
-ALMA - Formato de datos
+ALMA file formats and metadata for VO
+
+ALMA es un observatorio radioastronómico interferométrico, que del punto de
+vista de producción de datos, genera cubos de datos de tres dimensiones (2 ejes
+de posición y un eje de espectro de frecuencia). La particularidad de estos
+cubos de datos es su tamaño, ya que la alta resolución espacial y espectral que
+permite este observatorio genera cubos de datos de gran escala (orden de GB y
+TB). Los formatos de datos que genera ALMA son los siguientes:
+
+ALMA Science Data Model: Formato de datos compuesto por un XML diseñado para
+guardar los metadatos obtenidos del proceso de observación y generar un link
+hacia los datos binarios. 
+
+Measurement Set: Formato basado en tablas binarias (1 principal y varias
+secundarias). Este formato se usa para realizar reducción y procesamiento en el
+Common Astronomy Software Applications (CASA).
+
+FITS: a partir de uno o más Measurement Set se generan archivos FITS, de
+momento no estándar, los cuales son el resultado de aplicar un script de
+pipeline. Este archivo contiene 2 dimensiones en la mayor parte de los casos, y
+en algunos 3 dimensiones para los datos públicos del ciclo 0.
+
 
 IVOA Observation Data Model Core Components and its Implementation in the Table
 Access Protocol
 
+Este estándar define los componentes principales del modelo de datos de
+obseravción que son necesarios para realizar data discovery queries.  Expone
+casos de uso, explica el modelo y provee los lineamientos para la
+implementación de un servicio de acceso a datos basado en Table Access
+Protocol. Su objetivo es proveer una forma simple de entender e implementar
+para los proveedores de datos que desean publicar su data dentro del VO.
+La combinación del modelo de datos que específica la metadata mínima ObsCore
+Data model con el protocolo de DAL TAP, es conocido como el servicio ObsTAP.
+
 ALMA - ObsTAP
+
+Uno de los objetivos actuales del Chilean Virtual Observatory es publicar los
+datos públicos del ciclo 0 de ALMA, proceso que involucra definir qué datos se
+publicarán a través de VO y bajo que protocolos, servicios, modelos de datos,
+etc. El objetivo de este paper es mostrar los resultados de la relación de la
+metadata entre un ASDM - MS - FITS y de qué forma estos serán publicados en
+ChiVO mediante un servicio ObsTap.
+
+
+
 
 Mapping
 -> ASDM y FITS (buscar relación)
