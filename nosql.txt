@@ -22,9 +22,10 @@ Factores difíciles de comparar actualmente por la falta de alternativas.
 
 El objetivo de este paper es comparar alternativas NoSQL frente a SQL mediante
 la implementación de una Web API REST que satisfaga las necesidades de ChiVO:
-un name resolver para los datos de ALMA estilo SESAME. Para ello se creará un
+un name resolver para los datos de ALMA estilo SESAME. Para ello se propone un
 escenario de prueba configurando una base de datos NoSQL con datos de distintas
-fuentes y se probará la factibilidad de crear un servicio Simple Cone Search. 
+fuentes y se evalúa factibilidad de crear un servicio Simple Cone Search.
 
-
+Esta comparativa permitirá medir que tan aplicables para el Virtual Observatory
+son los sistemas de bases de datos utilizados en big data.
 
