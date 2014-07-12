@@ -7,17 +7,17 @@ created to satisfy the different data access protocols, such as Simple Cone
 Search. ADQL is based in SQL92, and has extra functionality implemented using 
 PgSphere.
 
-An emergent SQL alternative to this are the so called NoSQL databases, which are
- classified as follows: Column, Document, Key-Value, Graph, Object, etc.; with 
- each one recommended for different scenarios. Within their notable 
- characteristics we can find: schema-free, easy replication support, simple API,
- Big Data, etc.
+An emergent SQL alternative to this are the so called NoSQL databases, which
+are classified as follows: Column, Document, Key-Value, Graph, Object, etc.;
+with each one recommended for different scenarios. Within their notable
+characteristics we can find: schema-free, easy replication support, simple API,
+Big Data, etc.
 
-The Chilean Virtual Observatory (ChiVO) is building a functional prototype based
- in the IVOA architecture, and the relevant factors considered are the 
- following: Performance, Scalability, Flexibility, Complexity, and 
- Functionality. Currently, it’s very difficult to compare these factors, due to 
- a lack of alternatives.
+The Chilean Virtual Observatory (ChiVO) is building a functional prototype
+based in the IVOA architecture, and the relevant factors considered are the
+following: Performance, Scalability, Flexibility, Complexity, and
+Functionality. Currently, it's very difficult to compare these factors, due
+to a lack of alternatives.
  
 The objective of this paper is to compares NoSQL alternatives with SQL through 
 the implementation of a Web API REST that satisfies the ChiVO needs: a 
