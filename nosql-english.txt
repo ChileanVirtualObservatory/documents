@@ -1,29 +1,30 @@
-Evaluating NoSQL alternative for Chilean Virtual Observatory Services
-In the present, the standards and protocols for data access in the Virtual 
-Observatory architecture (DAL) are in general implemented with relational 
-databases based in SQL. In particular, the Astronomical Data Query Language
-(ADQL), the language used by IVOA to represent queries to VO services, was 
+Evaluating a NoSQL alternative for Chilean Virtual Observatory Services
+
+Currently, the standards and protocols for data access in the Virtual 
+Observatory architecture (DAL) are generally implemented with relational 
+databases based on SQL. In particular, the Astronomical Data Query Language
+(ADQL), language used by IVOA to represent queries to VO services, was 
 created to satisfy the different data access protocols, such as Simple Cone 
 Search. ADQL is based in SQL92, and has extra functionality implemented using 
 PgSphere.
 
-An emergent SQL alternative to this are the so called NoSQL databases, which
-are classified as follows: Column, Document, Key-Value, Graph, Object, etc.;
-with each one recommended for different scenarios. Within their notable
+An emergent alternative to SQL are the so called NoSQL databases, which
+can be classified in several categories such as Column, Document, Key-Value, Graph, Object, etc.;
+each one recommended for different scenarios. Within their notable
 characteristics we can find: schema-free, easy replication support, simple API,
 Big Data, etc.
 
-The Chilean Virtual Observatory (ChiVO) is building a functional prototype
-based in the IVOA architecture, and the relevant factors considered are the
-following: Performance, Scalability, Flexibility, Complexity, and
+The Chilean Virtual Observatory (ChiVO) is developing a functional prototype
+based on the IVOA architecture, with the following relevant factors: 
+Performance, Scalability, Flexibility, Complexity, and
 Functionality. Currently, it's very difficult to compare these factors, due
 to a lack of alternatives.
  
-The objective of this paper is to compares NoSQL alternatives with SQL through 
-the implementation of a Web API REST that satisfies the ChiVO needs: a 
-SESAME-style name resolver for the data from ALMA. For this we propose a test 
+The objective of this paper is to compare NoSQL alternatives with SQL through 
+the implementation of a Web API REST that satisfies ChiVO's needs: a 
+SESAME-style name resolver for the data from ALMA. Therefore, we propose a test 
 scenario by configuring a NoSQL database with data from different sources and 
-evaluating the feasibility of creating a Simple Cone Search service.
+evaluating the feasibility of creating a Simple Cone Search service and its
+performance. This comparison will allow to pave the way for the
+application of Big Data databases in the Virtual Observatory.
 
-This comparison will allow measurement of how feasible is the application of 
-Big Data databases in the Virtual Observatory.
