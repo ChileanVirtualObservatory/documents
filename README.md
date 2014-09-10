@@ -1,4 +1,6 @@
-spie_poster
+SPIE Poster
 ===========
 
-SPIE Poster
+Authors:
+ * Jonathan Antognini
+ * Mauricio Solar
