@@ -8,60 +8,87 @@
 
 %\bibliographystyle{asp2010}
 
-\markboth{Author1, Author2, and Author3}{Author's Final Checklist}
+\markboth{Jonathan Antognini, Mauricio Araya,  Mauricio Solar, Camilo Valenzuela, and Francisco Lira}{Jonathan Antognini, Mauricio Araya,  Mauricio Solar, Camilo Valenzuela, and Francisco Lira}
 
 \begin{document}
 
-\title{ASP Author Template}
-\author{Sample~Author1$^1$, Sample~Author2$^2$, and Sample~Author3$^3$
-\affil{$^1$Institution Full Address for Author1}
-\affil{$^2$Institution Full Address for Author2}
-\affil{$^3$Institution Full Address for Author3}}
+\title{Evaluating a NoSQL alternative for Chilean Virtual Observatory Services}
+\author{Jonathan Antognini,  Mauricio Araya, Mauricio Solar, Camilo Valenzuela, and  Francisco Lira
+\affil{Universidad TÃ©cnica Federico Santa MarÃ­a}
+}
 
 \begin{abstract}
-This is the Astronomical Society of the Pacific (ASP) 2010 author template file.  This sample author template includes the ASP author checklist.
+Currently, the standards and protocols for data access in the Virtual Observatory architecture (DAL) are generally implemented with relational databases based on SQL. In particular, the Astronomical Data Query Language (ADQL), language used by IVOA to represent queries to VO services, was created to satisfy the different data access protocols, such as Simple Cone Search. ADQL is based in SQL92, and has extra functionality implemented using PgSphere. An emergent alternative to SQL are the so called NoSQL databases, which can be classified in several categories such as Column, Document, Key-Value, Graph, Object, etc.; each one recommended for different scenarios. Within their notable characteristics we can find: schema-free, easy replication support, simple API, Big Data, etc. The Chilean Virtual Observatory (ChiVO) is developing a functional prototype based on the IVOA architecture, with the following relevant factors: Performance, Scalability, Flexibility, Complexity, and Functionality. Currently, it's very difficult to compare these factors, due to a lack of alternatives. The objective of this paper is to compare NoSQL alternatives with SQL through the implementation of a Web API REST that satisfies ChiVO's needs: a SESAME-style name resolver for the data from ALMA. Therefore, we propose a test scenario by configuring a NoSQL database with data from different sources and evaluating the feasibility of creating a Simple Cone Search service and its performance. This comparison will allow to pave the way for the application of Big Data databases in the Virtual Observatory.
 \end{abstract}
 
-\section{The Template}
-To fill in this template, make sure that you read and follow the ASPCS Instructions for Authors and Editors available for download online.  Hints and tips for including graphics, tables, citations, and other formatting helps are available there.
+\section{Introduction}
+We have been working in the develop of a functional prototype for ChiVO, one of the requirements was to have our own Name Resolver for astronomical objects that will be indexed with ALMA data. First we looked how the other VOâ€™s web services implement their name resolvers, and almost all of them use CDSâ€™s Sesame Name Resolver; Sesame uses SIMBAD  data for their queries, and send the results back to the user, and SIMBAD itself offers a variety of search methods, one of them is Coordinate Query, similar to IVOAâ€™s Simple Cone Search standard.
 
-\subsection{The Author Checklist}
-The following checklist should be followed when writing a submission to a conference proceedings to be published by the ASP.
+To have a database similar to SIMBAD, we    started implementing two query methods that SIMBAD offers, a simple criteria search, and ConeSearch; for the second one, IVOA recommends using Postgresql along with Pgsphere module. But Pgsphere last version doesn't benefits with the new versions of Postgresql, so we look for the new generation of databases, No-SQL databases, and compare the performance of one of them against Postgresql with Pgsphere.
 
-\begin{itemize}
-\checklistitemize
-\item Article is within page limitations set by editor. 
-\item Paper compiles properly without errors or warnings.
-\item No fundamental modifications to the basic template are present, including special definitions, special macros, packages, \verb"\vspace" commands, font adjustments, etc. %(§ 3.3, p. 10)
-\item Commented-out text has been removed. %(§ 3.3, p. 10,11)
-\item Author and shortened title running heads are proper for the paper and shortened so page number is within the margin. %(§ 3.1, p. 4)
-\item Paper checked for general questions of format and style, including, but not limited to, the following:
-\begin{itemize}
-  \item capitalization, layout, and length of running heads, titles  and \\sections/subsections;  % (§ 3.1, p. 4) (§ 3.2, p. 5) (§ 3.3, p. 8)
-  \item page numbers within margin; % (§ 3.1, p. 4)
-  \item author names spelled correctly and full postal addresses given; % (§ 3.2, p. 5-6)
-  \item abstracts; % (§ 3.2, p. 7);
-  \item all margins---left, right, top and bottom; % (§3.1, p. 4; §3.2, p. 5; §3.3, p. 9; §3.6, p. 21);
-  \item standard font size and no Type 3 fonts; %(§ 3.3, pp. 10-11; § 3.6, p. 23; § 4.2, p. 25);
-  \item spacing; % (§ 3.3, pp. 9-10);
-  \item section headings. % (§ 3.3; p. 8).
-\end{itemize}
-\item All tables are correctly positioned within margins, are properly formatted, and are referred to in the text.  %(§ 3.5, pp. 16-20)
-\item All figures are correctly positioned within margins, are minimum 300 dpi resolution, not too dark or too light, do not contain embedded fonts, and are referred to in the text.  All labeling or text will be legible with 10\% reduction.  Questionable images printed, checked and replaced if necessary.  Figures do not cover text or running heads, and proper permissions have been granted and acknowledged.  %(§ 3.6, pp. 21-24)
-\item All acknowledgments and discussions are in proper format.  % (pp. 11-12, p. 20)
-\item If there are acknowledgments at the end of the article, ensure that the author has used
-the \verb"\acknowledgments" command and not the commands
-\\ \verb"\begin{Acknowledgments}", \verb"\end{Acknowledgments}".
-Acknowledgments should only be used for thanking institutions,
-groups, and individuals who have directly contributed to the work.
-\item All references quoted in the text are listed in the bibliography; all items in the bibliography have been referred to in the text.  % (§ 4, pp. 24-28)
-\item All bibliography entries are in the proper format, using one of the referencing styles given. Each of the references is bibliographically complete, including full names of authors, editors, publishers, place of publication, page numbers, years, etc. % (§§ 4.2-4.3, pp. 25-28)
-\item A complete Bib\TeX\ file is ready to submit to the editor.
-\item References to preprints replaced with publication information when possible.
-\end{itemize}
 
-\acknowledgements The ASP would like to the thank the dedicated researchers that are publishing with the ASP.
+\section{Why No-SQL database}
+    The huge amount of new data that will come from ALMAâ€™s observations, will make us  have to handle a big amount of data, so we could use the new technologies in our advantage, starting with how to store the data, for the variety of IVOA compliant services from ChiVO.
+    
+    First we take a look what are the differences between a SQL and No-SQL databases, the first one is based on ACID (Atomicity, Consistency, Isolation and Durability) to ensure the transactions are made correctly, but that same properties makeâ€™s SQL databases weak in horizontal scaling; No-SQL databases are based on the CAP theorem (Consistency, Availability, Partition Tolerance), and makes them really nice for distributed systems, but they doesn't support complex transactions or joins.
 
-%\bibliography{aspauthor}
+    To choose which No-SQL database could be useful for ChiVO, we base our decision in the spatial search needed for almost every IVOAâ€™s Data Access Layer Protocol (DAL); we take a look in Redis key-value database, its simplistic way to store data make it easy to use, but it was very limited in their queries; Neo4j, a graph database is a really complex database, helps to know relations between data, but make it hard to manipulate and slower than other databases; Cassandra, column database, its similar to SQL databases, and has his own query language; Mongo document database, has a built-in geospatial module, doesnâ€™t need a schema, and has lots of documentation.
+
+    For our tests we choose MongoDB, for his huge amount of documentation, his variety of query methods, and their spatial indexes.
+
+
+\section{MongoDB versus Postgresql performance}
+    We prepare some tests for Mongo to compare it with Postgresql, with the idea that our database will have almost only read queries.
+    
+    The first test was with SQLâ€™s LIKE operator, this will be extremely useful for the name resolver part of the database. MongoDB doesnâ€™t have LIKE operator, but we can use regular expression to have something similar.(\emph{see fig\ref{fig:like}.})
+\begin{figure}
+    \centering
+    \begin{tabular}{lll}    
+                        & MongoDB & Postgresql \\
+    LIKE operator query & 15.5ms  & 2.79225 ms
+    \end{tabular}
+    \caption{LIKE operand run-time comparison, using Regular expression in MongoDB; with Postgresql 8.4, and MongoDB 2.6.4}
+    \label{fig:like}
+\end{figure}
+
+    The second test was to measure how precise was MongoDB spatial queries comparing it with the same query in Postgresql. giving us the same result in all the 7776 queries made.
+                
+    At last we test the speed of spatial search, vital for conesearch and other DAL protocols, making the same query with MongoDB and Postgresql, changing the center between 0deg,0deg to 360deg,90deg in ra,dec equatorial coordinate system. (\emph{see fig\ref{fig:cone}.})
+\begin{figure}
+\centering
+
+\begin{tabular}{lll}
+ Radius &MongoDB &Postgresql\\
+2 arcsec&0.0 ms &0.049387345679 ms\\
+2 arcmin&0.0 ms &0.0496404320988 ms\\
+5 degree&0.521604938272 ms&0.189644290123 ms\\ 
+20 degree &8.76234567901 ms&2.05688194444 ms\\
+35 degree &33.4328703704 ms& 7.83297376543 ms\\
+50 degree & 55.912037037 ms&15.3577060185 ms
+\end{tabular}
+
+
+\caption{Conesearch query run-time comparison, using the same radius and changing the center of the cone}
+\label{fig:cone}
+\end{figure}    
+
+\section{ChiVo's Name Resolver Implementation}
+\begin{enumerate}
+
+\item  \textbf{The database.} Chivo's Name resolver uses a Mongo database, with the built-in 2sphere indexes, to make the Conesearch queries. 
+
+\item  \textbf{Architecture.}  The Chivo architecture is composed of the Front-end web application, a Endpoint web application, and a Data layer (see fig ). The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. The Data layer has is a GAVO Dachs data center, and has some of the DAL protocols implemented. At last the Endpoint layer communicates the Front-end and the external applications with our Data layer and serve as a Load Balancer. (\emph{see fig \ref{fig3}})
+
+\articlefigure{img/Endpoint_Diagram.eps}{fig3}{ChiVO Webservices Architecture}
+
+\item  \textbf{The Endpointâ€™s web interface.} ChiVO Endpoint uses Flask, to have a lightweight application; Flask is a Microframework written in python, we also can handle the data with astropy
+libriaries, to make the mongo query and parse the results to VoTable so we can fulfill IVOA Conesearch standard.
+
+\item \textbf{Name Resolver Interface.} We handle the request in the Flask Endpoint, then make a query to the MongoDB database containing the object name, at the end we return the user the coordinates of the object in a JSON format. --Aca falta el access url de cada servicio--
+
+\end{enumerate}
+
+
+\bibliography{aspauthor}
 
 \end{document}
