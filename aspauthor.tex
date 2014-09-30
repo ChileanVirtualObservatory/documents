@@ -18,29 +18,77 @@
 }
 
 \begin{abstract}
-Currently, the standards and protocols for data access in the Virtual Observatory architecture (DAL) are generally implemented with relational databases based on SQL. In particular, the Astronomical Data Query Language (ADQL), language used by IVOA to represent queries to VO services, was created to satisfy the different data access protocols, such as Simple Cone Search. ADQL is based in SQL92, and has extra functionality implemented using PgSphere. An emergent alternative to SQL are the so called NoSQL databases, which can be classified in several categories such as Column, Document, Key-Value, Graph, Object, etc.; each one recommended for different scenarios. Within their notable characteristics we can find: schema-free, easy replication support, simple API, Big Data, etc. The Chilean Virtual Observatory (ChiVO) is developing a functional prototype based on the IVOA architecture, with the following relevant factors: Performance, Scalability, Flexibility, Complexity, and Functionality. Currently, it's very difficult to compare these factors, due to a lack of alternatives. The objective of this paper is to compare NoSQL alternatives with SQL through the implementation of a Web API REST that satisfies ChiVO's needs: a SESAME-style name resolver for the data from ALMA. Therefore, we propose a test scenario by configuring a NoSQL database with data from different sources and evaluating the feasibility of creating a Simple Cone Search service and its performance. This comparison will allow to pave the way for the application of Big Data databases in the Virtual Observatory.
+Currently, the standards and protocols for data access in the Virtual Observatory architecture (DAL) are generally implemented with
+relational databases based on SQL. In particular, the Astronomical Data Query Language (ADQL), language used by IVOA to represent 
+queries to VO services, was created to satisfy the different data access protocols, such as Simple Cone Search. ADQL is based in 
+SQL92, and has extra functionality implemented using PgSphere. An emergent alternative to SQL are the so called NoSQL databases, 
+which can be classified in several categories such as Column, Document, Key-Value, Graph, Object, etc.; each one recommended for 
+different scenarios. Within their notable characteristics we can find: schema-free, easy replication support, simple API, Big Data,
+etc. The Chilean Virtual Observatory (ChiVO) is developing a functional prototype based on the IVOA architecture, with the following
+relevant factors: Performance, Scalability, Flexibility, Complexity, and Functionality. Currently, it's very difficult to compare 
+these factors, due to a lack of alternatives. The objective of this paper is to compare NoSQL alternatives with SQL through the 
+implementation of a Web API REST that satisfies ChiVO's needs: a SESAME-style name resolver for the data from ALMA. Therefore, 
+we propose a test scenario by configuring a NoSQL database with data from different sources and evaluating the feasibility of 
+creating a Simple Cone Search service and its performance. This comparison will allow to pave the way for the application of 
+Big Data databases in the Virtual Observatory.
 \end{abstract}
 
 \section{Introduction}
-We have been working in the develop of a functional prototype for ChiVO, one of the requirements was to have our own Name Resolver for astronomical objects that will be indexed with ALMA data. First we looked how the other VO’s web services implement their name resolvers, and almost all of them use CDS’s Sesame Name Resolver; Sesame uses SIMBAD  data for their queries, and send the results back to the user, and SIMBAD itself offers a variety of search methods, one of them is Coordinate Query, similar to IVOA’s Simple Cone Search standard.
+We have been working in the develop of a functional prototype for ChiVO, one of the requirements was to have our own Name Resolver
+for astronomical objects that will be indexed with ALMA data. First we looked how the other VO’s web services implement their name 
+resolvers, and almost all of them use CDS’s Sesame Name Resolver; Sesame uses SIMBAD  data for their queries, and send the results
+back to the user, and SIMBAD itself offers a variety of search methods, one of them is Coordinate Query, similar to IVOA’s 
+Simple Cone Search standard.
 
-To have a database similar to SIMBAD, we    started implementing two query methods that SIMBAD offers, a simple criteria search, and ConeSearch; for the second one, IVOA recommends using Postgresql along with Pgsphere module. But Pgsphere last version doesn't benefits with the new versions of Postgresql, so we look for the new generation of databases, No-SQL databases, and compare the performance of one of them against Postgresql with Pgsphere.
+To have a database similar to SIMBAD, we started implementing two query methods that SIMBAD offers, a simple criteria search, 
+and ConeSearch; for the second one, IVOA recommends using Postgresql along with Pgsphere module. But Pgsphere last version doesn't
+benefits with the new versions of Postgresql, so we look for the new generation of databases, No-SQL databases, and compare the
+performance of one of them against Postgresql with Pgsphere.
 
 
 \section{Why No-SQL database}
-    The huge amount of new data that will come from ALMA’s observations, will make us  have to handle a big amount of data, so we could use the new technologies in our advantage, starting with how to store the data, for the variety of IVOA compliant services from ChiVO.
+    The huge amount of new data that will come from ALMA’s observations, will make us  have to handle a big amount of data, 
+    so we could use the new technologies in our advantage, starting with how to store the data, for the variety of IVOA compliant
+    services from ChiVO.
     
-    First we take a look what are the differences between a SQL and No-SQL databases, the first one is based on ACID (Atomicity, Consistency, Isolation and Durability) to ensure the transactions are made correctly, but that same properties make’s SQL databases weak in horizontal scaling; No-SQL databases are based on the CAP theorem (Consistency, Availability, Partition Tolerance), and makes them really nice for distributed systems, but they doesn't support complex transactions or joins.
+    First we take a look what are the differences between a SQL and No-SQL databases, the first one is based on ACID 
+    (Atomicity, Consistency, Isolation and Durability) to ensure the transactions are made correctly, but that same properties
+    make’s SQL databases weak in horizontal scaling; No-SQL databases are based on the CAP theorem (Consistency, Availability, 
+    Partition Tolerance), and makes them really nice for distributed systems, but they doesn't support complex transactions or joins.
 
-    To choose which No-SQL database could be useful for ChiVO, we base our decision in the spatial search needed for almost every IVOA’s Data Access Layer Protocol (DAL); we take a look in Redis key-value database, its simplistic way to store data make it easy to use, but it was very limited in their queries; Neo4j, a graph database is a really complex database, helps to know relations between data, but make it hard to manipulate and slower than other databases; Cassandra, column database, its similar to SQL databases, and has his own query language; Mongo document database, has a built-in geospatial module, doesn’t need a schema, and has lots of documentation.
+    To choose which No-SQL database could be useful for ChiVO, we base our decision in the spatial search needed for almost every
+    IVOA’s Data Access Layer Protocol (DAL); we take a look in Redis key-value database, its simplistic way to store data make it 
+    easy to use, but it was very limited in their queries; Neo4j, a graph database is a really complex database, helps to know 
+    relations between data, but make it hard to manipulate and slower than other databases; Cassandra, column database, its similar
+    to SQL databases, and has his own query language; Mongo document database, has a built-in geospatial module, doesn’t need a
+    schema, and has lots of documentation.
 
     For our tests we choose MongoDB, for his huge amount of documentation, his variety of query methods, and their spatial indexes.
 
 
 \section{MongoDB versus Postgresql performance}
-    We prepare some tests for Mongo to compare it with Postgresql, with the idea that our database will have almost only read queries.
+    We prepare some tests for Mongo to compare it with Postgresql, for the user point of view, we tested read capabilities of both databases and
+    for the developers points of view, we look in write operation performance.
     
-    The first test was with SQL’s LIKE operator, this will be extremely useful for the name resolver part of the database. MongoDB doesn’t have LIKE operator, but we can use regular expression to have something similar.(\emph{see fig\ref{fig:like}.})
+    We started testing both databases write capabilities, using a collection of 10.000 entries with data from some votables, to insert them
+    in the databases, we parsed the data into a JSON and a SQL file for each database, then insert the data row by row into the databases, and
+    took the time until we finished poblating the database, and we got a slightly difference, but MongoDB was a little faster than PostgreSQL. (\emph{see fig \ref{fig:insert}})
+    
+ \begin{figure}
+    \centering
+    \begin{tabular}{lll}    
+                        & MongoDB & Postgresql \\
+    10.000 entries insertion & 3.12468409538 s  & 3.84547805786 sec
+    \end{tabular}
+    \caption{LIKE operand run-time comparison, using Regular expression in MongoDB; with Postgresql 8.4, and MongoDB 2.6.4}
+    \label{fig:insert}
+\end{figure}   
+    
+    After we got the data in both databases we started with the read capabilities tests.
+    
+    The first test was with SQL’s LIKE operator, this will be extremely useful for the name resolver part of the database. 
+    MongoDB doesn’t have LIKE operator, but we can use regular expression to have something similar. MongoDB took 7 times more time than
+    PostgreSQL to make the query.(\emph{see fig\ref{fig:like}.})
 \begin{figure}
     \centering
     \begin{tabular}{lll}    
@@ -51,9 +99,13 @@ To have a database similar to SIMBAD, we    started implementing two query metho
     \label{fig:like}
 \end{figure}
 
-    The second test was to measure how precise was MongoDB spatial queries comparing it with the same query in Postgresql. giving us the same result in all the 7776 queries made.
+    The second test was to measure how precise was MongoDB spatial queries comparing it with the same query in Postgresql.
+    giving us the same amount of rows in all the 7776 queries made.
                 
-    At last we test the speed of spatial search, vital for conesearch and other DAL protocols, making the same query with MongoDB and Postgresql, changing the center between 0deg,0deg to 360deg,90deg in ra,dec equatorial coordinate system. (\emph{see fig\ref{fig:cone}.})
+    At last we test the speed of spatial search, vital for conesearch and other DAL protocols, making the same query with MongoDB 
+    and Postgresql, we covered the northern celestial sky using a fixed radius, we take the mean of the query's run-time, and repeating
+    the procedure with different radius. MongoDB uses less than 0.1 ms in small queries, but when we use a big radius, the time used
+    in the query started to grow fast.(\emph{see fig\ref{fig:cone}.})
 \begin{figure}
 \centering
 
@@ -75,20 +127,34 @@ To have a database similar to SIMBAD, we    started implementing two query metho
 \section{ChiVo's Name Resolver Implementation}
 \begin{enumerate}
 
-\item  \textbf{The database.} Chivo's Name resolver uses a Mongo database, with the built-in 2sphere indexes, to make the Conesearch queries. 
+\item  \textbf{The database.} Chivo's Name resolver uses a Mongo database, with the built-in 2sphere indexes 
+to make the Conesearch queries. 
 
-\item  \textbf{Architecture.}  The Chivo architecture is composed of the Front-end web application, a Endpoint web application, and a Data layer (see fig ). The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. The Data layer has is a GAVO Dachs data center, and has some of the DAL protocols implemented. At last the Endpoint layer communicates the Front-end and the external applications with our Data layer and serve as a Load Balancer. (\emph{see fig \ref{fig3}})
+\item  \textbf{Architecture.}  The Chivo architecture is composed of the Front-end web application, a Endpoint web application,
+and a Data layer (see fig ). The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. 
+The Data layer has is a GAVO Dachs data center, and has some of the DAL protocols implemented.
+At last the Endpoint layer communicates the Front-end and the external applications with our Data layer and serve as a Load Balancer. (\emph{see fig \ref{fig3}})
 
 \articlefigure{img/Endpoint_Diagram.eps}{fig3}{ChiVO Webservices Architecture}
 
-\item  \textbf{The Endpoint’s web interface.} ChiVO Endpoint uses Flask, to have a lightweight application; Flask is a Microframework written in python, we also can handle the data with astropy
+\item  \textbf{The Endpoint’s web interface.} ChiVO Endpoint uses Flask, to have a lightweight application; 
+Flask is a Microframework written in python, we also can handle the data with astropy
 libriaries, to make the mongo query and parse the results to VoTable so we can fulfill IVOA Conesearch standard.
 
-\item \textbf{Name Resolver Interface.} We handle the request in the Flask Endpoint, then make a query to the MongoDB database containing the object name, at the end we return the user the coordinates of the object in a JSON format. --Aca falta el access url de cada servicio--
+\item \textbf{Name Resolver Interface.} We handle the request in the Flask Endpoint,
+then make a query to the MongoDB database containing the object name, at the end we return the user the coordinates of the object 
+in a JSON format. The implemented prototype is available in \url{http://dachs.lirae.cl/name_resolver/(name)} for the name resolver
+and in \url{http://dachs.lirae.cl/bib/conesearch?RA=(right_ascension)&DEC=(declination)&SR=(radius)}.
 
 \end{enumerate}
 
+\section{What's next}
+    Implementing a Conesearch using new technologies has proved to be really simple with MongoDB, because it has lots of documentation, 
+and a growing community, in contrast of implementing it with PostgreSQL and PgSphere module, PgSphere is getting deprecated, has nearly no active
+community, and doesnt work with the newer versions of PostgreSQL. But MongoDB lacks performance in a single server, makes it not a good choise to change from PostgreSQL to MongoDB.
 
+  The next step is start looking how to update PgSphere to use the new features of PostgreSQL 9.3+, like JSON datatype and replication improvements.
+Test MongoDB clusters read capabilities, develop indexation for column based databases, that offer better read capabilities than document based databases.
 \bibliography{aspauthor}
 
 \end{document}
