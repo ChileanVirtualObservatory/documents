@@ -14,7 +14,7 @@
 
 \title{Evaluating a NoSQL alternative for Chilean Virtual Observatory Services}
 \author{Jonathan Antognini,  Mauricio Araya, Mauricio Solar, Camilo Valenzuela, and  Francisco Lira
-\affil{Universidad Técnica Federico Santa María}
+\affil{Universidad T\'ecnica Federico Santa Mar\'ia}
 }
 
 \begin{abstract}
@@ -34,45 +34,74 @@ Big Data databases in the Virtual Observatory.
 \end{abstract}
 
 \section{Introduction}
-We have been working in the develop of a functional prototype for ChiVO, one of the requirements was to have our own Name Resolver
-for astronomical objects that will be indexed with ALMA data. First we looked how the other VO’s web services implement their name 
-resolvers, and almost all of them use CDS’s Sesame Name Resolver; Sesame uses SIMBAD  data for their queries, and send the results
-back to the user, and SIMBAD itself offers a variety of search methods, one of them is Coordinate Query, similar to IVOA’s 
-Simple Cone Search standard.
+One of the requirements of the current ChiVO functional prototype
+\cite{Antognini2013}, is the development of our own \emph{Name Resolver}
+for astronomical objects that will be indexed with ALMA data. 
+% [MA] Indexed with ALMA data = indexado con data ALMA... es esto correcto?  tal
+% vez "indexed by ALMA."
+First we studied how other VO web services implement their name 
+resolvers, and unsurprisingly, almost all of them use the CDS Sesame Name
+Resolver \cite{}. 
+Sesame uses SIMBAD data for resolving its queries, and send the results
+back to the user.
+% [MA] Send the results back to the user in the form of a ¿VOTABLE?
+SIMBAD itself offers a variety of search methods, one of them is
+\emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard.
 
-To have a database similar to SIMBAD, we started implementing two query methods that SIMBAD offers, a simple criteria search, 
-and ConeSearch; for the second one, IVOA recommends using Postgresql along with Pgsphere module. But Pgsphere last version doesn't
-benefits with the new versions of Postgresql, so we look for the new generation of databases, No-SQL databases, and compare the
-performance of one of them against Postgresql with Pgsphere.
+To have a similar database to SIMBAD, we have implemented two query methods that
+SIMBAD offers: a simple criteria search and ConeSearch. For the second one, 
+IVOA recommends using Postgresql along with Pgsphere module. 
+However, Pgsphere last version doesn't
+benefit from the new versions of Postgresql, 
+% [MA] que significa que "no se beneficia", eso es no funciona? o no ocupa las
+% caracteristicas de las nuevas versiones de postgreSQL
+so we look up for new generation databases, namely No-SQL databases, and compare the
+performance of one of them against Postgresql using Pgsphere.
 
 
 \section{Why No-SQL database}
-    The huge amount of new data that will come from ALMA’s observations, will make us  have to handle a big amount of data, 
-    so we could use the new technologies in our advantage, starting with how to store the data, for the variety of IVOA compliant
-    services from ChiVO.
+    The huge amount of new data that ALMA observations will produce, obliges
+    handling data more efficiently, so we could use the new technologies 
+    in our advantage starting with how to data is stored for the variety
+    of IVOA compliant services in ChiVO.
     
-    First we take a look what are the differences between a SQL and No-SQL databases, the first one is based on ACID 
-    (Atomicity, Consistency, Isolation and Durability) to ensure the transactions are made correctly, but that same properties
-    make’s SQL databases weak in horizontal scaling; No-SQL databases are based on the CAP theorem (Consistency, Availability, 
-    Partition Tolerance), and makes them really nice for distributed systems, but they doesn't support complex transactions or joins.
+    To understand the differences between a SQL and No-SQL databases, we have
+    to recall that the first one is based on ACID principle 
+    (Atomicity, Consistency, Isolation and Durability) to ensure the
+    transactions are made correctly, but those same properties
+    makes SQL databases weak in horizontal scaling. On the other hand, No-SQL
+    databases are based on the CAP principle (Consistency, Availability, Partition
+    Tolerance), which makes them really useful for distributed environments, but 
+    they doesn't support complex transactions or joins.
 
-    To choose which No-SQL database could be useful for ChiVO, we base our decision in the spatial search needed for almost every
-    IVOA’s Data Access Layer Protocol (DAL); we take a look in Redis key-value database, its simplistic way to store data make it 
-    easy to use, but it was very limited in their queries; Neo4j, a graph database is a really complex database, helps to know 
-    relations between data, but make it hard to manipulate and slower than other databases; Cassandra, column database, its similar
-    to SQL databases, and has his own query language; Mongo document database, has a built-in geospatial module, doesn’t need a
-    schema, and has lots of documentation.
+    To choose which No-SQL database could be useful for ChiVO, we base our
+    decision on the fact that almost every
+    IVOA Data Access Layer Protocol (DAL) need performing some type of spatial
+    search. We have considered the Redis key-value database, due to its
+    simplistic way to store data and ease to use, but it was very limited in
+    their queries. Neo4j is a really complex graph database, which might help to
+    understand the relationships between data, but it is hard to manipulate and slower 
+    than other databases. Cassandra, a column database, its similar
+    to SQL databases, but it has his own query language. At last, Mongo document database, 
+    has a built-in geospatial module, doesn't need a schema, and has reliable
+    and thoughtful of documentation.
 
-    For our tests we choose MongoDB, for his huge amount of documentation, his variety of query methods, and their spatial indexes.
+    For our tests we've chosen MongoDB, not only for the documentation, but also
+    for the variety of query methods that it offers and the support of spatial indexes.
 
 
 \section{MongoDB versus Postgresql performance}
-    We prepare some tests for Mongo to compare it with Postgresql, for the user point of view, we tested read capabilities of both databases and
-    for the developers points of view, we look in write operation performance.
+    We prepared some tests for Mongo to compare it with Postgresql. From the user
+    point of view, we tested \emph{read} capabilities of both databases, and
+    for the developers points of view, we measured the \emph{write} operation
+    performances.
     
-    We started testing both databases write capabilities, using a collection of 10.000 entries with data from some votables, to insert them
-    in the databases, we parsed the data into a JSON and a SQL file for each database, then insert the data row by row into the databases, and
-    took the time until we finished poblating the database, and we got a slightly difference, but MongoDB was a little faster than PostgreSQL. (\emph{see fig \ref{fig:insert}})
+    We started by testing both databases write capabilities, using a collection of 10.000 entries with data from some votables,
+    % [MA] some votables es muuuyy chafa! ;)
+    to insert them into the databases. We parsed the data into a JSON and a SQL file, 
+    inserting data row by row into each the database, and measured the time until we 
+    finished populating the database. The result was slightly superior
+    performance of MongoDB with respect to PostgreSQL. (\emph{see fig \ref{fig:insert}})
     
  \begin{figure}
     \centering
@@ -84,10 +113,12 @@ performance of one of them against Postgresql with Pgsphere.
     \label{fig:insert}
 \end{figure}   
     
-    After we got the data in both databases we started with the read capabilities tests.
+    With both databases populated, we were ready to test the read capabilities tests.
     
-    The first test was with SQL’s LIKE operator, this will be extremely useful for the name resolver part of the database. 
-    MongoDB doesn’t have LIKE operator, but we can use regular expression to have something similar. MongoDB took 7 times more time than
+    The first read test was the SQL LIKE operator, because is particularly
+    useful for the name resolver application. 
+    MongoDB doesn't have LIKE operator, but we can use regular expressions to
+    produce a similar query. Unfortunately, MongoDB was 7 times slower than
     PostgreSQL to make the query.(\emph{see fig\ref{fig:like}.})
 \begin{figure}
     \centering
@@ -99,12 +130,16 @@ performance of one of them against Postgresql with Pgsphere.
     \label{fig:like}
 \end{figure}
 
-    The second test was to measure how precise was MongoDB spatial queries comparing it with the same query in Postgresql.
-    giving us the same amount of rows in all the 7776 queries made.
+    The second read test was to measure how precise is MongoDB spatial queries
+    compared to the same query in Postgresql.
+    The result was the same amount of rows in all the 7776 queries made.
                 
-    At last we test the speed of spatial search, vital for conesearch and other DAL protocols, making the same query with MongoDB 
-    and Postgresql, we covered the northern celestial sky using a fixed radius, we take the mean of the query's run-time, and repeating
-    the procedure with different radius. MongoDB uses less than 0.1 ms in small queries, but when we use a big radius, the time used
+    At last, we tested the speed of spatial search, vital for conesearch and
+    other DAL protocols, by making the same query with MongoDB 
+    and Postgresql. We covered the northern celestial sky using a fixed radius,
+    and compute the mean of the query's run-time. Then, we repeated the
+    procedure with different radius values. MongoDB uses less than 0.1 ms in small queries, 
+    but when we use a large radius, the time used
     in the query started to grow fast.(\emph{see fig\ref{fig:cone}.})
 \begin{figure}
 \centering
@@ -149,11 +184,15 @@ and in \url{http://dachs.lirae.cl/bib/conesearch?RA=(right_ascension)&DEC=(decli
 \end{enumerate}
 
 \section{What's next}
-    Implementing a Conesearch using new technologies has proved to be really simple with MongoDB, because it has lots of documentation, 
-and a growing community, in contrast of implementing it with PostgreSQL and PgSphere module, PgSphere is getting deprecated, has nearly no active
-community, and doesnt work with the newer versions of PostgreSQL. But MongoDB lacks performance in a single server, makes it not a good choise to change from PostgreSQL to MongoDB.
+    Implementing a Conesearch using new technologies has proved to be really
+simple with MongoDB, because it has proper documentation, 
+and a growing community, in contrast of implementing it with PostgreSQL and
+PgSphere module. Moreover,  PgSphere is getting deprecated, has nearly no active
+community, and doesn't work with the newer versions of PostgreSQL. 
+However,  MongoDB lacks performance in a single server, which makes it not yet
+wise to change from PostgreSQL to MongoDB.
 
-  The next step is start looking how to update PgSphere to use the new features of PostgreSQL 9.3+, like JSON datatype and replication improvements.
+The next step is to update PgSphere to use the new features of PostgreSQL 9.3+, like JSON datatype and replication improvements.
 Test MongoDB clusters read capabilities, develop indexation for column based databases, that offer better read capabilities than document based databases.
 \bibliography{aspauthor}
 
