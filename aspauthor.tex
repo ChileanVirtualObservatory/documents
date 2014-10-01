@@ -36,14 +36,14 @@ Big Data databases in the Virtual Observatory.
 \section{Introduction}
 One of the requirements of the current ChiVO functional prototype
 \cite{Antognini2013}, is the development of our own \emph{Name Resolver}
-for astronomical objects that will be indexed with ALMA data. 
+for astronomical objects that will be indexed by Alma. 
 % [MA] Indexed with ALMA data = indexado con data ALMA... es esto correcto?  tal
 % vez "indexed by ALMA."
 First we studied how other VO web services implement their name 
 resolvers, and unsurprisingly, almost all of them use the CDS Sesame Name
 Resolver \cite{}. 
 Sesame uses SIMBAD data for resolving its queries, and send the results
-back to the user.
+back to the user in the form of a XML file.
 % [MA] Send the results back to the user in the form of a ¿VOTABLE?
 SIMBAD itself offers a variety of search methods, one of them is
 \emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard.
@@ -51,8 +51,8 @@ SIMBAD itself offers a variety of search methods, one of them is
 To have a similar database to SIMBAD, we have implemented two query methods that
 SIMBAD offers: a simple criteria search and ConeSearch. For the second one, 
 IVOA recommends using Postgresql along with Pgsphere module. 
-However, Pgsphere last version doesn't
-benefit from the new versions of Postgresql, 
+However, Pgsphere last version doesn't work in the lastest PostgreSQL versions, only in some 
+distributions that have his own PgSphere package,
 % [MA] que significa que "no se beneficia", eso es no funciona? o no ocupa las
 % caracteristicas de las nuevas versiones de postgreSQL
 so we look up for new generation databases, namely No-SQL databases, and compare the
@@ -194,6 +194,6 @@ wise to change from PostgreSQL to MongoDB.
 
 The next step is to update PgSphere to use the new features of PostgreSQL 9.3+, like JSON datatype and replication improvements.
 Test MongoDB clusters read capabilities, develop indexation for column based databases, that offer better read capabilities than document based databases.
-\bibliography{aspauthor}
+\bibliography{author}
 
 \end{document}
