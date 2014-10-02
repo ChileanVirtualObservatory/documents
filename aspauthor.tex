@@ -6,7 +6,7 @@
 
 \resetcounters
 
-%\bibliographystyle{asp2010}
+\bibliographystyle{asp2010}
 
 \markboth{Jonathan Antognini, Mauricio Araya,  Mauricio Solar, Camilo Valenzuela, and Francisco Lira}{Jonathan Antognini, Mauricio Araya,  Mauricio Solar, Camilo Valenzuela, and Francisco Lira}
 
@@ -37,25 +37,18 @@ Big Data databases in the Virtual Observatory.
 One of the requirements of the current ChiVO functional prototype
 \cite{Antognini2013}, is the development of our own \emph{Name Resolver}
 for astronomical objects that will be indexed by Alma. 
-% [MA] Indexed with ALMA data = indexado con data ALMA... es esto correcto?  tal
-% vez "indexed by ALMA."
 First we studied how other VO web services implement their name 
 resolvers, and unsurprisingly, almost all of them use the CDS Sesame Name
 Resolver \cite{}. 
 Sesame uses SIMBAD data for resolving its queries, and send the results
 back to the user in the form of a XML file.
-% [MA] Send the results back to the user in the form of a ¿VOTABLE?
 SIMBAD itself offers a variety of search methods, one of them is
 \emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard.
 
 To have a similar database to SIMBAD, we have implemented two query methods that
 SIMBAD offers: a simple criteria search and ConeSearch. For the second one, 
 IVOA recommends using Postgresql along with Pgsphere module. 
-However, Pgsphere last version doesn't work in the lastest PostgreSQL versions, only in some 
-distributions that have his own PgSphere package,
-% [MA] que significa que "no se beneficia", eso es no funciona? o no ocupa las
-% caracteristicas de las nuevas versiones de postgreSQL
-so we look up for new generation databases, namely No-SQL databases, and compare the
+However, we wanted to take a look in the new generation of databases engines, namely No-SQL databases, and compare the
 performance of one of them against Postgresql using Pgsphere.
 
 
@@ -82,7 +75,8 @@ performance of one of them against Postgresql using Pgsphere.
     their queries. Neo4j is a really complex graph database, which might help to
     understand the relationships between data, but it is hard to manipulate and slower 
     than other databases. Cassandra, a column database, its similar
-    to SQL databases, but it has his own query language. At last, Mongo document database, 
+    to SQL databases, but it has his own query language %[CV] no se como arreglar esto%
+    . At last, Mongo document database, 
     has a built-in geospatial module, doesn't need a schema, and has reliable
     and thoughtful of documentation.
 
@@ -96,9 +90,8 @@ performance of one of them against Postgresql using Pgsphere.
     for the developers points of view, we measured the \emph{write} operation
     performances.
     
-    We started by testing both databases write capabilities, using a collection of 10.000 entries with data from some votables,
-    % [MA] some votables es muuuyy chafa! ;)
-    to insert them into the databases. We parsed the data into a JSON and a SQL file, 
+    We started by testing both databases write capabilities, using a collection of 10.000 entries with data from SIMBAD database,
+    and inserted them into the databases. We parsed the data into a JSON and a SQL file, 
     inserting data row by row into each the database, and measured the time until we 
     finished populating the database. The result was slightly superior
     performance of MongoDB with respect to PostgreSQL. (\emph{see fig \ref{fig:insert}})
@@ -161,9 +154,8 @@ performance of one of them against Postgresql using Pgsphere.
 
 \section{ChiVo's Name Resolver Implementation}
 \begin{enumerate}
-
-\item  \textbf{The database.} Chivo's Name resolver uses a Mongo database, with the built-in 2sphere indexes 
-to make the Conesearch queries. 
+  
+  % [CV] Aca no se como ligar que igual queriamos implementar la db en mongo 
 
 \item  \textbf{Architecture.}  The Chivo architecture is composed of the Front-end web application, a Endpoint web application,
 and a Data layer (see fig ). The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. 
@@ -171,6 +163,9 @@ The Data layer has is a GAVO Dachs data center, and has some of the DAL protocol
 At last the Endpoint layer communicates the Front-end and the external applications with our Data layer and serve as a Load Balancer. (\emph{see fig \ref{fig3}})
 
 \articlefigure{img/Endpoint_Diagram.eps}{fig3}{ChiVO Webservices Architecture}
+
+\item  \textbf{The database.} Chivo's Name resolver uses a Mongo database, with the built-in 2sphere indexes 
+to make the Conesearch queries. 
 
 \item  \textbf{The Endpoint’s web interface.} ChiVO Endpoint uses Flask, to have a lightweight application; 
 Flask is a Microframework written in python, we also can handle the data with astropy
@@ -194,6 +189,9 @@ wise to change from PostgreSQL to MongoDB.
 
 The next step is to update PgSphere to use the new features of PostgreSQL 9.3+, like JSON datatype and replication improvements.
 Test MongoDB clusters read capabilities, develop indexation for column based databases, that offer better read capabilities than document based databases.
-\bibliography{author}
+
+
+% [CV] No se como poner las referencias %
+\bibliography{aspauthor}
 
 \end{document}
