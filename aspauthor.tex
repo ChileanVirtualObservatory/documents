@@ -89,11 +89,11 @@ performance of one of them against Postgresql using Pgsphere.
     We prepared some tests for Mongo to compare it with Postgresql. From the user
     point of view, we tested \emph{read} capabilities of both databases, and
     for the developers points of view, we measured the \emph{write} operation
-    performances.
+    performances. The tests were made in the same machine with Ubuntu 13.04.
     
     We started by testing both databases write capabilities, using a collection of 10.000 entries with data from SIMBAD database,
     and inserted them into the databases. We parsed the data into a JSON and a SQL file, 
-    inserting data row by row into each the database, and measured the time until we 
+    inserting data row by row into each of the databases, and measured the time until we 
     finished populating the database. The result was slightly superior
     performance of MongoDB with respect to PostgreSQL. (\emph{see fig \ref{fig:insert}.})
     
@@ -140,7 +140,7 @@ performance of one of them against Postgresql using Pgsphere.
 
 \begin{tabular}{lll}
  Radius &MongoDB &Postgresql\\
-2 arcsec&0.0 ms &0.049387345679 ms\\
+2 arcsec&0.0594135802469 ms &0.049387345679 ms\\
 2 arcmin&0.0 ms &0.0496404320988 ms\\
 5 degree&0.521604938272 ms&0.189644290123 ms\\ 
 20 degree &8.76234567901 ms&2.05688194444 ms\\
@@ -180,11 +180,8 @@ simple with MongoDB, because it has proper documentation,
 and a growing community, in contrast of implementing it with PostgreSQL and
 PgSphere module. Moreover,  PgSphere is getting deprecated, has nearly no active
 community, and doesn't work with the newer versions of PostgreSQL. 
-However,  MongoDB lacks performance in a single server, which makes it not yet
-wise to change from PostgreSQL to MongoDB.
-
-\section{What's next}
-  The next step is to update PgSphere to use the new features of PostgreSQL 9.3+, like JSON datatype and replication improvements.
+However,  MongoDB lacks performance in a single server, but its a viable alternative
+for the implementation of a DAL service in a distributed environment because of his good horizontal scalability.
 
 
 % [CV] No se como poner las referencias %

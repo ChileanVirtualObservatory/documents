@@ -35,16 +35,16 @@ Big Data databases in the Virtual Observatory.
 
 \section{Introduction}
 One of the requirements of the current ChiVO functional prototype
-%\cite{Antognini2013}%
+(\cite{antognini2014chilean})
 , is the development of our own \emph{Name Resolver}
 for astronomical objects that will be indexed by Alma. 
 First we studied how other VO web services implement their name 
 resolvers, and unsurprisingly, almost all of them use the CDS Sesame Name
-Resolver. %\cite{}. 
+Resolver (\cite{wenger2000simbad}). 
 Sesame uses SIMBAD data for resolving its queries, and send the results
 back to the user in the form of a XML file.
 SIMBAD itself offers a variety of search methods, one of them is
-\emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard \cite{williams2006ivoa}.
+\emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard (\cite{williams2006ivoa}).
 
 To have a similar database to SIMBAD, we have implemented two query methods that
 SIMBAD offers: a simple criteria search and ConeSearch. For the second one, 
@@ -89,11 +89,11 @@ performance of one of them against Postgresql using Pgsphere.
     We prepared some tests for Mongo to compare it with Postgresql. From the user
     point of view, we tested \emph{read} capabilities of both databases, and
     for the developers points of view, we measured the \emph{write} operation
-    performances.
+    performances. The tests were made in the same machine with Ubuntu 13.04.
     
     We started by testing both databases write capabilities, using a collection of 10.000 entries with data from SIMBAD database,
     and inserted them into the databases. We parsed the data into a JSON and a SQL file, 
-    inserting data row by row into each the database, and measured the time until we 
+    inserting data row by row into each of the databases, and measured the time until we 
     finished populating the database. The result was slightly superior
     performance of MongoDB with respect to PostgreSQL. (\emph{see fig \ref{fig:insert}.})
     
@@ -140,7 +140,7 @@ performance of one of them against Postgresql using Pgsphere.
 
 \begin{tabular}{lll}
  Radius &MongoDB &Postgresql\\
-2 arcsec&0.0 ms &0.049387345679 ms\\
+2 arcsec&0.0594135802469 ms &0.049387345679 ms\\
 2 arcmin&0.0 ms &0.0496404320988 ms\\
 5 degree&0.521604938272 ms&0.189644290123 ms\\ 
 20 degree &8.76234567901 ms&2.05688194444 ms\\
@@ -161,21 +161,18 @@ performance of one of them against Postgresql using Pgsphere.
 within ChiVO Architecture.
 
 \subsection{ChiVO Architecture.}  The Chivo architecture is composed of the Front-end web application, a Endpoint web application,
-and a Data layer (\emph{see fig\ref{fig3}.}) The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. 
+and a Data layer.  The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. 
 The Data layer has is a GAVO Dachs data center, and has some of the DAL protocols implemented.
 At last the Endpoint layer communicates the Front-end and the external applications with our Data layer and serve as a Load Balancer. (\emph{see fig \ref{fig3}})
 
 \articlefigure{img/Endpoint_Diagram.eps}{fig3}{ChiVO Webservices Architecture}
 \subsection{DAL Prototype}	
-  Using MongoDB and Python libraries, we implemented a Conesearch service for our own astronomical database
-\begin{itemize}
- \item 
-\end{itemize}
-
-\textbf{Name Resolver Interface.} We handle the request in the Flask Endpoint,
-then make a query to the MongoDB database containing the object name, at the end we return the user the coordinates of the object 
-in a JSON format. The implemented prototype is available in \url{http://dachs.lirae.cl/name_resolver/(name)} for the name resolver
-and in \url{http://dachs.lirae.cl/bib/conesearch?RA=(right_ascension)&DEC=(declination)&SR=(radius)}.
+  Using MongoDB and Python libraries, we implemented a Conesearch service for our own astronomical database, we receive the queries, and
+  transform the radius from degree to radians, to send it over to MongoDB, then we return the data in form of a VoTable file. The prototype is available in
+  \url{http://dachs.lirae.cl/bib/conesearch?RA=(right_ascension)&DEC=(declination)&SR=(radius)}.
+  
+  For the Name Resolver part of the functionalities, we made a query using regular expressions to MongoDB and then return the position
+  of the object found in form of a XML, and it is available in \url{http://dachs.lirae.cl/name_resolver/(name)}.
 
 \section{Conclusion}
     Implementing a Conesearch using new technologies has proved to be really
@@ -185,9 +182,6 @@ PgSphere module. Moreover,  PgSphere is getting deprecated, has nearly no active
 community, and doesn't work with the newer versions of PostgreSQL. 
 However,  MongoDB lacks performance in a single server, which makes it not yet
 wise to change from PostgreSQL to MongoDB.
-
-\section{What's next}
-  The next step is to update PgSphere to use the new features of PostgreSQL 9.3+, like JSON datatype and replication improvements.
 
 
 % [CV] No se como poner las referencias %
