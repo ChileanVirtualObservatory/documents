@@ -35,16 +35,16 @@ Big Data databases in the Virtual Observatory.
 
 \section{Introduction}
 One of the requirements of the current ChiVO functional prototype
-%\cite{Antognini2013}%
+(\cite{antognini2014chilean})
 , is the development of our own \emph{Name Resolver}
 for astronomical objects that will be indexed by Alma. 
 First we studied how other VO web services implement their name 
 resolvers, and unsurprisingly, almost all of them use the CDS Sesame Name
-Resolver. %\cite{}. 
+Resolver (\cite{wenger2000simbad}). 
 Sesame uses SIMBAD data for resolving its queries, and send the results
 back to the user in the form of a XML file.
 SIMBAD itself offers a variety of search methods, one of them is
-\emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard \cite{williams2006ivoa}.
+\emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard (\cite{williams2006ivoa}).
 
 To have a similar database to SIMBAD, we have implemented two query methods that
 SIMBAD offers: a simple criteria search and ConeSearch. For the second one, 

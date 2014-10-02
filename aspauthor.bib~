@@ -11,13 +11,4 @@
   year={2006}
 }
 
-@inproceedings{antognini2014chilean,
-  title={Chilean Virtual Observatory services implementation for the ALMA public data},
-  author={Antognini, Jonathan and Solar, Mauricio and Ibsen, Jorge and Araya, Mauricio and Nyman, Lars and Mardones, Diego and Valenzuela, Camilo and Ramirez, Patricio and Fernandez, Christopher and Garces, Mario},
-  booktitle={SPIE Astronomical Telescopes+ Instrumentation},
-  pages={91522P--91522P},
-  year={2014},
-  organization={International Society for Optics and Photonics}
-}
-
  
