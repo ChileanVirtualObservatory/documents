@@ -35,15 +35,16 @@ Big Data databases in the Virtual Observatory.
 
 \section{Introduction}
 One of the requirements of the current ChiVO functional prototype
-\cite{Antognini2013}, is the development of our own \emph{Name Resolver}
+%\cite{Antognini2013}%
+, is the development of our own \emph{Name Resolver}
 for astronomical objects that will be indexed by Alma. 
 First we studied how other VO web services implement their name 
 resolvers, and unsurprisingly, almost all of them use the CDS Sesame Name
-Resolver \cite{}. 
+Resolver. %\cite{}. 
 Sesame uses SIMBAD data for resolving its queries, and send the results
 back to the user in the form of a XML file.
 SIMBAD itself offers a variety of search methods, one of them is
-\emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard.
+\emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard \cite{williams2006ivoa}.
 
 To have a similar database to SIMBAD, we have implemented two query methods that
 SIMBAD offers: a simple criteria search and ConeSearch. For the second one, 
@@ -75,7 +76,7 @@ performance of one of them against Postgresql using Pgsphere.
     their queries. Neo4j is a really complex graph database, which might help to
     understand the relationships between data, but it is hard to manipulate and slower 
     than other databases. Cassandra, a column database, its similar
-    to SQL databases, but it has his own query language %[CV] no se como arreglar esto%
+    to SQL databases, but it has no support for spatial indexes %[CV] es lo unico que se me ocurrio
     . At last, Mongo document database, 
     has a built-in geospatial module, doesn't need a schema, and has reliable
     and thoughtful of documentation.
@@ -94,7 +95,7 @@ performance of one of them against Postgresql using Pgsphere.
     and inserted them into the databases. We parsed the data into a JSON and a SQL file, 
     inserting data row by row into each the database, and measured the time until we 
     finished populating the database. The result was slightly superior
-    performance of MongoDB with respect to PostgreSQL. (\emph{see fig \ref{fig:insert}})
+    performance of MongoDB with respect to PostgreSQL. (\emph{see fig \ref{fig:insert}.})
     
  \begin{figure}
     \centering
@@ -151,14 +152,16 @@ performance of one of them against Postgresql using Pgsphere.
 \caption{Conesearch query run-time comparison, using the same radius and changing the center of the cone}
 \label{fig:cone}
 \end{figure}    
+  % [CV] Aca no se como ligar que igual queriamos implementar la db en mongo porque sino toda esta 
+  % seccion no sirve para nada
 
 \section{ChiVo's Name Resolver Implementation}
-\begin{enumerate}
   
-  % [CV] Aca no se como ligar que igual queriamos implementar la db en mongo 
+
+\begin{enumerate}
 
 \item  \textbf{Architecture.}  The Chivo architecture is composed of the Front-end web application, a Endpoint web application,
-and a Data layer (see fig ). The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. 
+and a Data layer (\emph{see fig\ref{fig3}.}) The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. 
 The Data layer has is a GAVO Dachs data center, and has some of the DAL protocols implemented.
 At last the Endpoint layer communicates the Front-end and the external applications with our Data layer and serve as a Load Balancer. (\emph{see fig \ref{fig3}})
 
@@ -178,7 +181,7 @@ and in \url{http://dachs.lirae.cl/bib/conesearch?RA=(right_ascension)&DEC=(decli
 
 \end{enumerate}
 
-\section{What's next}
+\section{Conclusion}
     Implementing a Conesearch using new technologies has proved to be really
 simple with MongoDB, because it has proper documentation, 
 and a growing community, in contrast of implementing it with PostgreSQL and
@@ -187,8 +190,8 @@ community, and doesn't work with the newer versions of PostgreSQL.
 However,  MongoDB lacks performance in a single server, which makes it not yet
 wise to change from PostgreSQL to MongoDB.
 
-The next step is to update PgSphere to use the new features of PostgreSQL 9.3+, like JSON datatype and replication improvements.
-Test MongoDB clusters read capabilities, develop indexation for column based databases, that offer better read capabilities than document based databases.
+\section{What's next}
+  The next step is to update PgSphere to use the new features of PostgreSQL 9.3+, like JSON datatype and replication improvements.
 
 
 % [CV] No se como poner las referencias %
