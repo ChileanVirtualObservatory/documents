@@ -161,18 +161,21 @@ performance of one of them against Postgresql using Pgsphere.
 within ChiVO Architecture.
 
 \subsection{ChiVO Architecture.}  The Chivo architecture is composed of the Front-end web application, a Endpoint web application,
-and a Data layer.  The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. 
+and a Data layer (\emph{see fig\ref{fig3}.}) The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. 
 The Data layer has is a GAVO Dachs data center, and has some of the DAL protocols implemented.
 At last the Endpoint layer communicates the Front-end and the external applications with our Data layer and serve as a Load Balancer. (\emph{see fig \ref{fig3}})
 
 \articlefigure{img/Endpoint_Diagram.eps}{fig3}{ChiVO Webservices Architecture}
 \subsection{DAL Prototype}	
-  Using MongoDB and Python libraries, we implemented a Conesearch service for our own astronomical database, we receive the queries, and
-  transform the radius from degree to radians, to send it over to MongoDB, then we return the data in form of a VoTable file. The prototype is available in
-  \url{http://dachs.lirae.cl/bib/conesearch?RA=(right_ascension)&DEC=(declination)&SR=(radius)}.
-  
-  For the Name Resolver part of the functionalities, we made a query using regular expressions to MongoDB and then return the position
-  of the object found in form of a XML, and it is available in \url{http://dachs.lirae.cl/name_resolver/(name)}.
+  Using MongoDB and Python libraries, we implemented a Conesearch service for our own astronomical database
+\begin{itemize}
+ \item 
+\end{itemize}
+
+\textbf{Name Resolver Interface.} We handle the request in the Flask Endpoint,
+then make a query to the MongoDB database containing the object name, at the end we return the user the coordinates of the object 
+in a JSON format. The implemented prototype is available in \url{http://dachs.lirae.cl/name_resolver/(name)} for the name resolver
+and in \url{http://dachs.lirae.cl/bib/conesearch?RA=(right_ascension)&DEC=(declination)&SR=(radius)}.
 
 \section{Conclusion}
     Implementing a Conesearch using new technologies has proved to be really
