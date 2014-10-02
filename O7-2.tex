@@ -47,7 +47,7 @@ SIMBAD itself offers a variety of search methods, one of them is
 \emph{Coordinate Query}, similar to IVOA’s Simple Cone Search standard (\cite{williams2006ivoa}).
 
 To have a similar database to SIMBAD, we have implemented two query methods that
-SIMBAD offers: a simple criteria search and ConeSearch. For the second one, 
+SIMBAD offers: a name resolving (LIKE operand query) and ConeSearch. For the second one, 
 IVOA recommends using Postgresql along with Pgsphere module. 
 However, we wanted to take a look in the new generation of databases engines, namely NoSQL databases, and compare the
 performance of one of them against Postgresql using Pgsphere.
@@ -76,7 +76,7 @@ performance of one of them against Postgresql using Pgsphere.
     their queries. Neo4j is a really complex graph database, which might help to
     understand the relationships between data, but it is hard to manipulate and slower 
     than other databases. Cassandra, a column database, its similar
-    to SQL databases, but it has no support for spatial indexes %[CV] es lo unico que se me ocurrio
+    to SQL databases, but it has no support for spatial indexes
     . At last, Mongo document database, 
     has a built-in geospatial module, doesn't need a schema, and has reliable
     and thoughtful of documentation.
@@ -87,42 +87,41 @@ performance of one of them against Postgresql using Pgsphere.
 
 \section{MongoDB versus Postgresql performance}
     We prepared some tests for Mongo to compare it with Postgresql. From the user
-    point of view, we tested \emph{read} capabilities of both databases, and
+    point of view, we tested \emph{read} capabilities of both databases engines, and
     for the developers points of view, we measured the \emph{write} operation
     performances. The tests were made in the same machine with Ubuntu 13.04.
     
-    We started by testing both databases write capabilities, using a collection of 10.000 entries with data from SIMBAD database,
+    We started by testing both databases engines write capabilities, using a collection of 10.000 entries with data from SIMBAD database,
     and inserted them into the databases. We parsed the data into a JSON and a SQL file, 
     inserting data row by row into each of the databases, and measured the time until we 
     finished populating the database. The result was slightly superior
-    performance of MongoDB with respect to PostgreSQL. (\emph{see fig \ref{fig:insert}.})
-    
- \begin{figure}
-    \centering
+    performance of MongoDB with respect to PostgreSQL. (\emph{see table\ref{table:insert}.})
+  
+ \begin{table}
+      \centering
     \begin{tabular}{lll}    
                         & MongoDB & Postgresql \\
     10.000 entries insertion & 3.12468409538 s  & 3.84547805786 sec
     \end{tabular}
     \caption{LIKE operand run-time comparison, using Regular expression in MongoDB; with Postgresql 8.4, and MongoDB 2.6.4}
-    \label{fig:insert}
-\end{figure}   
-    
+    \label{table:insert}
+ \end{table}
+
     With both databases populated, we were ready to test the read capabilities tests.
-    
     The first read test was the SQL LIKE operator, because is particularly
     useful for the name resolver application. 
     MongoDB doesn't have LIKE operator, but we can use regular expressions to
     produce a similar query. Unfortunately, MongoDB was 7 times slower than
-    PostgreSQL to make the query.(\emph{see fig\ref{fig:like}.})
-\begin{figure}
-    \centering
+    PostgreSQL to make the query.(\emph{see table\ref{table:like}.})
+\begin{table}
+\centering
     \begin{tabular}{lll}    
                         & MongoDB & Postgresql \\
-    LIKE operator query & 15.5ms  & 2.79225 ms
+    LIKE operator query & 15.5ms  & 2.79 ms
     \end{tabular}
     \caption{LIKE operand run-time comparison, using Regular expression in MongoDB; with Postgresql 8.4, and MongoDB 2.6.4}
-    \label{fig:like}
-\end{figure}
+    \label{table:like}
+\end{table}
 
     The second read test was to measure how precise is MongoDB spatial queries
     compared to the same query in Postgresql.
@@ -134,41 +133,33 @@ performance of one of them against Postgresql using Pgsphere.
     and compute the mean of the query's run-time. Then, we repeated the
     procedure with different radius values. MongoDB uses less than 0.1 ms in small queries, 
     but when we use a large radius, the time used
-    in the query started to grow fast.(\emph{see fig\ref{fig:cone}.})
-\begin{figure}
+    in the query started to grow fast.(\emph{see table\ref{table:cone}.})
+\begin{table}
 \centering
-
 \begin{tabular}{lll}
  Radius &MongoDB &Postgresql\\
-2 arcsec&0.0594135802469 ms &0.049387345679 ms\\
-2 arcmin&0.0 ms &0.0496404320988 ms\\
-5 degree&0.521604938272 ms&0.189644290123 ms\\ 
-20 degree &8.76234567901 ms&2.05688194444 ms\\
-35 degree &33.4328703704 ms& 7.83297376543 ms\\
-50 degree & 55.912037037 ms&15.3577060185 ms
+2 arcsec&   0.0594135802 ms &0.04938734567 ms\\
+2 arcmin&   0.0652336081 ms &0.04964043209 ms\\
+5 degree&   0.5216049382 ms& 0.18964429012 ms\\ 
+20 degree & 8.7623456790 ms& 2.05688194444 ms\\
+35 degree & 33.432870370 ms& 7.83297376543 ms\\
+50 degree & 55.912037037 ms& 15.3577060185 ms
 \end{tabular}
 
 
 \caption{Conesearch query run-time comparison, using the same radius and changing the center of the cone}
-\label{fig:cone}
-\end{figure}    
-  % [CV] Aca no se como ligar que igual queriamos implementar la db en mongo porque sino toda esta 
-  % seccion no sirve para nada
+\label{table:cone}
+\end{table}    
 
-\section{ChiVo's Name Resolver Implementation}
+\section{No-SQL Prototype Service Implementation}
 
-  After the test we implemented a functional prototype of a SIMBAD style database, with its own Conesearch and Name Resolver functionalities
-within ChiVO Architecture.
+  After the tests, we implemented a functional prototype of a SIMBAD style database, with its own Conesearch and Name Resolver functionalities
+inside ChiVO prototype. It has been implemented inside the Endpoint layer of ChiVO. (\emph{see fig\ref{fig1}.})
 
-\subsection{ChiVO Architecture.}  The Chivo architecture is composed of the Front-end web application, a Endpoint web application,
-and a Data layer.  The Front-end is a Ruby on Rails application, that get the data from the Endpoint layer. 
-The Data layer has is a GAVO Dachs data center, and has some of the DAL protocols implemented.
-At last the Endpoint layer communicates the Front-end and the external applications with our Data layer and serve as a Load Balancer. (\emph{see fig \ref{fig3}})
-
-\articlefigure{img/Endpoint_Diagram.eps}{fig3}{ChiVO Webservices Architecture}
-\subsection{DAL Prototype}	
-  Using MongoDB and Python libraries, we implemented a Conesearch service for our own astronomical database, we receive the queries, and
-  transform the radius from degree to radians, to send it over to MongoDB, then we return the data in form of a VoTable file. The prototype is available in
+    \articlefigure{O7-2_f1.eps}{fig1}{ChiVO Webservices Architecture}	
+  
+  Using MongoDB and Astropy Python library, we implemented a Conesearch service for our own astronomical database, we receive the queries, and
+  transform the search radius from degrees to radians to send it over to MongoDB, then we return the data in form of a VoTable file. The prototype is available in
   \url{http://dachs.lirae.cl/bib/conesearch?RA=(right_ascension)&DEC=(declination)&SR=(radius)}.
   
   For the Name Resolver part of the functionalities, we made a query using regular expressions to MongoDB and then return the position
@@ -180,11 +171,10 @@ simple with MongoDB, because it has proper documentation,
 and a growing community, in contrast of implementing it with PostgreSQL and
 PgSphere module. Moreover,  PgSphere is getting deprecated, has nearly no active
 community, and doesn't work with the newer versions of PostgreSQL. 
-However,  MongoDB lacks performance in a single server, which makes it not yet
-wise to change from PostgreSQL to MongoDB.
+However,  MongoDB lacks performance in a single server, but its a viable alternative
+for the implementation of a DAL service in a distributed environment because of his good horizontal scalability.
 
 
-% [CV] No se como poner las referencias %
-\bibliography{aspauthor}
+\bibliography{O7-2}
 
 \end{document}

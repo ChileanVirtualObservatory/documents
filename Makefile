@@ -3,10 +3,11 @@ TEXFILES = $(wildcard *.tex)
 PDFFILES = $(TEXFILES:.tex=.pdf)
 
 all: 
-	latex aspauthor
-	bibtex aspauthor
-	latex aspauthor
-	dvips -Ppdf aspauthor.dvi
-	ps2pdf14 aspauthor.ps
+	latex O7-2
+	bibtex O7-2
+	latex O7-2
+	latex O7-2
+	dvips -Ppdf O7-2.dvi
+	ps2pdf14 O7-2.ps
 clean:
-	rm -rf *.aux *.log *.blg *.bbl *.dvi *.pdf *.ps
+	rm -rf *.aux *.log *.blg *.bbl *.dvi *.ps
