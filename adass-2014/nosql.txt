@@ -1,0 +1,31 @@
+Evaluating NoSQL alternative for Chilean Virtual Observatory Services
+
+Actualmente los protocolos y estándares de acceso a datos de la arquitectura de
+Virtual Observatory (DAL), están en su mayoría implementados en modelo de bases
+de datos relacionales basados en SQL. En particular el Astronomical Data Query
+Language (ADQL), un lenguaje usado por IVOA para representar consultas a los
+servicios VO, fue creado con el fin de satisfacer los distintos protocolos de
+acceso de datos, como por ejemplo Simple Cone Search. ADQL está basado en SQL92
+y las funcionalidades extra que agrega al lenguaje son implementadas usando
+PgSphere.
+
+Una alternativa a SQL emergente son las llamadas bases de datos NoSQL, las
+cuales tienen distintas clasificaciones: Column, Document, Key-Value, Graph,
+Object, etc; cada una recomendada bajo distintos escenarios. Dentro de sus
+características destacan: schema-free, easy replication support, simple API,
+BigData, etc.
+
+En el Chilean Virtual Observatory, se está construyendo un prototipo funcional
+basado la arquitectura IVOA, y los factores relevantes para la construcción de
+este son: Performance, Scalability, Flexibility, Complexity, Functionality.
+Factores difíciles de comparar actualmente por la falta de alternativas.
+
+El objetivo de este paper es comparar alternativas NoSQL frente a SQL mediante
+la implementación de una Web API REST que satisfaga las necesidades de ChiVO:
+un name resolver para los datos de ALMA estilo SESAME. Para ello se propone un
+escenario de prueba configurando una base de datos NoSQL con datos de distintas
+fuentes y se evalúa factibilidad de crear un servicio Simple Cone Search.
+
+Esta comparativa permitirá medir que tan aplicables para el Virtual Observatory
+son los sistemas de bases de datos utilizados en big data.
+
