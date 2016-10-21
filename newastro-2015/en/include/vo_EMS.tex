@@ -1,0 +1,439 @@
+\section{The Virtual Observatory Registry}
+\label{sec:registry}
+
+The description of the work done by each IVOA member
+in the previous section is an accurate political, organizational 
+and geographical division. However, in practice the services
+are sparsely distributed between universities, observatories
+and institutes around the world. In fact, some of them 
+are part of more than one country-VO. 
+This makes very complex to track the available services, 
+and to search in the VO as a whole. Fortunately, 
+IVOA has developed a \emph{registry} standard to 
+exploit the interoperability of the VO nodes.
+Moreover, 
+
+This section explains very briefly the registry standard,
+and use the existing registry services for obtaining VO 
+statistics mainly for two purposes:
+\begin{itemize}
+\item showing the advantages of the interoperability in the VO,
+\item and to survey the types of services, data and wavebands that
+the VO supports as a whole.
+\end{itemize}
+Also, as the final goal of the Virtual Observatory is to be a science enabler,
+we list in this section some recent publications that were possible due to
+VO technologies.
+
+\subsection{The Registry}
+
+The IVOA registry allows users and applications to discover data collections,
+metadata and services in the resource layer for a particular scientific
+problem. In fact, a resource it can be virtually any information that might be
+relevant to astronomers, from abstract concepts to images and catalogs. 
+The specification is based on a general, distributed model composed of
+so-called searchable and publishing registries:
+\begin{itemize}
+\item A \emph{searchable} registry offers a list of resources through searching the 
+metadata contained in the records for a given selection criterion.
+This allows aggregating several resources from different providers 
+without the need of visiting and searching in each provider's site just to
+know if the data is useful for the scientific objectives.
+The process of searching through all the VO sites is usually called harvesting.
+\item A \emph{publishing} registry allows offering resources in a standard way
+in order to be harvested by a searchable registry. This is a much more
+simpler registry than the previous, where the only objective is to 
+inform others which are the resources that the registry offers.
+\end{itemize}
+
+Even though there are some local searchable registries in some VOs, the
+main idea of these ones is to be global: each VO can have one or more
+publishing registries from which a searchable registry feeds to give
+a global answer for a selection criterion. For the following sections
+we will use the VO-Paris
+registry\footnote{\texttt{http://voparis-registry.obspm.fr/vo/ivoa/1/voresources/search}}
+because is one of the most complete and functional global searchable registries.
+% description of the registry
+% the registry that we will use
+
+\subsection{VO Resources by Type of Service}
+
+We have selected the four most known IVOA services standards described in Section~\ref{sec:popservices}, namely
+\verb+SCS+, \verb+SIA+, \verb+SSA+ and \verb+TAP+. We've queried the Registry for the number of resources 
+that are available for each one of them. Please note that a resource may correspond to a whole database, where
+each one might have from one to a huge number of entries depending on the service. 
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Service} & \textbf{Resources} & \textbf{Publishers} & \textbf{No
+Information} \\
+\hline
+SCS  &  10463 & 165 & 4.7 \% \\
+SIA  &  175 & 33 & 0.6 \% \\
+SSA  &  48  & 29 & 8.3 \% \\
+TAP  &  33  & 14 & 18.2 \% \\
+\hline
+\end{tabular}
+\caption{Resources and publishers for each IVOA service. The last column
+presents the percentage of resources that do not inform a publisher.}
+\label{tab:serviceRanking}
+\end{center}
+\end{table}
+
+Table~\ref{tab:serviceRanking} shows how many resources are available for the
+selected services, including the number of publishers that offer the service
+and the percentage of resources that do not inform a publisher\footnote{The
+publisher field is optional in the registry standard}. Clearly, the simple
+cone search (SCS) service is the most popular service, yet we have to note
+here that around the 85\% of the resources are concentrated in one publisher\footnote{Which corresponds to the Centre de Données astronomiques de Strasbourg},
+and in fact the 90\% of them are concentrated in only two. Nevertheless, the 
+10\% of the total SCS resources is still one order larger than its follower, 
+the SIA standard. This result arises naturally from the fact that every
+observation has an angular position and field of view, so a SCS can be 
+developed for almost every astronomical data set.
+
+As explained above, the publishers do not correspond to country-VOs, but 
+to the names of the institutions that host the services, so that is why the SCS
+service has 165 publishers instead of only a few country-VOs. In fact, well
+organized VOs still include their organizational branches in the publisher field, such as VO-Paris that has at least 3 branches.
+
+The relatively low number of services of SSA and TAP can be explained as follows:
+\begin{itemize}
+\item SSA is a very specialized service, that only allows 1-D spectroscopy data that commonly 
+needs on-line transformation to the SSA format. Also, the spectroscopy instrumentation is
+scarce compared to imaging instruments in the observatories. Also, is very likely that for each
+SIA or SSA resource, a SCS service exists also for the same database.
+\item TAP is a very generic service, because almost any public table can be queried. 
+The natural implementation is to provide only one TAP service for all the databases
+in the same institution (as our results confirm), because TAP is a more a technical 
+service than a scientific resource. 
+\end{itemize} 
+
+\subsection{VO Resources in the Electromagnetic Spectrum}
+
+One of the interesting queries that can be done using the registry is
+to which wavelength a resource belongs to. This not only simplifies
+searching for appropriate resources, but it also give us the 
+\emph{big picture} of the services coverage. As expected, 
+the resources are scattered over the whole spectrum, where
+only TAP fails to offer services in the Gamma-ray, UV, extreme UV, and Millimeter
+wavebands. All the other shows a fair coverage of the spectrum, considering
+that only the 3\% of the resources does not inform wavelength band. 
+
+
+\begin{table}
+\begin{center}
+\scriptsize
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{VO} & GR & XR & EU & UV & OP & IR & ML & RD \\
+\hline
+\hline
+  ESO - Science Archive Facility  & & & & X & X & X & & \\
+\hline
+  Space Telescope Science Institute & & & & X & & & & \\
+\hline
+  VO-Paris - LUTH & X & & & & & & & \\
+\hline
+  INTA/LAEFF & & & & & X & & & \\
+\hline
+  WFAU, Institute for Astronomy & & & & & X & & & \\
+\hline
+  MAST & & & X & X & X & & & \\
+\hline
+  Institut d'Astrophysique de Paris & & & X & & & & & \\
+\hline
+  Space Telescope Science Institute & & & & X & X & X & & \\
+\hline
+  VO-Paris - IMCCE & & & & & X & X & & \\
+\hline
+  WFAU & X & X & & & & & & \\
+\hline
+  JVO & & & & & X & & & \\
+\hline
+  Instituto de Astrofsica de Andaluca & & & & X & X & X & & \\
+\hline
+  VO-Paris - GEPI  & & & & & X & & & \\
+\hline
+  Lab. d'Astrophysique de Marseille & & & & & X & & & \\
+\hline
+  Instituto de Astrofsica de Andaluca & & X & & X & X & X & & \\
+\hline
+  VO-Paris - LESIA & & & & X & X & & & \\
+\hline
+  GAVO DC team  & & & & X & X & X & & \\
+\hline
+  NASA/IPAC Extragalactic Database & X & X & X & X & X & X & X & X \\
+\hline
+  LUPM & & & & X & X & & & \\
+\hline
+  CRAL-Observatoire de Lyon & & & & & X & & & \\
+\hline
+  Ivo://Bass2000 & & & & & X & & & \\
+\hline
+\end{tabular}
+\caption{Publishers in the Electromagnetic Spectrum for SSA resources.
+GR = Gamma-rays, XR = X-rays, EU = Extreme Ultraviolet, UV = Ultraviolet, OP
+= Optical, IR = Infrared, ML = Millimeter, RD = Radio.}
+\label{tab:SSAEMS}
+\end{center}
+\end{table}
+
+In general, and as expected, the resources are concentrated around the optical waveband as can be
+seen in the example Table~\ref{tab:SSAEMS}. This table shows the number of SSA resources by publisher,
+including the waveband where they inform that the data belongs to. SSA was selected as an example due to
+space reasons, but the same result can be obtained for SCS, SIA and TAP. In particular, we can observe that
+millimeter and radio resources are scarce, which is strange in the sense that most of the instruments in these
+wavebands can perform spectroscopy. This is because the SSA service is very specific to certain type of
+data, so efforts are been made to extend this service to support spectral data cubes as the ones that
+the ALMA observatory is generating. 
+
+\subsection{VO Resources by Scientific Subject}
+
+Each resource is commonly focused on certain science subjects, so a field with this name was included
+as a suggestion in the registry standard. Impressively, this suggestion has been strongly followed by the VO.
+In fact, only less than 0.4\% of all the resources (including the four standards) do not inform a subject. 
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Subject} & \textbf{Resources} \\
+\hline
+Galaxies  &  1994  \\
+Stars  &  1566  \\
+Photometry  &  1400  \\
+Photometry:wide-band  &  1176  \\
+Redshifts  &  1018  \\
+Stars:variable  &  985  \\
+Velocities  &  919  \\
+Open\_Clusters  &  787  \\
+Spectroscopy  &  715  \\
+\hline
+\end{tabular}
+\caption{Most popular subjects, considering all the resources (12357) from the four services.}
+\label{tab:resSub}
+\end{center}
+\end{table}
+
+In Table~\ref{tab:resSub}, the scientific subjects with more resources are presented. Besides the ones
+presented in the table there are 837 other subjects, where one resource can have many subjects. 
+The most popular subjects are obviously very general categorizations (like stars and galaxies), but
+more specific ones, such as variable stars or open clusters, can be very useful tags for selecting
+resources. An interesting result here is that 715 resources declare to be spectroscopy data\footnote{Moreover, this number does not include tags that are implicitly spectroscopy data such as ``Galaxies:spectra''.}, but we
+found only 48 SSA resources. This means that most of the spectroscopy data is offered through other
+services (like SCS), but not using SSA. There are two complementary reasons for this issue: the first
+is that SSA is a very specific service as explained above, and the second is that the SSA service requires
+much more effort and metadata than SCS, so the VOs may not consider a priority to mount this service.
+In any case, an improved spectral access standard is being developed.
+
+Please note that the queries performed in the past sections can be easily combined. For example,
+the number of resources that are tagged as Galaxies that have data in optical band are 1485, while the ones in
+the infrared band are 493 and in the UV band are only 127 (again this does not sum 1994 because a resource can have data
+in more than one band). 
+
+%TODO:
+
+% \textbf{Others} &  837    \\
+%total amount:  12357
+
+%Most of virtual observatories usually contribute to development of tools for
+%for national astronomical instruments. These tools can be new source codes for
+%the exploitation of the capability of some specific instrument, facilitation or
+%improvement of the queries, reading, writing, conversion of the astronomical
+%data of files like VOTable, ASCII and FITS formats, among other. 
+%This means that each VO concentrates in providing services for specific
+%data types, which in astronomy are highly correlated with the wavelengths values
+%on which their work. This section surveys the ranges for which 
+%each virtual observatory is developing their tools, 
+%
+%\begin{landscape}
+%\begin{figure}%[h]
+%\begin{center}
+%\begin{tikzpicture}
+%\pgfmathsetmacro{\lineLenght}{15}
+%\pgfmathsetmacro{\lineDivNum}{17}
+%\pgfmathsetmacro{\markPlace}{\lineLenght/\lineDivNum}
+%\def\limitsList{5,8,10.3,10.6,13,15}
+%\def\regionArray{{2.5,(5+8)/2,(8+10.3)/2,(10.3+10.6)/2,(10.6+13)/2,(13+15)/2,
+%                  (15+17)/2}}
+%\foreach \x in {0,1} {
+%  \draw[<->,thick] (0,\x) -- (\lineLenght,\x);
+%}
+%\foreach \x in \limitsList {
+%  \draw[thick] (\x*\markPlace,0.8) -- (\x*\markPlace,1.2);
+%}
+%\foreach \x in {1,2,...,16} {
+%  \pgfmathtruncatemacro{\b}{\x-2*\x+4} 
+%  \draw[thick] (\x*\markPlace,-0.2) -- (\x*\markPlace,0.2)
+%  node[pos=-0.6]{$10^{\b}$};
+%}
+%\node [anchor=north east,align=center] at (0,0) {Wavelenght\\(in meters)};
+%\node [anchor=south east,align=center] at (0,1) {Radiation\\type};
+%\node [above] at (\regionArray[0]*\markPlace,1.5) {Radio};
+%\node [above] at (\regionArray[1]*\markPlace,1.5) {Microwave};
+%\node [above] at (\regionArray[2]*\markPlace,1.5) {Infrared};
+%\node [above] at (\regionArray[3]*\markPlace,2) {Visible};
+%\node [above] at (\regionArray[4]*\markPlace,1.5) {Ultraviolet};
+%\node [above] at (\regionArray[5]*\markPlace,1.5) {X-ray};
+%\node [above] at (\regionArray[6]*\markPlace,1.5) {Gamma ray};
+%
+%% Spectrum value or range for each instrument where some virtual observatory
+%% contributes
+%
+%\pgfmathsetmacro{\factor}{\markPlace/2}
+%% ALMA
+%\draw[<->,thick] (7.7*\markPlace,-4) -- (8.6*\markPlace,-4);
+%\pgfmathparse{multiply(8.6-7.7,\factor)}
+%\node at (\pgfmathresult+7.7*\markPlace,-3.5) {ALMA};
+%\node at (\pgfmathresult+7.7*\markPlace,-4.5) {\textbf{ChiVO}};
+%\node at (\pgfmathresult+7.7*\markPlace,-5.0) {\textbf{JVO}};
+% BAO
+%\draw[<->,thick] (3.58*\markPlace,-2) -- (3.88*\markPlace,-2);
+%\pgfmathparse{multiply(3.88-3.58,\factor)}
+%\node at (\pgfmathresult+3.58*\markPlace,-1.5) {BAO};
+%\node at (\pgfmathresult+3.58*\markPlace,-2.5) {\textbf{ArVO}};
+%% Chandra X-ray Telescope 
+%\draw[<->,thick] (13*\markPlace,-2) -- (15*\markPlace,-2);
+%\pgfmathparse{multiply(15-13,\factor)}
+%\node at (\pgfmathresult+13*\markPlace,-1.5) {Chandra X-ray Telescope};
+%\node at (\pgfmathresult+13*\markPlace,-2.5) {\textbf{VAO}};
+%% HASTA 
+%\node at (3.4312*\markPlace,-4) [inner sep=1pt,circle,draw] {};
+%\node at (3.4312*\markPlace,-3.5) {HASTA};
+%\node at (3.4312*\markPlace,-4.5) {\textbf{NOVA}};
+%% HCT
+%\draw[<->,thick] (8*\markPlace,-6) -- (10.3*\markPlace,-6);
+%\pgfmathparse{multiply(10.3-8,\factor)}
+%\node at (\pgfmathresult+8*\markPlace,-5.5) {HCT};
+%\node at (\pgfmathresult+8*\markPlace,-6.5) {\textbf{VOI}};
+%% HST  
+%\draw[<->,thick] (8*\markPlace,-10) -- (13*\markPlace,-10);
+%\pgfmathparse{multiply(13-8,\factor)}
+%\node at (\pgfmathresult+8*\markPlace,-9.5) {HST};
+%\node at (\pgfmathresult+8*\markPlace,-10.5) {\textbf{VAO, VObs.it}};
+%% SOAR 
+%\draw[<->,thick] (9*\markPlace,-4) -- (10.68*\markPlace,-4);
+%\pgfmathparse{multiply(10.68-9,\factor)}
+%\node at (\pgfmathresult+9*\markPlace,-3.5) {SOAR};
+%\node at (\pgfmathresult+9*\markPlace,-4.5) {\textbf{BRAVO}};
+%% SST
+%\draw[<->,thick] (8.82*\markPlace,-2) -- (9.7*\markPlace,-2);
+%\pgfmathparse{multiply(9.7-8.82,\factor)}
+%\node at (\pgfmathresult+8.82*\markPlace,-1.5) {SST};
+%\node at (\pgfmathresult+8.82*\markPlace,-2.5) {\textbf{VAO, ArVO}};
+%% Subaru Telescope
+%\draw[<->,thick] (8*\markPlace,-8) -- (10.6*\markPlace,-8);
+%\node at (\pgfmathresult+8*\markPlace,-7.5) {Subaru Telescope};
+%\node at (\pgfmathresult+8*\markPlace,-8.5) {\textbf{JVO}};
+%
+%% Perpendicular long dotted lines
+%
+%\def\firstLinesEnds{3.58,3.88,8.82,9.7,13,15}
+%\foreach \x in \firstLinesEnds {
+%  \draw[dotted] (\x*\markPlace,0) -- (\x*\markPlace,-2);
+%}
+%\def\secondLinesEnds{3.4312,7.7,8.6,9,10.68}
+%\foreach \x in \secondLinesEnds {
+%  \draw[dotted] (\x*\markPlace,0) -- (\x*\markPlace,-4);
+%}
+%\draw[dotted] (8*\markPlace,0) -- (8*\markPlace,-6);
+%\draw[dotted] (10.3*\markPlace,0) -- (10.3*\markPlace,-6);
+%\draw[dotted] (8*\markPlace,0) -- (8*\markPlace,-8);
+%\draw[dotted] (10.6*\markPlace,0) -- (10.6*\markPlace,-8);
+%\draw[dotted] (8*\markPlace,0) -- (8*\markPlace,-10);
+%\draw[dotted] (13*\markPlace,0) -- (13*\markPlace,-10);
+%\end{tikzpicture}
+%\caption{Virtual observatories that contributes to specifics astronomical
+%instruments.}
+%\end{center}
+%\label{figure:wavelength}
+%\end{figure}
+%\end{landscape}
+%
+%In Figure \ref{figure:wavelength}, the different types of
+%radiation (in order) with their common names are shown. Below, the value of
+%the wavelengths in meters and the respective telescope/instrument are presented. 
+
+%A higher $ \lambda $
+%value is related with a lower frequency and a
+%lower $ \lambda $ is related with a higher frequency. 
+%The electromagnetic
+%spectrum value or range for each instrument (above) and virtual observatory
+%(below) is represented with a dot or line, respectively.\\
+
+%\scriptsize
+%\begin{table*}[h!t]
+%\centering
+%\begin{tabular}{|p{1cm}|p{4cm}|p{5cm}|p{6cm}|}
+%    \hline                                                                      
+%    \textbf{VO} & \textbf{Instrument} & \textbf{Location} &
+%    \textbf{Spectrum value or range} \\
+%    \hline                                                                      
+%    BRAVO & Southern Astrophysical Research
+%    Telescope (SOAR) & Cerro Pach\'{o}n, Chile & blue (320 nm) to near infrared
+%    \cite{website:SOAR_EMS} \\
+%    \hline                                                                      
+%    NOVA & H-Alpha Solar Telescope for
+%    Argentina (HASTA) & Leoncito, San Juan, Argentina & H-Alpha (656.28 nm)
+%    \cite{website:HASTA_EMS} \\
+%    \hline
+%    ChiVO & Atacama Large Milimeter/submilimeter
+%    Array (ALMA) & Llano de Chajnantor Observatory, Atacama Desert, Chile &
+%    initially in 400 $ \mu $m to 3 mm \cite{website:ALMA_EMS} \\
+%    \hline
+%    \multirow{3}{3cm}{VAO} & Hubble Space
+%    Telescope (HST) & 569 km above the surface of Earth & near-ultraviolet,
+%    visible and near-infrared light with WFC3; ultraviolet light with COS;
+%    visible light with ACS; ultraviolet, visible and near-infrared light with
+%    STIS; infrared light with NICMOS \cite{website:HST_EMS} \\
+%     \cline{2-4}
+%     & Chandra X-ray Observatory & 139,000 km above the surface of Earth & X-ray
+%     \cite{website:Chandra_EMS} \\
+%     \cline{2-4}
+%     & Spitzer Space Telescope (SST) & 176,602,814 km above the surface of Earth
+%     \cite{website:SST_EMS_1} & 3 $ \mu $m to 180 $ \mu $m
+%     \cite{website:SST_EMS_2} \\
+%    \hline
+%    ArVO & Byurakan Astrophysical Observatory
+%    (BAO) & Mount Aragats, Armenia & 1.2 m and 4.2 m \cite{website:BAO_EMS} \\
+%    \hline
+%    ArVO & Spitzer Space Telescope (SST) &
+%    176,602,814 km above the surface of Earth & 3 $ \mu $m to 180 $ \mu $m \\
+%    \hline
+%    Vobs.it & Hubble Space Telescope (HST) & 569
+%    km above the surface of Earth & near-ultraviolet, visible and near-infrared
+%    light with WFC3; ultraviolet light with COS; visible light with ACS;
+%    ultraviolet, visible and near-infrared light with STIS; infrared light with
+%    NICMOS \\
+%    \hline
+%    \multirow{2}{3cm}{UkrVO} & Main Astronomical
+%    Observatory (MAO) & Kiev, Ukraine & \\
+%     \cline{2-4}
+%     & Mykolaiv Astronomical Observatory & Mykolaiv, Ukraine & \\
+%    \hline
+%    \multirow{3}{3cm}{JVO} & Subaru Telescope &
+%    Mauna Kea, Big Island, Hawaii & visible and infrared light
+%    \cite{website:Subaru_EMS} \\
+%     \cline{2-4}
+%     & Sloan Digital Sky Survey (SDSS) & Sacramento Mountains, Sunspot, New
+%     Mexico, USA & \\
+%     \cline{2-4} 
+%     & Atacama Large Milimeter/submilimeter Array (ALMA) & Llano de Chajnantor
+%     Observatory, Atacama Desert, Chile & initially in 400 $ \mu $m to 3 mm \\
+%    \hline
+%    VOI & Himalayan Chandra Telescope (HCT) & Mount
+%    Saraswati, Digpa-ratsa Ri, Hanle, India & infrared light 
+%    \cite{website:HCT_EMS} \\
+%    \hline
+% \end{tabular}
+%\caption{Virtual observatories that contributes to specifics astronomical
+%instruments.}
+%\label{table:vo_EMS}
+%\end{table*}
+%%\end{longtable}
+%%\end{center}
+%\normalsize
+

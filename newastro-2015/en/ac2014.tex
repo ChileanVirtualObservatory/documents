@@ -1,0 +1,89 @@
+
+\documentclass[preprint]{elsarticle}
+%
+\usepackage{url}
+\usepackage{hyperref}
+%\usepackage{caption}
+%\usepackage{multirow}
+%\usepackage{array}
+%\usepackage{lscape}
+%\usepackage{tikz}
+%\usepackage{longtable}
+
+
+\newcommand{\rem}[2]{{\bf [#1] #2}}
+
+\begin{document}
+
+\title{A Brief Survey on the Virtual Observatory}
+
+\author[utfsm]{Mauricio Araya\corref{cor1}}
+
+\ead{maray@inf.utfsm.cl}
+
+\author[utfsm]{Mauricio Solar}
+
+\ead{msolar@inf.utfsm.cl}
+
+\author[alma]{Jonathan Antognini}
+
+\ead{jantogni@alma.cl}
+
+
+\address[utfsm]{Universidad T\'ecnica Federico Santa Mar\'ia\\
+Avenida Espa\~na 1680, Valpara\'iso, Chile}
+
+
+\address[alma]{ALMA Observatory\\
+Alonso de Córdova 3107, Vitacura, Santiago,
+Chile}
+
+\begin{abstract}
+%\boldmath
+This paper presents a short survey on the astronomical Virtual Observatories (VOs) that are 
+part of the International Virtual Observatory Alliance (IVOA). From how they are
+distributed worldwide to their specialization range on the electromagnetic spectrum, 
+we summarize key aspects of the current 21 VO members. Through the Registry
+service, we explore the resources that the VO offer as a whole, and identify 
+that even though the VO is already a mature initiative, there are important
+challenges to address in the near future.
+\end{abstract}
+
+\maketitle
+
+
+
+
+\input{include/introduction}
+
+\input{include/vo_distribution}
+
+\input{include/app_services}
+
+\input{include/vo_services}
+
+
+\input{include/vo_platforms}
+
+\input{include/vo_EMS}
+
+\input{include/conclusions}
+
+\section*{Acknowledges}
+This research was possible due to CONICYT-Chile fundings, specifically 
+through the project FONDEF D11I1060 and the project ICHAA 79130008.
+\section{References}
+
+\bibliographystyle{plain}
+\bibliography{ac2014.bib}
+
+%\appendix
+
+%\input{include/app_services}
+
+
+
+% that's all folks
+\end{document}
+
+
