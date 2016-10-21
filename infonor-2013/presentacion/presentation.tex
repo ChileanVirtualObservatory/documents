@@ -1,0 +1,86 @@
+\documentclass[10pt]{beamer}
+\usepackage{graphicx}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{multicol}
+
+\usetheme[pageofpages=of,
+          alternativetitlepage=true,
+          titlepagelogo=,
+          watermark=,
+          watermarkheight=80px,
+          watermarkheightmult=1,
+          ]{Torino}
+
+\titlegraphic{
+   \includegraphics[height=1cm]{img/src/csrg.pdf}
+   \hfill
+   \includegraphics[height=1cm]{img/src/utfsm.pdf}
+   \hfill
+   \includegraphics[height=1.2cm]{img/src/fondef.pdf}
+}
+
+\usecolortheme{lirae}
+
+%title%
+\title[Primeros Pasos Chivo]{Primeros pasos del Observatorio Virtual Chileno}
+\author{Jonathan Antognini C. \\
+        % email
+        \small{\textcolor{gray}{\texttt{jantogni@csrg.cl}}}}
+\institute[CSRG-UTFSM]{
+Computer Systems Research Group,\\
+Universidad Técnica Fedrico Santa María
+}
+\date{\today}
+
+
+\begin{document}
+
+%first slide%
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Tabla de contenidos}
+	\tableofcontents
+\end{frame}
+
+\input{input/introduccion}
+\newpage
+
+\input{input/distribucion_vo}
+\newpage
+
+\input{input/concepto_vo}
+\newpage
+
+\input{input/arquitectura_vo}
+\newpage
+
+\input{input/primeros_pasos_vo}
+\newpage
+
+\input{input/conclusiones}
+\newpage
+
+%TODO
+%¿está abierta la participación a otras universidades a colaborar en los
+%desafíos que se deriven de este proyecto?
+%
+%¿está pensado trabajar con mas observatorios en el futuro?
+%
+%¿qué lecciones o guías se pueden extraer de la experiencia en la
+%implementación de los otros observatorios virtuales alrededor del mundo,y del
+%provecho que de estos han sacado los investigadores de las ciencias de la
+%computación?
+
+
+%final slide%
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+\end{document}
