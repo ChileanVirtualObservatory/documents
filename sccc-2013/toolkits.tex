@@ -1,0 +1,72 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[english, activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{anysize}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{geometry}
+\geometry{tmargin=2.5cm, lmargin=2.5cm, rmargin=2.5cm, bmargin=3cm}
+
+\newcommand{\todo}{\textcolor{red}{TO DO:}\textcolor{blue}}
+\newcommand\R{R}
+%\renewcommand{\refname}{References}
+
+
+
+%\title{Comparación entre Data Access Layer Toolkits bajo estándares de IVOA}
+\title{A comparison between Data Access Layer Toolkits under IVOA standard}
+\author{
+\IEEEauthorblockN{
+	Mauricio Solar \IEEEauthorrefmark{1}, Jonathan Antognini \IEEEauthorrefmark{1}, Marcelo Mendoza \IEEEauthorrefmark{1}, Cristián Maureira \IEEEauthorrefmark{1} \\
+	Jorge Ibsen \IEEEauthorrefmark{2}, Lars Nyman \IEEEauthorrefmark{2},
+	Eduardo Vera \IEEEauthorrefmark{3}, Diego Mardones \IEEEauthorrefmark{3}, Guillermo Cabrera \IEEEauthorrefmark{3},\\
+	Paola Arellano \IEEEauthorrefmark{4},
+	Karim Pichara \IEEEauthorrefmark{5}, Nelson Padilla \IEEEauthorrefmark{5},
+	Ricardo Contreras \IEEEauthorrefmark{6}, \\ Neil Nagar \IEEEauthorrefmark{6},
+	Victor Parada \IEEEauthorrefmark{7}.
+}
+
+\\
+
+\IEEEauthorblockA{\IEEEauthorrefmark{1} Universidad Técnica Federico Santa María, Valparaiso, Chile}
+\IEEEauthorblockA{\IEEEauthorrefmark{2} Atacama Large Millimeter/submillimeter Array, San Pedro de Atacama, Chile}
+\IEEEauthorblockA{\IEEEauthorrefmark{3} Universidad de Chile, Santiago, Chile}
+\IEEEauthorblockA{\IEEEauthorrefmark{4} Red Universitaria Nacional, Santiago, Chile}
+\IEEEauthorblockA{\IEEEauthorrefmark{5} Universidad Católica de Chile, Santiago, Chile}
+\IEEEauthorblockA{\IEEEauthorrefmark{6} Universidad de Concepción, Concepción, Chile}
+\IEEEauthorblockA{\IEEEauthorrefmark{7} Universidad de Santiago de Chile, Santiago, Chile}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+%Este trabajo presenta el aspecto computacional de un observatorio astronómico virtual,
+%centrándose en la capa de acceso a los datos, y muestra cómo la International Virtual
+%Observatory Alliance maneja este aspecto en su arquitectura. Se expone el
+%trabajo que se está realizando en la implementación del Chilean Virtual Observatory.
+The current work presents the computational aspect of a Astronomical Virtual
+Observatory, focusing in the data access layer, and shows how the International
+Virtual Observatory Alliance handles this aspect in its architecture.  The
+on-going work related to the implementation of the Chilean Virtual Observatory
+is presented.
+\end{abstract}
+
+\begin{IEEEkeywords}
+IVOA, Data Access Protocol, Virtual Observatory, Chivo.
+\end{IEEEkeywords}
+
+\input{include/sota}
+\input{include/todo}
+
+%\section{References}
+\bibliographystyle{plain}
+\bibliography{toolkits}
+
+\end{document}
