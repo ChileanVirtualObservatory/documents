@@ -1,0 +1,57 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{epsfig}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{listings}
+\frenchspacing
+\linespread{1.2}                                          
+\setlength{\parskip}{1.5ex plus 0.2ex minus 0.2ex}        
+\setlength{\columnsep}{0.9cm}  							  
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{moreverb}
+
+\geometry{tmargin=2.5cm, lmargin=3.0cm, rmargin=2.5cm, bmargin=2.0cm}
+
+\newenvironment{keywords}{\begin{description}\item[Keywords:]}{\end{description}}
+
+\title{
+\center{\sc{Chilean Virtual Observatory Proposal}}
+%\author{Jonathan Antognini}
+\author{Mauricio Solar, Marcelo Mendoza, \\ Jonathan Antognini(Universidad Técnica Federico Santa María) \\
+	Jorge Ibsen, Lars Nyman (Atacama Large Milimiter/submilimiter Array) \\
+	Paola Arellano (Consorcio Red Universitaria Nacional) \\ 
+	Diego Mardones, Eduardo Vera, Guillermo Cabrera (Universidad de Chile) \\
+	Karim Pichara, Nelson Padilla (Universidad Católica de Chile) \\
+	Ricardo Contreras, Neil Nagar (Universidad de Concepción) \\
+	Victor Parada (Universidad de Santiago de Chile) \\
+	}
+\date{Valparaíso, \today}
+}
+
+\fancyhf{}
+\fancyhead[L]{Chilean Virtual Observatory Proposal}
+\fancyhead[R]{\thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+
+\input{include/introduction}
+
+\input{include/vo_goals}
+
+\input{include/community}
+
+%\thispagestyle{empty}
+
+\end{document}
