@@ -1,0 +1,73 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, activeacute]{babel}
+\usepackage{geometry}
+
+\geometry{tmargin=3.0cm, lmargin=3.0cm, rmargin=2.5cm, bmargin=3.0cm}
+
+\newenvironment{keywords}{\begin{description}\item[Palabras Claves:]}{\end{description}}
+
+\title{
+\center{\small{FONDEF D11I1060} \\}
+\center{\textbf{Tecnologías usadas en ChiVO} \\}
+\author{Mauricio Solar, Jonathan Antognini.}
+\date{Valparaíso, \today}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\begin{center}
+	El presente documento detalla las Tecnologías y Herramientas usadas en el desarrollo de ChiVO.
+\end{center}
+\end{abstract}
+
+\vspace{1cm}
+\begin{keywords}
+	ChiVO, Tecnologías, Herramientas.
+\end{keywords}
+
+\vspace{0.5cm}
+%\section{Tecnologías usadas en ChiVO}
+\section{Base de datos}
+
+Existen distintos moteres de base de datos (RMDBS), sin embargo casi todos los Toolkits de acceso a datos usan como motor PostgreSQL, debido a que la implementaciones de los protocolos DAL se basan en el uso de pgSphere. Por ende no hubo posibilidad de elegir el RMDBS.
+
+\section{Aplicación}
+\subsection{Endpoint}
+Los framework que se evaluaron para la implementación del endpoint fueron:
+\begin{itemize}
+	\item Ruby on Rails: RoR es uno de los framework de desarrollo web más usados actualmente, su uso es mediante el concepto Modelo-Vista-Controlador. La razón por la cual no se eligió esta herramienta es porque era más grande de lo que se necesitaba.
+	\item Python/Flask: Flask es un microframework diseñado especialmente para hacer webservices y herramientas web pequeñas. Lo que provee esta biblioteca es un marco de trabajo para la creación de aplicaciones web que puedan ser accedidas mediante distintos métodos HTTP. Existe mucha documentación y comunidad activa que permite implementar y solucionar problemas de forma rápida.
+\end{itemize}
+
+\subsection{ALMA Resource}
+Dentro de los toolkits de DAL recomendados por IVOA, se testearon los siguientes:
+\begin{itemize}
+	\item SAADA: Desarrollado por el VO Frances, es una herramienta bastante útil del punto de vista usuario, posee excelente documentación y manual de instalación, incluso la instalación se mediante GUI. Está desarrllado en Java y su correspondiente deployment se hace usando Tomcat. Por lo que se pudo apreciar desde la página web no es OpenSource. Es posible configurar servicios SCS/SIA/SSA/TAP.
+	\item VO-Dance: Desarrollado por el VO Italiano, es una herramienta en Java en su Backend, y Python en su Frontend (Framework Django). Lo destacable de esta herramienta es que trabaja usando MySQL como motor de base de datos principal, y según lo conversado con los desarrolladores están probando PostgreSQL actualmente. La herramienta no es OpenSource y la documentación de instalación y configuración es básica, ya que aún continúa en desarrollo. SCS/SIA/SSA/TAP.
+	\item openCADC: Desarrollado por el VO Canadiense, es una herramienta OpenSource escrita en Java, utilizada actualmente en el ALMA Science Archive. Este toolkit es uno de los más robustos, contiene distintos paquetes con servicios a ser utilizados en el webservice, sin embargo no existe documentación de instalación y configuración, y para poder probarlo fue necesario contactar directamente al desarrollador principal. Es posible configurar servicios TAP.
+	\item DaCHS: Desarrollado por el VO Alemán, es una herramienta OpenSource escrita en Python. Es uno de los toolkits DAL más usados por los VO, ya que posee una amplia documentación de instalación y configuración. Es posible configurar servicios SCS/SIA/SSA/TAP.
+\end{itemize}
+
+El resumen de los toolkits en una tabla comparativa es:
+\vspace{0.5cm}
+
+\begin{tabular}{|l|c|c|c|c|c|}
+	\hline
+	Toolkits 	& Lenguaje		& OpenSource	& Documentación & Servicios 		& Útimo update	\\
+	\hline
+	SAADA		& Java			& No 			& Si 			& SCS/SIA/SSA/TAP	& Mayo 2012		\\
+	VO-Dance	& Java/Python	& No 			& No 			& SCS/SIA/SSA/TAP	& Dicimbre 2012	\\
+	openCADC	& Java			& Si 			& No 			& TAP				& ---			\\
+	DaCHS		& Python		& Si 			& Si 			& SCS/SIA/SSA/TAP	& Junio 2013	\\
+	\hline
+\end{tabular}
+
+\vspace{0.5cm} En base a estos factores, el Toolkits DAL elegido fue DaCHS.
+
+\section{Interfaz Usuario}
+Inicialmente la interfaz usuario o frontend iba a contener solo vistas, por lo que el desarrollo podía ser en practicamente cualquier lenguaje o framework, como por ejemplo HTML, PHP, Django o RoR. Sin embargo con los requerimientos de la plataforma, especialmente el de capa de usuarios, se decidió inclinarse por un framework MVC que fuese lo suficientemente ágil y compatible con el resto de servicios, por lo que se eligió RoR.
+
+\end{document}
