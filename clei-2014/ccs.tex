@@ -1,0 +1,67 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[spanish, es-tabla, activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{anysize}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+
+\usepackage{color}
+\newcommand{\todo}{\textcolor{red}{TO DO:}\textcolor{blue}}
+\newcommand{\ror}{\emph{Ruby on Rails}}
+
+%\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\tablename}{Tabla}
+
+\title{ChiVO: Estado actual del Observatorio Virtual de Chile}
+\author{
+\IEEEauthorblockN{
+    Jonathan Antognini \IEEEauthorrefmark{1},
+    Mauricio Araya     \IEEEauthorrefmark{1},
+    Mauricio Solar     \IEEEauthorrefmark{1} \\
+}
+\IEEEauthorblockA{
+    \IEEEauthorrefmark{1} Universidad Técnica Federico Santa María,Valparaiso, Chile}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper presents the challenges, architecture and current status of the
+Chilean Virtual Observatory (ChiVO), which is a software infrastructure 
+for accessing and processing astronomical data generated in Chile. As ChiVO
+is part of the International Virtual Observatory Alliance (IVOA), 
+we strictly follow the protocols and standards that this
+organization produce. However, there are always open challenges due to the
+new observational technologies and local requirements 
+that motivates research on every new 
+virtual observatory, such as the complex data models and Big Data problems 
+that the ALMA Observatory is confronting. 
+The current ChiVO prototype includes IVOA compliant services as well as
+new solutions designed for ALMA data, all of them using modern software
+technologies. 
+\end{abstract}
+% Maybe agregar que lo esperamos lanzar pronto.
+
+\begin{IEEEkeywords}
+ChiVO, Virtual Observatory, Astronomy, IVOA, ALMA.
+\end{IEEEkeywords}
+
+\input{include/introduccion}
+\input{include/arquitectura}
+\input{include/estado_avance}
+\input{include/conclusiones}
+
+\section*{Agradecimientos}
+Este trabajo ha sido financiado parcialmente con el proyecto FONDEF D11I1060.
+
+\section{Referencias}
+\bibliographystyle{plain}
+\bibliography{ccs}
+
+\end{document}
